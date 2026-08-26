@@ -1,0 +1,185 @@
+path: /product/tracking/
+title: Tracking &amp; attribution — Refficks
+ogtitle: Which partner earned this sale, and can you prove it?
+desc: Tracking links and coupon codes, first-party click capture, a REST API, and last-touch attribution across a configurable window — with every decision stored alongside the full reasoning that produced it.
+---
+<section class="wrap hero">
+  <p class="eyebrow" data-reveal>Tracking &amp; attribution</p>
+  <h1 class="h1" data-reveal>Which partner earned this sale, and can you prove it?</h1>
+  <p class="lede hero__sub" data-reveal>Refficks stores the reasoning behind every attribution decision — every touch it considered, which were eligible, which won, which lost, and why. The dispute ends with a link, not an argument.</p>
+  <div class="btn-row" style="margin-top:28px" data-reveal>
+    <a class="btn btn--primary" href="https://app.refficks.com/register">Start free</a>
+    <a class="btn btn--ghost" href="/developers/">See how it works</a>
+  </div>
+  <p class="reassure" style="margin-top:18px" data-reveal>Self-hosted. Your data. No credit card.</p>
+
+  <figure class="figure hero__fig" data-reveal>
+    <!-- SHOT 5 · replace with: Attribution Debugger on a contested sale, 1440x1100.
+         alt: "Attribution Debugger for one sale, showing three candidate touches with their source, age, eligibility and the reason each won or lost" -->
+    <div class="ui">
+      <div class="ui__bar"><span class="ui__title">Attribution debugger</span><span class="ui__sub">Sale order_10492</span><span class="ui__demo">Demo data</span></div>
+      <div class="ui__body" style="border-bottom:1px solid var(--line)">
+        <div class="grid grid-4" style="gap:16px">
+          <div class="stat"><div class="stat__k">Sale</div><div class="stat__v">USD 299.00</div><div class="stat__d">12 Aug 2026, 14:22 UTC</div></div>
+          <div class="stat"><div class="stat__k">Attributed to</div><div class="stat__v" style="font-size:17px">Elena Vasquez</div><div class="stat__d">Last-touch, link</div></div>
+          <div class="stat"><div class="stat__k">Confidence</div><div class="stat__v">0.86</div><div class="stat__d">Stored with the decision</div></div>
+          <div class="stat"><div class="stat__k">Window</div><div class="stat__v">30 days</div><div class="stat__d">Set on this programme</div></div>
+        </div>
+      </div>
+      <div class="ui__body" style="padding-bottom:8px"><p class="ui__hd">2 partners had a live claim</p></div>
+      <div class="ui-scroll">
+        <table class="ui-table">
+          <thead><tr><th>Touch</th><th>Source</th><th class="r">Age</th><th>Eligible</th><th>Outcome</th></tr></thead>
+          <tbody>
+            <tr><td class="nw">Elena Vasquez</td><td><span class="tag tag--accent">link</span></td><td class="r">3h 11m</td><td><span class="tag tag--ok">Yes</span></td><td><b>Won.</b> Most recent eligible touch.</td></tr>
+            <tr><td class="nw">Marcus Lin</td><td><span class="tag">coupon</span></td><td class="r">2d 6h</td><td><span class="tag tag--ok">Yes</span></td><td>Lost. Older, and link outranks coupon in source priority.</td></tr>
+            <tr><td class="nw">Nadia Okonjo</td><td><span class="tag">link</span></td><td class="r">41d 2h</td><td><span class="tag">No</span></td><td>Lost. Outside the 30-day window.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <figcaption>Two partners both had a claim on this sale. One page says who won, who lost, and the rule that decided it — so the conversation with the partner who lost is short.</figcaption>
+  </figure>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="measure-wide" data-reveal>
+      <p class="eyebrow">Getting the data in</p>
+      <h2 class="h2">Links, coupons, and a sale that never had a click</h2>
+      <p class="lede" style="margin-top:18px">Four ways in, so the way your business actually works is one of them.</p>
+    </div>
+    <div class="grid grid-2" style="margin-top:44px" data-reveal>
+      <div class="card">
+        <h3 class="h4">Tracking links</h3>
+        <p class="body">Every partner gets links. A click is claimed first-party by a two-line JavaScript snippet on your own site.</p>
+      </div>
+      <div class="card">
+        <h3 class="h4">Coupon codes</h3>
+        <p class="body">A coupon attributes a sale even when no click ever happened — the podcast mention, the printed card, the Discord message nobody clicked through.</p>
+      </div>
+      <div class="card">
+        <h3 class="h4">Server events</h3>
+        <p class="body">Report sales straight from your backend over a REST API with API keys, whatever your front end is doing.</p>
+      </div>
+      <div class="card">
+        <h3 class="h4">Stripe, with no JavaScript at all</h3>
+        <p class="body">Stripe sales can attribute through Stripe&rsquo;s own <code>client_reference_id</code>, so a merchant running no tracking script can still credit partners.</p>
+      </div>
+    </div>
+    <p class="precisely" style="margin-top:28px;max-width:80ch" data-reveal><b>Precisely:</b> publishable keys can identify a customer but can never report revenue. Secret keys live server-side. The key that can move a number is not the key in your page source.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="grid grid-split" data-reveal>
+      <div class="stack">
+        <p class="eyebrow">The rules</p>
+        <h2 class="h2">Last-touch, with a window you set</h2>
+        <p class="body">Attribution is last-touch across a window that defaults to 30 days and is configured per programme, not per account. A 7-day window for the impulse product and a 90-day one for the enterprise plan can live side by side.</p>
+        <p class="body">Where two touches compete, sources are ranked: API, then link, then direct, then coupon, then import.</p>
+        <p class="precisely"><b>Precisely:</b> every decision is stored with its full reasoning — every touch considered, which were eligible, which won, which lost and why, and a confidence score. The debugger reads that record; it does not recompute one.</p>
+      </div>
+      <figure class="figure">
+        <!-- SHOT 5b · replace with: programme attribution settings.
+             alt: "Attribution settings for a programme showing a 30-day window and the source priority order" -->
+        <div class="ui">
+          <div class="ui__bar"><span class="ui__title">Attribution</span><span class="ui__sub">Affiliate programme</span><span class="ui__demo">Demo data</span></div>
+          <div class="ui__body">
+            <p class="ui__hd">Attribution window</p>
+            <p class="ui__note" style="margin-top:2px">30 days &middot; set on this programme</p>
+            <p class="ui__hd" style="margin-top:20px">Source priority</p>
+            <ol style="margin-top:10px;padding-left:0;list-style:none;counter-reset:sp">
+              <li class="ui-row" style="padding:9px 0;gap:10px"><span class="pri">1</span><span>API</span><span class="ui__note" style="margin-left:auto">Reported by your server</span></li>
+              <li class="ui-row" style="padding:9px 0;gap:10px"><span class="pri">2</span><span>link</span><span class="ui__note" style="margin-left:auto">A tracked click</span></li>
+              <li class="ui-row" style="padding:9px 0;gap:10px"><span class="pri">3</span><span>direct</span><span class="ui__note" style="margin-left:auto">A known customer reference</span></li>
+              <li class="ui-row" style="padding:9px 0;gap:10px"><span class="pri">4</span><span>coupon</span><span class="ui__note" style="margin-left:auto">A code at checkout</span></li>
+              <li class="ui-row" style="padding:9px 0;gap:10px;border-bottom:0"><span class="pri pri--low">5</span><span>import</span><span class="ui__note" style="margin-left:auto">Brought in from elsewhere</span></li>
+            </ol>
+          </div>
+        </div>
+        <figcaption>Windows are per programme. Priority is a list, not a heuristic.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="grid grid-split grid-split--rev" data-reveal>
+      <figure class="figure">
+        <!-- SHOT 5c · replace with: the unattributed sales view.
+             alt: "List of three sales recorded as attributed to nobody, each showing why no partner had a claim" -->
+        <div class="ui">
+          <div class="ui__bar"><span class="ui__title">Unattributed sales</span><span class="ui__sub">Last 30 days</span><span class="ui__demo">Demo data</span></div>
+          <div class="ui-scroll">
+            <table class="ui-table">
+              <thead><tr><th>Sale</th><th class="r">Amount</th><th>Why nobody was credited</th></tr></thead>
+              <tbody>
+                <tr><td class="nw">order_10388</td><td class="r">USD 149.00</td><td>No touch of any kind within the window.</td></tr>
+                <tr><td class="nw">order_10402</td><td class="r">USD 299.00</td><td>One touch, 44 days old. Outside the 30-day window.</td></tr>
+                <tr><td class="nw">order_10455</td><td class="r">USD 79.00</td><td>Coupon code no longer belongs to a partner.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="ui__body" style="border-top:1px solid var(--line)">
+            <p class="ui__note">3 sales, USD 527.00. Recorded as unattributed, not dropped.</p>
+          </div>
+        </div>
+        <figcaption>A sale nobody earned is a fact worth keeping. Tools that quietly discard these are the reason attribution numbers never reconcile.</figcaption>
+      </figure>
+      <div class="stack">
+        <p class="eyebrow">Nobody won</p>
+        <h2 class="h2">Sales attributed to nobody are recorded as exactly that</h2>
+        <p class="body">Most of your revenue probably has no partner behind it, and that is fine. What is not fine is a system that silently drops those sales, because then no total you produce can ever be checked against your own books.</p>
+        <p class="body">Refficks writes the decision down either way, with the reason.</p>
+        <p class="precisely"><b>Precisely:</b> the debugger works on unattributed sales too. &ldquo;Nobody had a claim&rdquo; is a stored decision with reasoning, not an absence of data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="measure-wide" data-reveal>
+      <p class="eyebrow">The guarantees</p>
+      <h2 class="h2">What tracking refuses to do</h2>
+    </div>
+    <div class="grid grid-3" style="margin-top:44px" data-reveal>
+      <div class="refusal">
+        <span class="refusal__no">Refuses to</span>
+        <h3 class="h4">Store your visitors&rsquo; IP addresses</h3>
+        <p class="body">Refficks never stores a raw IP address. Fraud signals run on salted hashes, and Do Not Track is respected by default.</p>
+      </div>
+      <div class="refusal">
+        <span class="refusal__no">Refuses to</span>
+        <h3 class="h4">Process the same event twice</h3>
+        <p class="body">Duplicates are structurally impossible: idempotency is enforced by the database. A retried webhook or a double-submitted event resolves to the original.</p>
+      </div>
+      <div class="refusal">
+        <span class="refusal__no">Refuses to</span>
+        <h3 class="h4">Change an attribution quietly</h3>
+        <p class="body">Attribution is never silently altered. A correction supersedes the earlier decision and both remain readable, with the reasoning that produced each.</p>
+      </div>
+    </div>
+    <div class="btn-row" style="margin-top:40px" data-reveal>
+      <a class="btn btn--primary" href="https://app.refficks.com/register">Start free</a>
+      <a class="btn btn--ghost" href="/product/commissions/">Then: commissions and payouts</a>
+    </div>
+  </div>
+</section>
+
+<section class="section band">
+  <div class="wrap" style="text-align:center">
+    <div class="measure-wide" style="margin-inline:auto" data-reveal>
+      <h2 class="h2">The dispute ends with a link, not an argument</h2>
+      <p class="lede" style="margin-top:18px">Run it on your own server and send a partner the page that explains their sale.</p>
+      <div class="btn-row" style="margin-top:30px;justify-content:center">
+        <a class="btn btn--onDark" href="https://app.refficks.com/register">Start free</a>
+        <a class="btn btn--ghostDark" href="/developers/">See how it works</a>
+      </div>
+      <p class="reassure" style="margin-top:18px">Self-hosted. Your data. No credit card.</p>
+    </div>
+  </div>
+</section>

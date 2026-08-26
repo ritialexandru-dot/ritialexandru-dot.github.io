@@ -1,0 +1,153 @@
+path: /faq/
+title: FAQ — Refficks
+ogtitle: Objections, answered plainly
+desc: Who owns the data, whether the AI can see bank details, what happens to your LeadDyno history, what is not built yet, and whether Refficks stores IP addresses. Answered from what the product actually does.
+---
+<section class="wrap hero">
+  <p class="eyebrow" data-reveal>FAQ</p>
+  <h1 class="h1" data-reveal>Objections, answered plainly</h1>
+  <p class="lede hero__sub" data-reveal>The questions people actually ask before they install something that touches their partner payments.</p>
+  <div class="btn-row" style="margin-top:28px" data-reveal>
+    <a class="btn btn--primary" href="https://app.refficks.com/register">Start free</a>
+    <a class="btn btn--ghost" href="/developers/">See how it works</a>
+  </div>
+  <p class="reassure" style="margin-top:18px" data-reveal>Self-hosted. Your data. No credit card.</p>
+</section>
+
+<section class="section--tight">
+  <div class="wrap wrap--narrow">
+    <div class="qa" data-reveal>
+
+      <details open>
+        <summary>Who owns the data?</summary>
+        <div class="qa__a">
+          <p class="body">You do, in a database on a server you control. Refficks is self-hosted with Docker Compose — there is no copy of your partner data on infrastructure we run, because we do not run any infrastructure for you.</p>
+          <p class="precisely"><b>Precisely:</b> multi-tenant isolation is still a tested property inside your deployment — every resource carries a test proving one organization cannot read another&rsquo;s data — which matters the moment you run more than one programme.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Does the AI see my partners&rsquo; bank details?</summary>
+        <div class="qa__a">
+          <p class="body">No, and not as a matter of policy. Partner payout details never reach the model, and there is a test asserting their absence from the context it is given.</p>
+          <p class="body">More broadly: the assistant cannot approve, reverse or suspend anything. The interface it is reached through has no tools, no database access and no write path, so there is no instruction that makes it able to move money.</p>
+          <p class="precisely"><b>Precisely:</b> the assistant is off by default, and you can switch it off for your organization even when the deployment it runs on has it enabled.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Can an automation pay someone?</summary>
+        <div class="qa__a">
+          <p class="body">No. An automation may do exactly three things: send an email, add a tag, or enrol a partner in a campaign. It cannot touch money. Ever.</p>
+          <p class="body">Refficks does not move money at all, in fact. It builds the payout batch, tells you who cannot be paid and why, and exports a CSV your bank can use. There is always a step where a person can say no.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What happens to my LeadDyno history?</summary>
+        <div class="qa__a">
+          <p class="body">Your partners come across with their contact details, coupon codes and status. Their historical commission totals come across as <b>LeadDyno&rsquo;s reported figures</b>, labelled as such on the partner record.</p>
+          <p class="body">They are not written into the Refficks ledger. The ledger only holds money it can explain — every entry stores the arithmetic that produced it and the attribution decision behind that — and an imported total has none of that behind it. So your ledger starts clean on the day you start, and the old numbers sit beside it as context.</p>
+          <p class="body">That is a real trade, and it is the honest one. <a href="/migrate/#the-honest-part">The long version is on the migration page.</a></p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Do you store IP addresses?</summary>
+        <div class="qa__a">
+          <p class="body">Refficks never stores a raw IP address. Fraud signals run on salted hashes, and Do Not Track is respected by default.</p>
+          <p class="precisely"><b>Precisely:</b> this site follows the same rule. No cookies, no trackers, and nothing that would need a consent banner. <a href="/privacy/">Privacy</a>.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What is not built yet?</summary>
+        <div class="qa__a">
+          <p class="body">Stripe is the payment integration today, alongside the generic REST API and the JavaScript tracker. Paddle and others are planned and not present.</p>
+          <p class="body">The affiliate module is what ships. Referral, creator, ambassador, agency and reseller programmes exist as architecture, not as features you can run a programme on.</p>
+          <p class="body">There is no hosted version — self-hosted only.</p>
+          <p class="body"><a href="/roadmap/">The full inventory is on the roadmap</a>, in three states: shipping, architecture only, and not built. Nothing on it has a date.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What does it cost?</summary>
+        <div class="qa__a">
+          <p class="body">There is no public pricing, because there is no hosted plan to price. The self-hosted version costs you a server — 2 vCPU and 4 GB of RAM is comfortable.</p>
+          <p class="body">We would rather have no pricing page than an invented one.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Is it open source?</summary>
+        <div class="qa__a">
+          <p class="body">No. A license has not been chosen, so Refficks is described as <b>self-hosted</b> and not as open source. Those are different promises and only the first one is true today.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Do you have compliance certifications?</summary>
+        <div class="qa__a">
+          <p class="body">No, and we are not going to name one we are &ldquo;working towards&rdquo;.</p>
+          <p class="body">What exists are practices you can verify in the code you are running: multi-tenant isolation with a test on every resource; append-only events, attributions, commission entries and audit logs, with who did what, when, and the values on both sides; no raw IP addresses stored anywhere; payout details encrypted at rest and never displayed back to anyone.</p>
+          <p class="body">If your procurement process requires a certification, Refficks does not meet that requirement today.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Who else is using it?</summary>
+        <div class="qa__a">
+          <p class="body">There are no named customers, no user counts and no usage statistics, because there are none yet. This is an early product.</p>
+          <p class="body">What we offer instead of proof we do not have: run <code>php artisan refficks:demo</code> after installing, and you get six partners with four months of history built through the real pipeline — the same code path your live data would take. Everything on this site is a screen you can reach in that dataset within a few minutes.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What happens when a customer refunds?</summary>
+        <div class="qa__a">
+          <p class="body">A reversal is written <em>beside</em> the original commission entry. The original is not edited, not deleted and not recalculated — it is still there, with the arithmetic that produced it, and the reversal sits next to it with its own reason.</p>
+          <p class="body">The same rule holds everywhere: history is never edited. Not a commission, not an attribution, not a raw event. Corrections supersede; they do not overwrite.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What if I send the same event twice?</summary>
+        <div class="qa__a">
+          <p class="body">You get the original result back. Duplicates are structurally impossible to process twice — idempotency is enforced by the database, so a retried webhook or a double-submitted event resolves to the original rather than creating a second commission.</p>
+          <p class="precisely"><b>Precisely:</b> this means at-least-once delivery is sufficient for your queue, and you do not need a reconciliation job hunting for duplicate entries. <a href="/developers/">Details for developers</a>.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>My affiliate sends traffic that never clicks a link. Can I still credit them?</summary>
+        <div class="qa__a">
+          <p class="body">Yes. A coupon code attributes a sale even when no click ever happened — which covers the podcast mention, the printed card and the community post nobody clicked through.</p>
+          <p class="body">And if you use Stripe, sales can attribute through Stripe&rsquo;s own <code>client_reference_id</code>, so a merchant running no JavaScript at all can still credit partners.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How long does it take to set up?</summary>
+        <div class="qa__a">
+          <p class="body">DNS to signed-in in under an hour, with HTTPS issued automatically during setup. Three commands: clone, run the setup script, bring the stack up.</p>
+          <p class="precisely"><b>Precisely:</b> Laravel with MySQL and Redis for the API, Next.js for the dashboard and portal. A complete OpenAPI specification, 90 paths, ships in the repository.</p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<section class="section band">
+  <div class="wrap" style="text-align:center">
+    <div class="measure-wide" style="margin-inline:auto" data-reveal>
+      <h2 class="h2">Still deciding?</h2>
+      <p class="lede" style="margin-top:18px">Install it, run the demo dataset, and look at the Actions screen. That is the shortest route to knowing whether this is for you.</p>
+      <div class="btn-row" style="margin-top:30px;justify-content:center">
+        <a class="btn btn--onDark" href="https://app.refficks.com/register">Start free</a>
+        <a class="btn btn--ghostDark" href="/roadmap/">See what is and is not built</a>
+      </div>
+      <p class="reassure" style="margin-top:18px">Self-hosted. Your data. No credit card.</p>
+    </div>
+  </div>
+</section>

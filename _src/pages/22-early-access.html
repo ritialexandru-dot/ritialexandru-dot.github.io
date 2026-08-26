@@ -1,0 +1,73 @@
+path: /early-access/
+title: Early access — Refficks
+ogtitle: Self-host it today, or tell us you want it hosted
+desc: Refficks is self-hosted today. Run it on your own server with Docker Compose, or leave an email address if you would rather we hosted it for you.
+---
+<section class="wrap hero">
+  <p class="eyebrow" data-reveal>Early access</p>
+  <h1 class="h1" data-reveal>Two ways in. One of them exists today.</h1>
+  <p class="lede hero__sub" data-reveal>Refficks is self-hosted. There is no hosted version yet, and we are not going to put a date on one we have not built.</p>
+
+  <div class="grid grid-2" style="margin-top:clamp(36px,3vw + 20px,52px);gap:24px" data-reveal>
+    <div class="card" style="display:flex;flex-direction:column">
+      <span class="state state--now" style="align-self:flex-start;margin-bottom:16px">Available now</span>
+      <h2 class="h3">Self-host it today</h2>
+      <p class="body" style="margin-top:12px">Docker Compose on a server you control. DNS to signed-in in under an hour, with HTTPS included automatically.</p>
+      <ul class="ticks" style="margin-top:18px">
+        <li><b>2 vCPU, 4 GB RAM</b> is comfortable.</li>
+        <li>Your own MySQL database. Your data stays in it.</li>
+        <li>Three commands, and one of them is <code>cd</code>.</li>
+      </ul>
+      <div class="btn-row" style="margin-top:auto;padding-top:24px">
+        <a class="btn btn--primary" href="https://app.refficks.com/register">Start free</a>
+        <a class="btn btn--ghost" href="/developers/#self-hosting">Read the deployment guide</a>
+      </div>
+      <p class="reassure" style="margin-top:14px">Self-hosted. Your data. No credit card.</p>
+    </div>
+
+    <div class="card card--alt" style="display:flex;flex-direction:column">
+      <span class="state state--no" style="align-self:flex-start;margin-bottom:16px">Not built yet</span>
+      <h2 class="h3">Want it hosted? Leave an email.</h2>
+      <p class="body" style="margin-top:12px">One field. No company size, no budget range, no &ldquo;how did you hear about us&rdquo;. If a hosted version happens, you hear about it first.</p>
+
+      <!-- TODO(owner): set `action` to a real form endpoint before launch.
+           This form is otherwise complete. Do not ship it pointing at the placeholder. -->
+      <form class="stack-sm" style="margin-top:20px" action="https://REPLACE-WITH-YOUR-FORM-ENDPOINT" method="post">
+        <div class="field">
+          <label for="ea-email">Email address</label>
+          <input id="ea-email" name="email" type="email" autocomplete="email" required placeholder="you@company.com">
+        </div>
+        <button class="btn btn--primary" type="submit" style="width:100%;margin-top:12px">Tell me when it is hosted</button>
+      </form>
+      <p class="form-note">We will use this address to tell you about a hosted version and nothing else. No newsletter, no drip sequence.</p>
+      <p class="small" style="margin-top:auto;padding-top:20px">Not waiting? The self-hosted version is the same software.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="measure-wide" data-reveal>
+      <p class="eyebrow">Before you ask</p>
+      <h2 class="h2">Things we are not going to pretend about</h2>
+    </div>
+    <div class="grid grid-3" style="margin-top:44px" data-reveal>
+      <div class="card">
+        <h3 class="h4">There is no pricing page</h3>
+        <p class="body">Because there is no hosted plan to price. The self-hosted version costs you a server.</p>
+      </div>
+      <div class="card">
+        <h3 class="h4">There are no customer logos</h3>
+        <p class="body">This is an early product. What we have instead is a working demo dataset and a list of things the software refuses to do.</p>
+      </div>
+      <div class="card">
+        <h3 class="h4">There is no uptime commitment</h3>
+        <p class="body">You are running it, on your infrastructure. Your uptime is yours, and we are not in a position to promise anyone else&rsquo;s.</p>
+      </div>
+    </div>
+    <div class="btn-row" style="margin-top:40px" data-reveal>
+      <a class="btn btn--primary" href="https://app.refficks.com/register">Start free</a>
+      <a class="btn btn--ghost" href="/roadmap/">See what is and is not built</a>
+    </div>
+  </div>
+</section>

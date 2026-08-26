@@ -1,0 +1,252 @@
+path: /product/commissions/
+title: Commissions &amp; payouts — Refficks
+ogtitle: Every commission entry stores the arithmetic that made it
+desc: Percentage, fixed or tiered plans, one-time or recurring. Every ledger entry keeps its own arithmetic, refunds write reversals beside the original, reporting is the same arithmetic as the ledger, and no payout leaves without a person approving it.
+---
+<section class="wrap hero">
+  <p class="eyebrow" data-reveal>Commissions &amp; payouts</p>
+  <h1 class="h1" data-reveal>Where did this number come from?</h1>
+  <p class="lede hero__sub" data-reveal>Every ledger entry stores the arithmetic that produced it — literally &ldquo;20% of USD 299.00&rdquo; — so a commission is never recomputed in order to be explained.</p>
+  <div class="btn-row" style="margin-top:28px" data-reveal>
+    <a class="btn btn--primary" href="https://app.refficks.com/register">Start free</a>
+    <a class="btn btn--ghost" href="/developers/">See how it works</a>
+  </div>
+  <p class="reassure" style="margin-top:18px" data-reveal>Self-hosted. Your data. No credit card.</p>
+
+  <figure class="figure hero__fig" data-reveal>
+    <!-- SHOT 6 · replace with: commission ledger showing an entry and its reversal, 1440x1100.
+         alt: "Commission ledger for one partner showing a commission entry and, two rows later, the reversal written beside it after a refund" -->
+    <div class="ui">
+      <div class="ui__bar"><span class="ui__title">Commission ledger</span><span class="ui__sub">Elena Vasquez</span><span class="ui__demo">Demo data</span></div>
+      <div class="ui-scroll">
+        <table class="ui-table">
+          <thead><tr><th>Date</th><th>Entry</th><th>Reference</th><th>Arithmetic</th><th class="r">Amount</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="nw">02 Aug 2026</td><td class="nw">#4468</td><td class="nw">order_10388</td><td>20% of USD 149.00</td><td class="r">USD 29.80</td><td><span class="tag tag--ok">Approved</span></td></tr>
+            <tr><td class="nw">12 Aug 2026</td><td class="nw">#4471</td><td class="nw">order_10492</td><td>20% of USD 299.00</td><td class="r">USD 59.80</td><td><span class="tag tag--ok">Approved</span></td></tr>
+            <tr><td class="nw">14 Aug 2026</td><td class="nw">#4479</td><td class="nw">order_10501</td><td>20% of USD 299.00</td><td class="r">USD 59.80</td><td><span class="tag">Pending</span></td></tr>
+            <tr style="background:var(--surface-2)"><td class="nw">19 Aug 2026</td><td class="nw">#4488</td><td class="nw">order_10492</td><td>Reversal of entry #4471 &middot; customer refunded</td><td class="r">&minus;USD 59.80</td><td><span class="tag tag--warn">Reversal</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="ui__body" style="border-top:1px solid var(--line)">
+        <p class="ui__note">Entry #4471 is unchanged. Entry #4488 sits beside it.</p>
+      </div>
+    </div>
+    <figcaption>A refund did not edit the original entry. It wrote a new one next to it. Six months from now, both rows are still there and the balance still explains itself.</figcaption>
+  </figure>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="grid grid-split" data-reveal>
+      <div class="stack">
+        <p class="eyebrow">Plans</p>
+        <h2 class="h2">Percentage, fixed, or tiered. One-time or recurring.</h2>
+        <p class="body">A plan can pay a percentage, a flat amount, or a tier that changes with volume. It can pay once or on every renewal, with an optional duration — twelve months of recurring commission, then it stops.</p>
+        <p class="body">Plans carry conditions and priorities, so a launch rate and a standard rate can coexist without anyone maintaining a spreadsheet of exceptions. And when you do want a deliberate exception, per-partner custom plans exist for exactly that.</p>
+        <p class="precisely"><b>Precisely:</b> money is integer minor units plus an ISO currency, everywhere. Never floats, never a silent conversion between currencies.</p>
+      </div>
+      <figure class="figure">
+        <!-- SHOT 6b · replace with: commission plans list.
+             alt: "Commission plans list showing a percentage plan, a tiered plan, a fixed plan and a per-partner custom plan with their conditions and priorities" -->
+        <div class="ui">
+          <div class="ui__bar"><span class="ui__title">Commission plans</span><span class="ui__demo">Demo data</span></div>
+          <div class="ui-scroll">
+            <table class="ui-table">
+              <thead><tr><th>Plan</th><th>Pays</th><th>Duration</th><th class="r">Priority</th></tr></thead>
+              <tbody>
+                <tr><td class="nw">Standard</td><td>15% recurring</td><td>No end date</td><td class="r">100</td></tr>
+                <tr><td class="nw">Launch partners</td><td>25% recurring</td><td>12 months</td><td class="r">50</td></tr>
+                <tr><td class="nw">Hardware referral</td><td>USD 40.00 fixed</td><td>One-time</td><td class="r">100</td></tr>
+                <tr><td class="nw">Volume tier</td><td>15% &rarr; 18% &rarr; 22%</td><td>No end date</td><td class="r">80</td></tr>
+                <tr><td class="nw">Nadia Okonjo</td><td>20% recurring <span class="tag tag--accent">Custom</span></td><td>No end date</td><td class="r">10</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <figcaption>The exception is a row, not a fork in your process.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="grid grid-split grid-split--rev" data-reveal>
+      <figure class="figure">
+        <!-- SHOT 7 · replace with: payout preview showing who cannot be paid and why, 1440x1100.
+             alt: "Payout preview for August listing two payable partners with amounts, two who cannot be paid with the reason for each, and one held pending approval" -->
+        <div class="ui">
+          <div class="ui__bar"><span class="ui__title">Payout preview</span><span class="ui__sub">August 2026</span><span class="ui__demo">Demo data</span></div>
+          <div class="ui__body" style="border-bottom:1px solid var(--line)">
+            <div class="grid grid-3" style="gap:16px">
+              <div class="stat"><div class="stat__k">Payable now</div><div class="stat__v">USD 2,540.40</div><div class="stat__d">2 partners</div></div>
+              <div class="stat"><div class="stat__k">Cannot be paid</div><div class="stat__v">USD 156.00</div><div class="stat__d">2 partners</div></div>
+              <div class="stat"><div class="stat__k">Held</div><div class="stat__v">USD 1,015.00</div><div class="stat__d">1 partner</div></div>
+            </div>
+          </div>
+          <div class="ui-scroll">
+            <table class="ui-table">
+              <thead><tr><th>Partner</th><th class="r">Amount</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="nw">Nadia Okonjo</td><td class="r">USD 1,648.00</td><td><span class="tag tag--ok">Payable</span></td></tr>
+                <tr><td class="nw">Elena Vasquez</td><td class="r">USD 892.40</td><td><span class="tag tag--ok">Payable</span></td></tr>
+                <tr><td class="nw">Priya Shah</td><td class="r">USD 118.00</td><td><span class="tag tag--warn">No payout details</span></td></tr>
+                <tr><td class="nw">Marcus Lin</td><td class="r">USD 38.00</td><td><span class="tag tag--warn">Below the USD 50.00 minimum</span></td></tr>
+                <tr><td class="nw">Tom Berger</td><td class="r">USD 1,015.00</td><td><span class="tag">Commission not approved</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="ui__body" style="border-top:1px solid var(--line)">
+            <p class="ui__note">Nothing has been committed. Building the batch is the next step, and it is yours to take.</p>
+          </div>
+        </div>
+        <figcaption>The four partners you would otherwise chase after the run are named before it. <b>Why</b> is a column, not a support ticket.</figcaption>
+      </figure>
+      <div class="stack">
+        <p class="eyebrow">Payouts</p>
+        <h2 class="h2">You see who cannot be paid before you commit</h2>
+        <p class="body">The preview shows who is owed, who cannot be paid, and exactly why — no payout details, below the minimum — while there is still time to do something about it.</p>
+        <p class="body">Approve it and the batch is built in one transaction and exported as a CSV your bank can use. A person approves it. A person marks it paid, with a reference.</p>
+        <p class="precisely"><b>Precisely:</b> partners&rsquo; payout details are encrypted at rest and write-only. They are never displayed back to anyone, including the partner who typed them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="analytics">
+  <div class="wrap">
+    <div class="measure-wide" data-reveal>
+      <p class="eyebrow">Reporting</p>
+      <h2 class="h2">The dashboard and the ledger are the same arithmetic</h2>
+      <p class="lede" style="margin-top:18px">Revenue, commission, clicks and conversions over the period you pick, per-partner league tables, and day-by-day charts that include the days nothing happened.</p>
+    </div>
+
+    <figure class="figure" style="margin-top:40px" data-reveal>
+      <!-- SHOT 1 · replace with: dashboard overview with charts populated, 1440x1100.
+           alt: "Dashboard for August showing revenue, commission, clicks and conversions, a day-by-day revenue chart including days with no sales, and a live figure for today" -->
+      <div class="ui">
+        <div class="ui__bar"><span class="ui__title">Dashboard</span><span class="ui__sub">August 2026</span><span class="ui__demo">Demo data</span></div>
+        <div class="ui__body" style="border-bottom:1px solid var(--line)">
+          <div class="grid grid-4" style="gap:16px">
+            <div class="stat"><div class="stat__k">Revenue</div><div class="stat__v">USD 24,180.00</div><div class="stat__d">+18% on July</div></div>
+            <div class="stat"><div class="stat__k">Commission</div><div class="stat__v">USD 3,627.00</div><div class="stat__d">15.0% of revenue</div></div>
+            <div class="stat"><div class="stat__k">Clicks</div><div class="stat__v">4,912</div><div class="stat__d">+6% on July</div></div>
+            <div class="stat"><div class="stat__k">Conversions</div><div class="stat__v">87</div><div class="stat__d">1.8% of clicks</div></div>
+          </div>
+        </div>
+        <div class="ui__body" style="border-bottom:1px solid var(--line)">
+          <p class="ui__hd" style="margin-bottom:12px">Revenue, day by day</p>
+          <div class="chart" aria-hidden="true">
+              <div class="cb"><i style="height:52%"></i></div>
+              <div class="cb"><i style="height:40%"></i></div>
+              <div class="cb"><i class="q"></i></div>
+              <div class="cb"><i class="q"></i></div>
+              <div class="cb"><i style="height:59%"></i></div>
+              <div class="cb"><i style="height:73%"></i></div>
+              <div class="cb"><i style="height:45%"></i></div>
+              <div class="cb"><i style="height:55%"></i></div>
+              <div class="cb"><i class="q"></i></div>
+              <div class="cb"><i style="height:36%"></i></div>
+              <div class="cb"><i style="height:79%"></i></div>
+              <div class="cb"><i style="height:64%"></i></div>
+              <div class="cb"><i style="height:48%"></i></div>
+              <div class="cb"><i class="q"></i></div>
+              <div class="cb"><i class="q"></i></div>
+              <div class="cb"><i style="height:51%"></i></div>
+              <div class="cb"><i style="height:70%"></i></div>
+              <div class="cb"><i style="height:100%"></i></div>
+              <div class="cb"><i style="height:61%"></i></div>
+              <div class="cb"><i style="height:41%"></i></div>
+              <div class="cb"><i class="q"></i></div>
+              <div class="cb"><i style="height:55%"></i></div>
+              <div class="cb"><i style="height:76%"></i></div>
+              <div class="cb"><i style="height:48%"></i></div>
+              <div class="cb"><i class="q"></i></div>
+              <div class="cb"><i class="q"></i></div>
+              <div class="cb"><i style="height:37%"></i></div>
+              <div class="cb"><i style="height:66%"></i></div>
+              <div class="cb"><i style="height:85%"></i></div>
+              <div class="cb"><i style="height:57%"></i></div>
+              <div class="cb"><i style="height:46%"></i></div>
+          </div>
+          <p class="ui__note" style="margin-top:10px">Eight days with no sales are drawn as eight days with no sales.</p>
+        </div>
+        <div class="ui__body" style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+          <p class="ui__note" style="flex:1 1 300px"><b style="color:var(--ink)">Today, live: USD 598.00</b> from 2 sales, the most recent 14 minutes ago.</p>
+          <p class="ui__note">Days close at 00:00 in Europe/London, your organization&rsquo;s timezone.</p>
+        </div>
+      </div>
+      <figcaption>A sale made a minute ago is on this screen now — and the total does not move when the day closes, because the live figure and the nightly rollup are computed from the same arithmetic.</figcaption>
+    </figure>
+
+    <div class="grid grid-split" style="margin-top:52px" data-reveal>
+      <div class="stack">
+        <p class="eyebrow">No confident zeroes</p>
+        <h2 class="h3">An empty programme says so</h2>
+        <p class="body">Lesser software prints <code>$0.00</code> for a programme with no data and <code>+100%</code> for a first month with nothing to compare against. Both are lies with a decimal point in them.</p>
+        <p class="precisely"><b>Precisely:</b> closed days come from nightly rollups and today is computed live from the same arithmetic, so no total silently changes when a day rolls over. Days close in your organization&rsquo;s timezone, not the server&rsquo;s.</p>
+      </div>
+      <figure class="figure">
+        <!-- SHOT 1b · replace with: dashboard of a brand-new programme.
+             alt: "Dashboard of a new programme showing no data yet in place of a zero total and no earlier period to compare in place of a percentage change" -->
+        <div class="ui">
+          <div class="ui__bar"><span class="ui__title">Dashboard</span><span class="ui__sub">Your first week</span><span class="ui__demo">Demo data</span></div>
+          <div class="ui__body">
+            <div class="grid grid-2" style="gap:16px">
+              <div class="stat"><div class="stat__k">Revenue</div><div class="stat__v stat__v--empty">No data yet</div></div>
+              <div class="stat"><div class="stat__k">Change on previous period</div><div class="stat__v stat__v--empty">No earlier period to compare</div></div>
+            </div>
+          </div>
+        </div>
+        <figcaption>Two empty states doing more for your trust than any number could.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="grid grid-split" data-reveal>
+      <div class="stack">
+        <p class="eyebrow">Approval</p>
+        <h2 class="h2">Commission is approved on purpose</h2>
+        <p class="body">Entries do not become payable because time passed. A merchant approves them, one at a time or in bulk, and the partner sees the same arithmetic for their own earnings that you see for your liability.</p>
+        <p class="body">There is no version of the numbers that only one side can read.</p>
+        <p class="precisely"><b>Precisely:</b> the partner portal renders the same stored arithmetic — &ldquo;20% of USD 299.00&rdquo; — not a separately computed figure that might drift from yours.</p>
+      </div>
+      <div class="grid" style="gap:16px" data-reveal>
+        <div class="refusal">
+          <span class="refusal__no">Refuses to</span>
+          <h3 class="h4">Move your money</h3>
+          <p class="body">Refficks never moves money itself. It builds the batch and hands you a file. There is always a step where a person can say no.</p>
+        </div>
+        <div class="refusal">
+          <span class="refusal__no">Refuses to</span>
+          <h3 class="h4">Show a bank account back</h3>
+          <p class="body">Payout details are write-only. A merchant sees that the record changed, never what it changed to.</p>
+        </div>
+        <div class="refusal">
+          <span class="refusal__no">Refuses to</span>
+          <h3 class="h4">Let an automation pay anyone</h3>
+          <p class="body">An automation may send an email, add a tag, or enrol a partner in a campaign. It cannot touch money. Ever.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section band">
+  <div class="wrap" style="text-align:center">
+    <div class="measure-wide" style="margin-inline:auto" data-reveal>
+      <h2 class="h2">A ledger that only holds money it can explain</h2>
+      <p class="lede" style="margin-top:18px">Run it on your own server, approve a commission, and read the arithmetic it kept.</p>
+      <div class="btn-row" style="margin-top:30px;justify-content:center">
+        <a class="btn btn--onDark" href="https://app.refficks.com/register">Start free</a>
+        <a class="btn btn--ghostDark" href="/developers/">See how it works</a>
+      </div>
+      <p class="reassure" style="margin-top:18px">Self-hosted. Your data. No credit card.</p>
+    </div>
+  </div>
+</section>

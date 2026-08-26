@@ -1,0 +1,193 @@
+path: /roadmap/
+title: Roadmap — Refficks
+ogtitle: What is built, what is only architecture, and what we will not put a date on
+desc: An honest inventory of Refficks: the affiliate module that ships today, the modules that exist as architecture and are not sold, and the things that are not built — with no dates attached to any of it.
+---
+<section class="wrap hero">
+  <p class="eyebrow" data-reveal>Roadmap</p>
+  <h1 class="h1" data-reveal>What is built, what is only architecture, and what we will not date</h1>
+  <p class="lede hero__sub" data-reveal>Most roadmaps are a sales document with quarters on it. This one is an inventory. If something is not built, it is in the third list, and there is no date beside it.</p>
+  <div class="btn-row" style="margin-top:28px" data-reveal>
+    <a class="btn btn--primary" href="https://app.refficks.com/register">Start free</a>
+    <a class="btn btn--ghost" href="/product/intelligence/">See how it works</a>
+  </div>
+  <p class="reassure" style="margin-top:18px" data-reveal>Self-hosted. Your data. No credit card.</p>
+
+  <div class="grid grid-3" style="margin-top:clamp(36px,3vw + 20px,52px);gap:20px" data-reveal>
+    <a class="card" href="#shipping" style="text-decoration:none;color:inherit">
+      <span class="state state--now">Shipping today</span>
+      <p class="body" style="margin-top:14px">The affiliate module, end to end. Tracking through to payouts, with the intelligence layer on top.</p>
+    </a>
+    <a class="card" href="#architecture" style="text-decoration:none;color:inherit">
+      <span class="state state--arch">Architecture, not features</span>
+      <p class="body" style="margin-top:14px">Programme types the data model already accommodates. We do not sell these, and you should not buy on them.</p>
+    </a>
+    <a class="card" href="#not-built" style="text-decoration:none;color:inherit">
+      <span class="state state--no">Not built</span>
+      <p class="body" style="margin-top:14px">Things people reasonably ask for that do not exist. Named, with no date attached.</p>
+    </a>
+  </div>
+</section>
+
+<section class="section section--alt" id="shipping">
+  <div class="wrap">
+    <div class="measure-wide" data-reveal>
+      <span class="state state--now">Shipping today</span>
+      <h2 class="h2" style="margin-top:16px">The affiliate module, end to end</h2>
+      <p class="lede" style="margin-top:18px">This is what the demo dataset runs through, and what you get when you deploy it this afternoon.</p>
+    </div>
+
+    <div class="rm" style="margin-top:36px;background:#fff" data-reveal>
+      <div class="rm__item">
+        <h3 class="h4">Tracking and attribution</h3>
+        <p class="body">Tracking links and coupon codes, a two-line first-party JavaScript snippet, a REST API for server events, and Stripe attribution through <code>client_reference_id</code>. Last-touch across a configurable window, with every decision stored alongside its full reasoning.</p>
+        <p class="rm__why"><a href="/product/tracking/">Tracking &amp; attribution &rarr;</a></p>
+      </div>
+      <div class="rm__item">
+        <h3 class="h4">Commissions and payouts</h3>
+        <p class="body">Percentage, fixed and tiered plans; one-time or recurring with an optional duration; conditions, priorities and per-partner exceptions. Every entry stores its own arithmetic. Refunds write reversals beside the original. Payout previews, CSV batches, human approval.</p>
+        <p class="rm__why"><a href="/product/commissions/">Commissions &amp; payouts &rarr;</a></p>
+      </div>
+      <div class="rm__item">
+        <h3 class="h4">Partner intelligence</h3>
+        <p class="body">Nightly scoring on score, potential and risk, with every factor showing its weight, value, points and evidence. The Actions screen, ranked by cost of ignoring. Lifecycle stages earned from behaviour. An activation funnel that names who is stuck.</p>
+        <p class="rm__why"><a href="/product/intelligence/">Partner intelligence &rarr;</a></p>
+      </div>
+      <div class="rm__item">
+        <h3 class="h4">Partner portal and communications</h3>
+        <p class="body">A separate partner sign-in built for phones. Eight default emails, overridable. Automations on real events, limited to sending an email, adding a tag, or enrolling in a campaign. Every send recorded.</p>
+        <p class="rm__why"><a href="/product/portal/">Partner portal &amp; comms &rarr;</a></p>
+      </div>
+      <div class="rm__item">
+        <h3 class="h4">Analytics and reporting</h3>
+        <p class="body">Revenue, commission, clicks and conversions over selectable periods, per-partner league tables, and day-by-day charts that include the quiet days. Closed days come from nightly rollups; today is computed live from the same arithmetic. Days close in your organization&rsquo;s timezone, not the server&rsquo;s.</p>
+      </div>
+      <div class="rm__item">
+        <h3 class="h4">Migration and import</h3>
+        <p class="body">CSV and LeadDyno affiliate exports read as downloaded, with the file reported back before anything is written. Historical totals come across as labelled context, never as ledger entries.</p>
+        <p class="rm__why"><a href="/migrate/">Migrating &rarr;</a></p>
+      </div>
+      <div class="rm__item">
+        <h3 class="h4">Optional AI assistance</h3>
+        <p class="body">Off by default, and switchable off for your organization even where the deployment enables it. It summarises a partner, explains a recommendation — including the case against it — and drafts outreach you edit before sending. It cannot move money, and partner payout details never reach the model.</p>
+        <p class="rm__why"><a href="/product/intelligence/#ai">How the AI is fenced in &rarr;</a></p>
+      </div>
+      <div class="rm__item">
+        <h3 class="h4">Self-hosted deployment</h3>
+        <p class="body">Docker Compose on your own server, DNS to signed-in in under an hour, HTTPS included automatically. Laravel, MySQL and Redis behind a Next.js dashboard and portal. A complete OpenAPI specification, 90 paths, in the repository.</p>
+        <p class="rm__why"><a href="/developers/">For developers &rarr;</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="architecture">
+  <div class="wrap">
+    <div class="measure-wide" data-reveal>
+      <span class="state state--arch">Architecture, not features</span>
+      <h2 class="h2" style="margin-top:16px">The data model accommodates these. That is not the same as having them.</h2>
+      <p class="lede" style="margin-top:18px">Refficks is described as a Partner Growth OS, and the schema was built for more than affiliates. But the affiliate module is what ships, and an architecture is not a feature you can run a programme on.</p>
+    </div>
+
+    <div class="rm" style="margin-top:36px" data-reveal>
+      <div class="rm__hd">
+        <span class="state state--arch">Architecture only</span>
+        <p class="h4">Referral &middot; creator &middot; ambassador &middot; agency &middot; reseller</p>
+      </div>
+      <div class="rm__item">
+        <p class="body">These programme types exist in the way the system is structured. They do not exist as things you can switch on, configure, and put partners into today.</p>
+        <p class="body" style="margin-top:12px">So we do not sell them, we do not put them on the home page, and if you are evaluating Refficks for a creator programme rather than an affiliate one, the honest answer is: not yet, and we are not going to tell you a quarter.</p>
+        <p class="precisely"><b>Precisely:</b> if you are building against the API, do not design around these. Build against what is documented in the OpenAPI specification that ships in the repository.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt" id="not-built">
+  <div class="wrap">
+    <div class="measure-wide" data-reveal>
+      <span class="state state--no">Not built</span>
+      <h2 class="h2" style="margin-top:16px">Named, so you can rule us out quickly</h2>
+      <p class="lede" style="margin-top:18px">If one of these is a hard requirement, Refficks is not the right tool for you right now, and it is cheaper for both of us if you find that out on this page.</p>
+    </div>
+
+    <div class="rm" style="margin-top:36px;background:#fff" data-reveal>
+      <div class="rm__item">
+        <div style="display:flex;gap:12px;align-items:baseline;flex-wrap:wrap">
+          <h3 class="h4">Payment integrations beyond Stripe</h3>
+          <span class="state state--no">Planned, not present</span>
+        </div>
+        <p class="body">Stripe is the payment integration today, alongside the generic REST API and the JavaScript tracker — which between them cover most stacks. Paddle and others are planned. There is no date, and we will not invent one.</p>
+      </div>
+
+      <div class="rm__item">
+        <div style="display:flex;gap:12px;align-items:baseline;flex-wrap:wrap">
+          <h3 class="h4">A hosted version</h3>
+          <span class="state state--no">Not built</span>
+        </div>
+        <p class="body">Refficks is self-hosted only. There is no cloud version, no trial environment we run for you, and no migration path from one to the other, because there is nothing to migrate to.</p>
+        <p class="rm__why">You can <a href="/early-access/">leave an email address</a> if you want to hear about a hosted version. That is an interest list, not a waitlist with a launch behind it.</p>
+      </div>
+
+      <div class="rm__item">
+        <div style="display:flex;gap:12px;align-items:baseline;flex-wrap:wrap">
+          <h3 class="h4">Compliance certifications</h3>
+          <span class="state state--no">None held</span>
+        </div>
+        <p class="body">Refficks holds no compliance certifications, and we are not going to name one we are &ldquo;working towards&rdquo; as though that were the same thing.</p>
+        <p class="body" style="margin-top:12px">What exists instead are practices you can verify in the code you are running: multi-tenant isolation with a test on every resource, append-only events, attributions, commission entries and audit logs, no raw IP addresses stored anywhere, and payout details encrypted at rest and never displayed back.</p>
+        <p class="precisely"><b>Precisely:</b> if your procurement process requires a certification, that is a legitimate requirement and Refficks does not meet it today.</p>
+      </div>
+
+      <div class="rm__item">
+        <div style="display:flex;gap:12px;align-items:baseline;flex-wrap:wrap">
+          <h3 class="h4">An open-source license</h3>
+          <span class="state state--no">Not chosen</span>
+        </div>
+        <p class="body">A license has not been chosen. Until one has been, Refficks is <b>self-hosted</b> software and we will not describe it as open source — those are different promises, and the second one is not ours to make yet.</p>
+      </div>
+
+      <div class="rm__item">
+        <div style="display:flex;gap:12px;align-items:baseline;flex-wrap:wrap">
+          <h3 class="h4">Uptime commitments, customer references, usage numbers</h3>
+          <span class="state state--no">None exist</span>
+        </div>
+        <p class="body">There is no uptime SLA, there are no named customers, and there are no usage statistics — because there are none yet, not because we are keeping them quiet.</p>
+        <p class="body" style="margin-top:12px">This is an early product. The substitute for proof we do not have is a product that shows its reasoning on every screen, and a list like this one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="grid grid-split" data-reveal>
+      <div class="stack">
+        <p class="eyebrow">The dating policy</p>
+        <h2 class="h2">Why nothing on this page has a quarter beside it</h2>
+        <p class="body">A dated roadmap from an early product is a forecast dressed as a commitment. It gets quoted back in procurement, it gets planned around, and when it slips — and it slips — the cost lands on the person who believed it.</p>
+        <p class="body">So this page tells you the state of each thing and nothing about when. If that makes Refficks harder to buy today, that is the correct outcome: you should buy it for what it does now.</p>
+      </div>
+      <div class="refusal" data-reveal>
+        <span class="refusal__no">Refuses to</span>
+        <h3 class="h4">Put a date on a roadmap</h3>
+        <p class="body">Every item here is in one of three states: shipping, architecture only, or not built. Those states change when the software changes, and this page changes with them.</p>
+        <p class="precisely"><b>Precisely:</b> the same rule the product follows on screen — no confident zeroes, no invented comparisons — applied to the marketing. A date we have not earned is a number we have not earned.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section band">
+  <div class="wrap" style="text-align:center">
+    <div class="measure-wide" style="margin-inline:auto" data-reveal>
+      <h2 class="h2">Buy it for the first list</h2>
+      <p class="lede" style="margin-top:18px">Run the affiliate module on your own server today, and judge the rest when it exists.</p>
+      <div class="btn-row" style="margin-top:30px;justify-content:center">
+        <a class="btn btn--onDark" href="https://app.refficks.com/register">Start free</a>
+        <a class="btn btn--ghostDark" href="/developers/">See how it works</a>
+      </div>
+      <p class="reassure" style="margin-top:18px">Self-hosted. Your data. No credit card.</p>
+    </div>
+  </div>
+</section>

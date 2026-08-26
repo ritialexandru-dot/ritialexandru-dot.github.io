@@ -1,0 +1,190 @@
+path: /developers/
+title: For developers — Refficks
+ogtitle: From docker compose up to first attributed commission in an afternoon
+desc: A two-line tracker, a REST API with database-enforced idempotency, an append-only chain from raw event to commission entry, multi-tenant isolation as a tested property, and a 90-path OpenAPI specification in the repo.
+---
+<section class="wrap hero">
+  <p class="eyebrow" data-reveal>For developers</p>
+  <h1 class="h1" data-reveal>From <code style="font-size:.86em">docker compose up</code> to first attributed commission in an afternoon</h1>
+  <p class="lede hero__sub" data-reveal>Someone forwarded you this link and wants to know whether it will eat your weekend. Here is enough to decide.</p>
+  <div class="btn-row" style="margin-top:28px" data-reveal>
+    <a class="btn btn--primary" href="https://app.refficks.com/register">Start free</a>
+    <a class="btn btn--ghost" href="#self-hosting">Read the deployment guide</a>
+  </div>
+  <p class="reassure" style="margin-top:18px" data-reveal>Self-hosted. Your data. No credit card.</p>
+
+  <div class="grid grid-2" style="margin-top:clamp(36px,3vw + 20px,52px);gap:24px" data-reveal>
+    <div class="code">
+      <div class="code__bar"><span>The tracker</span><span class="tag" style="margin-left:auto">Two lines, first-party</span></div>
+<pre><code><span class="tok-k">&lt;script</span> defer src=<span class="tok-s">"https://go.refficks.com/t.js"</span><span class="tok-k">&gt;&lt;/script&gt;</span>
+<span class="tok-k">&lt;script&gt;</span>refficks(<span class="tok-s">"init"</span>, <span class="tok-s">"pk_live_&hellip;"</span>)<span class="tok-k">&lt;/script&gt;</span>
+
+<span class="tok-c"># A publishable key can identify a customer.</span>
+<span class="tok-c"># It can never report revenue.</span></code></pre>
+    </div>
+    <div class="code">
+      <div class="code__bar"><span>The event</span><span class="tag" style="margin-left:auto">POST /api/v1/events</span></div>
+<pre><code><span class="tok-k">curl</span> -X POST <span class="tok-s">"$REFFICKS_URL/api/v1/events"</span> \
+  -H <span class="tok-s">"<span class="tok-h">Authorization</span>: Bearer $REFFICKS_SECRET_KEY"</span> \
+  -H <span class="tok-s">"<span class="tok-h">Idempotency-Key</span>: order_10492"</span> \
+  -H <span class="tok-s">"<span class="tok-h">Content-Type</span>: application/json"</span> \
+  -d <span class="tok-s">'{
+    "type": "sale",
+    "external_id": "order_10492",
+    "customer_ref": "cus_8Uq2",
+    "amount": 29900,
+    "currency": "USD"
+  }'</span></code></pre>
+    </div>
+  </div>
+  <p class="small" style="margin-top:16px;max-width:80ch" data-reveal><code>amount</code> is integer minor units and <code>currency</code> is an ISO code, everywhere in the API. 29900 is USD 299.00. There are no floats and no silent conversions between currencies.</p>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="grid grid-split" data-reveal>
+      <div class="stack">
+        <p class="eyebrow">Idempotency</p>
+        <h2 class="h2">Retries are free. Duplicates are structurally impossible.</h2>
+        <p class="body">Send that request again and you get the original result back. Not a second commission, not a 409 you have to write handling for — the original.</p>
+        <p class="body">This matters because your retry logic is going to fire. A queue will redeliver. A webhook will time out after the write succeeded. Somebody will double-click a button. In each case the second attempt resolves to the first.</p>
+        <p class="precisely"><b>Precisely:</b> idempotency is enforced by the database, not by an application-level check that races under concurrency.</p>
+      </div>
+      <div class="card" data-reveal>
+        <p class="card__k">What that buys you</p>
+        <ul class="ticks">
+          <li><b>No reconciliation job.</b> You do not need a nightly script that hunts for duplicate commissions.</li>
+          <li><b>No exactly-once queue.</b> At-least-once delivery is sufficient, which is the only kind you actually have.</li>
+          <li><b>No coordination.</b> Two workers can process the same message and the ledger still holds one entry.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="measure-wide" data-reveal>
+      <p class="eyebrow">The data model promise</p>
+      <h2 class="h2">Every number can explain itself</h2>
+      <p class="lede" style="margin-top:18px">One append-only chain runs from the raw payload you sent to the money you owe. Each link keeps its own reasoning, so no figure ever has to be recomputed in order to be justified.</p>
+    </div>
+
+    <div class="chain" style="margin-top:40px" data-reveal>
+      <div class="chain__n"><code>integration_event</code><span>The raw payload exactly as it arrived, before anything interpreted it.</span></div>
+      <div class="chain__a" aria-hidden="true">&rarr;</div>
+      <div class="chain__n"><code>event</code><span>The normalised click or sale, deduplicated by the database.</span></div>
+      <div class="chain__a" aria-hidden="true">&rarr;</div>
+      <div class="chain__n"><code>attribution</code><span>Which partner won, which lost, why, and a confidence score.</span></div>
+      <div class="chain__a" aria-hidden="true">&rarr;</div>
+      <div class="chain__n"><code>commission_entry</code><span>The amount, plus the arithmetic that produced it.</span></div>
+    </div>
+
+    <div class="grid grid-3" style="margin-top:40px" data-reveal>
+      <div class="card">
+        <h3 class="h4">Append-only, all four</h3>
+        <p class="body">Events, attributions, commission entries and audit logs are append-only. A refund writes a reversal beside the original. A correction supersedes; it does not overwrite.</p>
+      </div>
+      <div class="card">
+        <h3 class="h4">The audit log has before and after</h3>
+        <p class="body">Who did what, when, with the values on both sides of the change. &ldquo;Who moved this partner to 25%?&rdquo; is a query, not an investigation.</p>
+      </div>
+      <div class="card">
+        <h3 class="h4">Reasoning is stored, not derived</h3>
+        <p class="body">The Attribution Debugger reads a record written at decision time. It does not re-run today&rsquo;s rules against last quarter&rsquo;s data and call the result an explanation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="grid grid-split grid-split--rev" data-reveal>
+      <div class="card">
+        <p class="card__k">Isolation, as a test</p>
+        <div class="code" style="margin-top:4px">
+          <div class="code__bar"><span>Every resource, not a sample</span></div>
+<pre><code><span class="tok-c">// For each resource in the API:</span>
+<span class="tok-k">it</span>(<span class="tok-s">"cannot read another organization's data"</span>)
+<span class="tok-k">it</span>(<span class="tok-s">"cannot write to another organization's data"</span>)
+<span class="tok-k">it</span>(<span class="tok-s">"cannot enumerate another organization's ids"</span>)</code></pre>
+        </div>
+        <p class="small" style="margin-top:14px">Illustrative shape. The suite ships in the repository and runs in your own environment.</p>
+      </div>
+      <div class="stack">
+        <p class="eyebrow">Multi-tenancy</p>
+        <h2 class="h2">Isolation is a tested property</h2>
+        <p class="body">Not a convention, not a code-review rule, not a middleware someone remembered to add. Every resource carries a test proving one organization cannot read another&rsquo;s data.</p>
+        <p class="body">You can run that suite yourself before you put a single real partner in.</p>
+        <p class="precisely"><b>Precisely:</b> a new resource without an isolation test is a failing build, which is the only version of this guarantee worth anything.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="self-hosting">
+  <div class="wrap">
+    <div class="grid grid-split" data-reveal>
+      <div class="stack">
+        <p class="eyebrow">Self-hosting</p>
+        <h2 class="h2">DNS to signed-in in under an hour</h2>
+        <p class="body">Three commands on a fresh server. HTTPS is included automatically, so there is no certificate step and no reverse-proxy afternoon.</p>
+        <p class="body"><b>Hardware, honestly:</b> 2 vCPU and 4 GB of RAM is comfortable. This is a Laravel application with MySQL and Redis behind it, not a cluster.</p>
+        <p class="precisely"><b>Precisely:</b> your database is your database. There is no phone-home, no shared control plane, and no tenant of ours in it.</p>
+      </div>
+      <div data-reveal>
+        <div class="code">
+          <div class="code__bar"><span>On a fresh server</span><span class="tag" style="margin-left:auto">Docker Compose</span></div>
+<pre><code><span class="tok-c"># 1. Get the code</span>
+<span class="tok-k">git</span> clone &lt;your-refficks-repository&gt; refficks
+<span class="tok-k">cd</span> refficks
+
+<span class="tok-c"># 2. Answer a handful of questions</span>
+./setup-production.sh
+
+<span class="tok-c"># 3. Bring it up</span>
+docker compose up -d</code></pre>
+        </div>
+        <p class="small" style="margin-top:14px">Point a domain at the box before step 2 and certificates are issued for you during it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt" id="openapi">
+  <div class="wrap">
+    <div class="grid grid-2" style="gap:48px" data-reveal>
+      <div class="stack">
+        <p class="eyebrow">The reference</p>
+        <h2 class="h2">A complete OpenAPI specification, in the repo</h2>
+        <p class="body">90 paths, versioned with the code that serves them. Generate a client, diff it between releases, or point your own tooling at it — it is a file in the repository, not a documentation site that drifts.</p>
+      </div>
+      <div class="stack">
+        <p class="eyebrow">The stack</p>
+        <h2 class="h2">Boring, inspectable technology</h2>
+        <p class="body">Laravel with MySQL and Redis for the API. Next.js for the merchant dashboard and the partner portal.</p>
+        <p class="body">Nothing here needs a specialist to keep running, and everything here has a Stack Overflow answer from 2019 that still works.</p>
+      </div>
+    </div>
+    <div class="grid grid-4" style="margin-top:40px" data-reveal>
+      <div class="card"><div class="stat"><div class="stat__k">OpenAPI paths</div><div class="stat__v">90</div></div></div>
+      <div class="card"><div class="stat"><div class="stat__k">Comfortable on</div><div class="stat__v">2 vCPU</div><div class="stat__d">4 GB RAM</div></div></div>
+      <div class="card"><div class="stat"><div class="stat__k">Money type</div><div class="stat__v" style="font-size:17px">Minor units</div><div class="stat__d">Plus an ISO currency</div></div></div>
+      <div class="card"><div class="stat"><div class="stat__k">Raw IPs stored</div><div class="stat__v">0</div><div class="stat__d">Salted hashes only</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section band">
+  <div class="wrap" style="text-align:center">
+    <div class="measure-wide" style="margin-inline:auto" data-reveal>
+      <h2 class="h2">Spend an afternoon, not a weekend</h2>
+      <p class="lede" style="margin-top:18px">Clone it, run the demo dataset, and send yourself an event with a duplicate idempotency key to watch nothing happen twice.</p>
+      <div class="btn-row" style="margin-top:30px;justify-content:center">
+        <a class="btn btn--onDark" href="https://app.refficks.com/register">Start free</a>
+        <a class="btn btn--ghostDark" href="#self-hosting">Read the deployment guide</a>
+      </div>
+      <p class="reassure" style="margin-top:18px">Self-hosted. Your data. No credit card.</p>
+    </div>
+  </div>
+</section>

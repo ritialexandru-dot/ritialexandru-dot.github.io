@@ -1,0 +1,166 @@
+path: /migrate/
+title: Migrate from LeadDyno or a spreadsheet — Refficks
+ogtitle: Bring your partners in minutes. We read the export as it downloads.
+desc: Upload a CSV or a LeadDyno affiliates export unedited. Refficks reads the file back before importing — how many rows, how many will import, which lines cannot and why — and nothing happens until you say so.
+---
+<section class="wrap hero">
+  <p class="eyebrow" data-reveal>Migrating</p>
+  <h1 class="h1" data-reveal>Bring your partners in minutes. We read the export as it downloads.</h1>
+  <p class="lede hero__sub" data-reveal>Upload the file LeadDyno gave you, or a spreadsheet you keep yourself. Column names are recognised as they come — there is no step where you rename headers to match ours.</p>
+  <div class="btn-row" style="margin-top:28px" data-reveal>
+    <a class="btn btn--primary" href="https://app.refficks.com/register">Start free</a>
+    <a class="btn btn--ghost" href="#the-honest-part">Read the honest part first</a>
+  </div>
+  <p class="reassure" style="margin-top:18px" data-reveal>Self-hosted. Your data. No credit card.</p>
+
+  <figure class="figure hero__fig" data-reveal>
+    <!-- SHOT 8 · replace with: import preview naming a bad line, 1440x1100.
+         alt: "Import preview showing 412 rows read, 409 importable and three that cannot be, each failed line numbered with the reason it failed" -->
+    <div class="ui">
+      <div class="ui__bar"><span class="ui__title">Import preview</span><span class="ui__sub">leaddyno-affiliates-2026-08.csv</span><span class="ui__demo">Demo data</span></div>
+      <div class="ui__body" style="border-bottom:1px solid var(--line)">
+        <div class="grid grid-3" style="gap:16px">
+          <div class="stat"><div class="stat__k">Rows read</div><div class="stat__v">412</div></div>
+          <div class="stat"><div class="stat__k">Can be imported</div><div class="stat__v">409</div></div>
+          <div class="stat"><div class="stat__k">Cannot</div><div class="stat__v">3</div></div>
+        </div>
+      </div>
+      <div class="ui-scroll">
+        <table class="ui-table">
+          <thead><tr><th class="r">Line</th><th>Value</th><th>Why it cannot be imported</th></tr></thead>
+          <tbody>
+            <tr><td class="r">118</td><td class="nw">&mdash;</td><td>No email address in the row.</td></tr>
+            <tr><td class="r">204</td><td class="nw">n.okonjo@&hellip;</td><td>This email already belongs to Nadia Okonjo. Nothing will be overwritten.</td></tr>
+            <tr><td class="r">377</td><td class="nw">twenty percent</td><td><code>commission_rate</code> is not a number.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="ui__body" style="border-top:1px solid var(--line);display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <p class="ui__note" style="flex:1 1 260px">Nothing has been imported yet.</p>
+        <span class="ui-btn ui-btn--primary">Import 409 partners</span>
+        <span class="ui-btn">Download the 3 failed rows</span>
+      </div>
+    </div>
+    <figcaption>Three bad rows out of 412 does not cost you the file. You get the numbered lines and the reason for each, and the other 409 come in regardless.</figcaption>
+  </figure>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="measure-wide" data-reveal>
+      <p class="eyebrow">How the importer behaves</p>
+      <h2 class="h2">Read it back first. Then decide.</h2>
+    </div>
+    <div class="grid grid-2" style="margin-top:44px" data-reveal>
+      <div class="card">
+        <h3 class="h4">Your file, unedited</h3>
+        <p class="body">A CSV or a LeadDyno affiliates export, as downloaded. Column names are recognised as they come, so nobody has to open the spreadsheet and start renaming headers before the tool will look at it.</p>
+      </div>
+      <div class="card">
+        <h3 class="h4">Nothing happens until you say so</h3>
+        <p class="body">The file is read back before anything is written: how many rows there are, how many can be imported, and which lines cannot and why. The import button comes after the report, not before it.</p>
+      </div>
+      <div class="card">
+        <h3 class="h4">One bad row never loses the file</h3>
+        <p class="body">A malformed line is named and skipped. Fix it and re-import — re-importing never duplicates anyone, and never overwrites an existing record unless you explicitly ask it to.</p>
+      </div>
+      <div class="card">
+        <h3 class="h4">Imported partners are ordinary partners</h3>
+        <p class="body">Same audit trail, same welcome automation, same everything. There is no second-class record with features missing because of how it arrived.</p>
+      </div>
+    </div>
+    <p class="precisely" style="margin-top:28px;max-width:80ch" data-reveal><b>Precisely:</b> matching is by email, and a collision is reported as a collision rather than resolved by guessing. The failed-row report is a file you can fix and feed straight back in.</p>
+  </div>
+</section>
+
+<section class="section" id="the-honest-part">
+  <div class="wrap">
+    <div class="measure-wide" data-reveal>
+      <p class="eyebrow">The honest part</p>
+      <h2 class="h2">Your old commission totals do not become Refficks commission</h2>
+      <p class="lede" style="margin-top:18px">This is the trade, and it is the part most migration pages bury. Read it before you start, not after.</p>
+    </div>
+
+    <div class="grid grid-split" style="margin-top:44px" data-reveal>
+      <div class="stack">
+        <p class="body">Historical commission totals from another platform come across as <b>that platform&rsquo;s reported figures</b>, labelled as such on the partner. They are context. They are not entries in your ledger.</p>
+        <p class="body">The reason is the whole product. The Refficks ledger holds money it can explain — every entry stores the arithmetic that produced it and the attribution decision behind that. A number imported from elsewhere has none of that. Writing it into the ledger would mean the ledger contains figures it cannot justify, and then no total in the system is trustworthy, including the ones it computed itself.</p>
+        <p class="body">So your ledger starts clean, on the day you start. Your partners keep their history as visible context beside it.</p>
+        <p class="precisely"><b>Precisely:</b> imported totals are stored on the partner record with their source and the date they were reported. They are never summed into a Refficks balance, a payout preview, or a partner&rsquo;s earnings.</p>
+      </div>
+      <figure class="figure">
+        <!-- SHOT 8b · replace with: partner profile showing imported historical totals labelled.
+             alt: "Partner profile showing a Refficks ledger balance beside an imported lifetime total labelled as reported by the previous platform and marked not part of the Refficks ledger" -->
+        <div class="ui">
+          <div class="ui__bar"><span class="ui__title">Nadia Okonjo</span><span class="ui__sub">Partner</span><span class="ui__demo">Demo data</span></div>
+          <div class="ui__body" style="border-bottom:1px solid var(--line)">
+            <p class="card__k" style="margin-bottom:10px">Refficks ledger</p>
+            <div class="stat"><div class="stat__k">Commission earned</div><div class="stat__v">USD 1,236.00</div><div class="stat__d">Since 12 Apr 2026 &middot; every entry shows its arithmetic</div></div>
+          </div>
+          <div class="ui__body" style="background:var(--surface-2)">
+            <p class="card__k" style="margin-bottom:10px">Imported history</p>
+            <div class="stat"><div class="stat__k">Reported lifetime commission</div><div class="stat__v">USD 18,402.11</div><div class="stat__d">As reported by LeadDyno on 04 Aug 2026.</div></div>
+            <p class="ui__hd" style="margin-top:12px">Not part of the Refficks ledger.</p>
+          </div>
+        </div>
+        <figcaption>Both numbers are on the partner. Only one of them is money Refficks can explain, and the screen says which.</figcaption>
+      </figure>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:44px" data-reveal>
+      <div class="card">
+        <h3 class="h4">What you keep</h3>
+        <ul class="ticks">
+          <li>Every partner, with their contact details and their status.</li>
+          <li>Their coupon codes and their tracking links.</li>
+          <li>Their historical totals, labelled and visible on their profile.</li>
+          <li>The relationship. Nobody has to sign up again.</li>
+        </ul>
+      </div>
+      <div class="card card--alt">
+        <h3 class="h4">What you do not</h3>
+        <ul class="crosses">
+          <li>Historical commission as ledger entries you can pay out from.</li>
+          <li>Historical clicks and conversions as Refficks events.</li>
+          <li>Attribution decisions from the old platform, which were made under rules Refficks cannot inspect.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="grid grid-3" data-reveal>
+      <div class="refusal">
+        <span class="refusal__no">Refuses to</span>
+        <h3 class="h4">Make you clean the file first</h3>
+        <p class="body">The export as downloaded is the input. If a column is called <code>Affiliate Email</code>, that is fine.</p>
+      </div>
+      <div class="refusal">
+        <span class="refusal__no">Refuses to</span>
+        <h3 class="h4">Import before you have looked</h3>
+        <p class="body">You see the counts and the failures first. The button is on the far side of the report.</p>
+      </div>
+      <div class="refusal">
+        <span class="refusal__no">Refuses to</span>
+        <h3 class="h4">Put unexplainable money in the ledger</h3>
+        <p class="body">A ledger that only holds money it can explain is the product. Imported totals stay labelled beside it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section band">
+  <div class="wrap" style="text-align:center">
+    <div class="measure-wide" style="margin-inline:auto" data-reveal>
+      <h2 class="h2">Bring your partners over</h2>
+      <p class="lede" style="margin-top:18px">Upload the export, read the preview, and decide with the numbers in front of you.</p>
+      <div class="btn-row" style="margin-top:30px;justify-content:center">
+        <a class="btn btn--onDark" href="https://app.refficks.com/register">Start free</a>
+        <a class="btn btn--ghostDark" href="/developers/">See how it works</a>
+      </div>
+      <p class="reassure" style="margin-top:18px">Self-hosted. Your data. No credit card.</p>
+    </div>
+  </div>
+</section>
