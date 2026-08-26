@@ -44,6 +44,19 @@ To preview locally:
 python3 -m http.server 8099    # then open http://127.0.0.1:8099/
 ```
 
+### Single-file preview
+
+To hand someone the whole site as one file they can open with no server:
+
+```sh
+python3 _src/make-preview.py            # writes refficks-preview.html
+```
+
+It inlines the stylesheet and script, concatenates every page, and adds a hash
+router so the nav works offline. It is a preview tool, not the deployable site —
+build first, since it is derived from the generated pages. The output is
+gitignored.
+
 ### Changing the domain
 
 `SITE_ORIGIN` at the top of `_src/build.py` is the only place the production
