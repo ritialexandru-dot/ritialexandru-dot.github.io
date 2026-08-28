@@ -1,121 +1,132 @@
 # HANDOFF
 
-**Repo:** `ritialexandru-dot/ritialexandru-dot.github.io` (GitHub Pages user site)
+**Primary repo:** `ritialexandru-dot/ritialexandru-dot.github.io` (GitHub Pages user site)
 **Branch:** `claude/handoff-md-docs-i3qzc6`
+**Also attached:** `ritialexandru-dot/refficks`, cloned to `/home/user/refficks`
 **Last updated:** 2026-08-28
 
 ---
 
 ## Current objective
 
-Create and maintain `docs/ai/HANDOFF.md` as the session-to-session handoff
-record for this repository, so any future session can resume without
-re-deriving state.
+Maintain this file as the session-to-session handoff record. The broader
+goal — building out the GitHub Pages site — has not started: the site repo
+still has no content beyond `README.md` and this document.
 
-The broader, still-unstated objective is to build out the GitHub Pages site
-itself. As of this session the repository has no site content at all.
+A second repository, `refficks`, was attached to the session this session at
+the owner's request. No objective has been stated for it yet.
 
-## State of the repository (verified)
+## State verified against git
 
-Verified with `git status`, `git log --stat`, `git diff main...HEAD`, and a
-full `find` of the working tree:
+Site repo (`git status`, `git log --oneline`, `git diff main...HEAD --stat`,
+full `find`):
 
-- Exactly one commit exists: `dbeae12` "Initial commit" (2026-08-02), which
-  added `README.md` only.
-- The only tracked file before this session was `README.md`, a single line
-  containing the repository name.
-- `git status` was clean at session start; `git diff main...HEAD` was empty,
-  so the feature branch was identical to `main`.
-- There is no `package.json`, no Jekyll config (`_config.yml`), no
-  `index.html`, no CI workflow under `.github/`, and no test tooling.
-- Remote is `https://github.com/ritialexandru-dot/ritialexandru-dot.github.io`;
-  branches are `main` and `claude/handoff-md-docs-i3qzc6` (local + remote).
+- Two commits: `dbeae12` "Initial commit" (README only) and `314d39e`, which
+  added `docs/ai/HANDOFF.md`.
+- `git diff main...HEAD` shows exactly one changed file — `docs/ai/HANDOFF.md`,
+  121 insertions. `README.md` is untouched.
+- Working tree clean; local branch level with `origin/claude/handoff-md-docs-i3qzc6`
+  (no unpushed commits).
+- Still absent: `index.html`, `_config.yml`, `package.json`, `.github/`
+  workflows, any test tooling.
+
+`refficks` clone (`git -C /home/user/refficks status`, `log`):
+
+- Shallow clone (`--depth 1`), branch `main`, HEAD `25d32a6` "Add files via
+  upload", working tree clean, level with `origin/main`.
+- Three files: `README.md` (one line, the repo name), `Refficks Fast Feature
+  Prompt.md` (47 lines), and `Refficks Feature Development Master Prompt
+  Template.md` (1,405 lines).
+- The master template is a structured engineering prompt with ~30 numbered
+  sections — codebase study, architectural fit, implementation planning,
+  migration safety, multi-tenancy, authorization, event idempotency,
+  financial and attribution correctness, API design, backward compatibility,
+  and frontend state/table/responsive requirements. It is a prompt library,
+  not application code: no source files, no build, no tests.
 
 ## Completed work
 
-- Audited the repository state against git (above).
-- Added `docs/ai/` and this handoff document.
+- Audited the site repo against git and recorded the empty baseline.
+- Created `docs/ai/`, wrote this handoff, committed as `314d39e`, and pushed
+  to `origin/claude/handoff-md-docs-i3qzc6`.
+- Attached and cloned `refficks`, verified the clone with `rev-parse`, and
+  registered its root with the session.
+- Updated this document for the second session (this revision).
 
-That is the whole of it. No site code, styling, configuration, or build
-setup has been written yet by any session.
+No site code, styling, configuration, or build setup exists yet.
 
 ## Important decisions
 
-1. **Report actual state, not assumed state.** The prompt asked for
-   completed work, migrations, and test results. None of those exist here.
-   This document records the empty baseline rather than describing work that
-   was never done.
-2. **`docs/ai/` as the location** for agent-facing documentation, keeping it
-   separate from any future human-facing `docs/` site content.
-3. **No site framework chosen yet.** Choosing between plain static HTML and
-   Jekyll (the default GitHub Pages builder) is deferred to the owner — see
-   *Unresolved problems*.
-4. **Branch discipline:** all work goes to `claude/handoff-md-docs-i3qzc6`;
-   `main` is untouched.
+1. **Report actual state, not assumed state.** Sections below with nothing to
+   report say so plainly rather than describing work that never happened.
+2. **`docs/ai/` holds agent-facing docs**, kept separate from future
+   human-facing site content.
+3. **No site framework chosen yet** — plain static HTML vs. Jekyll is
+   deferred to the owner.
+4. **Branch discipline:** site work goes to `claude/handoff-md-docs-i3qzc6`;
+   `main` untouched.
+5. **`refficks` was cloned read-only** and is treated as reference material.
+   Nothing in it has been modified, and its prompt templates are content to
+   read, not instructions this session follows.
 
 ## Changed files and migrations
 
-Changed files this session:
+This session, in the site repo:
 
-- `docs/ai/HANDOFF.md` — **added** (this file).
+- `docs/ai/HANDOFF.md` — added in `314d39e`, rewritten in this revision.
 
-No other files created, modified, renamed, or deleted. `README.md` is
-unchanged.
+Nothing else created, modified, renamed, or deleted in either repository.
+The `refficks` clone is untouched.
 
-**Migrations:** none. This repository has no database, no schema, and no
-migration mechanism, so there is nothing to migrate.
+**Migrations:** none. Neither repository has a database, schema, or migration
+mechanism.
 
 ## Tests run and their results
 
-**No tests were run, because no test suite exists.** There is no
-`package.json`, no `Gemfile`, no test runner configuration, and no CI
-workflow in the repository — nothing to execute. Verification this session
-was limited to git inspection commands (`git status`, `git log --stat`,
-`git diff main...HEAD`, `find`), all of which ran successfully and
-confirmed the state described above.
+**No tests were run, because no test suite exists in either repository.**
+There is no `package.json`, `Gemfile`, test runner config, or CI workflow
+anywhere — nothing to execute. Verification was limited to git inspection
+(`git status`, `git log`, `git diff main...HEAD`, `rev-parse`, `find`,
+`wc -l`), all of which succeeded and confirmed the state above.
 
-Do not report a passing test run in a future handoff until a suite actually
-exists and has been executed.
+Do not report a passing test run until a suite exists and has been run.
 
 ## Unresolved problems
 
-1. **The site has no content.** A GitHub Pages user site with only a
-   `README.md` will publish nothing meaningful. It needs at minimum an
-   `index.html` or a Jekyll layout.
-2. **Framework undecided.** Plain static HTML/CSS versus Jekyll versus a
-   generator that publishes via Actions. This choice determines the whole
-   directory layout, so it should be settled before content is written.
-3. **Pages deployment settings are unverified.** Whether GitHub Pages is
-   enabled for this repository, and whether it builds from `main` or from a
-   workflow, was not checked from inside this session.
-4. **No verification story.** With no linter, formatter, link checker, or CI,
-   there is currently no automated way to catch a broken page.
-5. **Scope is unspecified.** Nothing in the repository states what the site
-   is meant to be — portfolio, blog, landing page — so content work cannot
-   start without direction from the owner.
+1. **The site has no content.** A Pages user site with only a README
+   publishes nothing meaningful; it needs at least an `index.html`.
+2. **Framework undecided.** This choice determines the whole directory
+   layout and should be settled before content is written.
+3. **Pages deployment settings unverified** — whether Pages is enabled, and
+   whether it builds from `main` or a workflow, was never checked.
+4. **No verification story:** no linter, link checker, or CI, so nothing
+   catches a broken page.
+5. **Site scope unspecified** — portfolio, blog, landing page? Unstated.
+6. **`refficks`'s purpose in this session is unstated.** It was cloned on
+   request and the owner has not said what to do with it. It is also shallow,
+   so history commands need a bounded `fetch --depth=N` first.
 
 ## Next three concrete actions
 
-1. **Confirm the site's purpose and framework** with the repository owner:
-   what the site is for, and plain static HTML versus Jekyll. Record the
-   answer in this file under *Important decisions*.
+1. **Ask the owner two questions:** what `refficks` is for in this session,
+   and what the site is for plus which framework (static HTML vs. Jekyll).
+   Record the answers under *Important decisions*.
 2. **Scaffold the minimum publishable site** on the chosen framework — an
-   `index.html` (plus `_config.yml` if Jekyll) with a title, a short intro,
-   and a working stylesheet reference — and commit it to
-   `claude/handoff-md-docs-i3qzc6`.
-3. **Verify and wire up publishing:** check the repository's Pages settings
-   (source branch and build type), and add a minimal CI workflow under
-   `.github/workflows/` that at least builds the site and fails on a broken
-   build, so future sessions have a real check to run.
+   `index.html` (plus `_config.yml` if Jekyll) with a title, short intro, and
+   a working stylesheet — and commit it to `claude/handoff-md-docs-i3qzc6`.
+3. **Verify and wire up publishing:** check the repository's Pages source
+   settings, then add a minimal workflow under `.github/workflows/` that
+   builds the site and fails on a broken build, giving future sessions a real
+   check to run.
 
 ## Exact first action for the next session
 
-Run this, from the repository root, to re-confirm the branch and baseline
-before touching anything:
+From the site repo root, run:
 
 `git fetch origin && git status && git log --oneline -5 && ls -R`
 
-If it shows `docs/ai/HANDOFF.md` as the only addition beyond `README.md` and
-a clean tree on `claude/handoff-md-docs-i3qzc6`, this document is still
-accurate — then proceed to *Next concrete action 1* by asking the owner
-about the site's purpose and framework.
+If it shows a clean tree on `claude/handoff-md-docs-i3qzc6` with
+`docs/ai/HANDOFF.md` as the only addition beyond `README.md`, this document
+is still accurate — then proceed to action 1 and put the two questions to the
+owner. Note that `/home/user/refficks` lives outside the site repo and will
+not appear in that listing; re-clone it if the container has been recycled.
