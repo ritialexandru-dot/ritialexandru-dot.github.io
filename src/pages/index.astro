@@ -1,0 +1,47 @@
+---
+/**
+ * The home page, in the order the copy draft gives it (homepage copy, draft 1
+ * of 8 October): hero, the leak, the product's own words, a morning, the
+ * chain, three ways in, the four wasted partners, switching, the data, the
+ * developer, before you start, and the closing band.
+ */
+import Before from "@/components/home/Before.astro";
+import Chain from "@/components/home/Chain.astro";
+import Data from "@/components/home/Data.astro";
+import Developer from "@/components/home/Developer.astro";
+import Hero from "@/components/home/Hero.astro";
+import Leak from "@/components/home/Leak.astro";
+import Morning from "@/components/home/Morning.astro";
+import OwnWords from "@/components/home/OwnWords.astro";
+import Switching from "@/components/home/Switching.astro";
+import Wasting from "@/components/home/Wasting.astro";
+import WaysIn from "@/components/home/WaysIn.astro";
+import FinalCta from "@/components/site/FinalCta.astro";
+import Base from "@/layouts/Base.astro";
+---
+
+<Base
+  title="Refficks: affiliate dashboards report. Refficks recommends."
+  description="Tracking, attribution, commissions and payouts for affiliate, referral, creator, ambassador and B2B partner programmes. Every morning it names the partners you're wasting, shows its evidence, and leaves the decision to you."
+  path="/"
+  ogTitle="Affiliate dashboards report. Refficks recommends."
+  ogDescription="Every morning: the partners you're wasting, the evidence, and the decision left to you."
+  ogImage="/og/home.png"
+  ogImageAlt="Refficks: the Intelligence screen's Needs you tab"
+>
+  <Hero />
+  <Leak />
+  <OwnWords />
+  <Morning />
+  <Chain />
+  <WaysIn />
+  <Wasting />
+  <Switching />
+  <Data />
+  <Developer />
+  <Before />
+  <FinalCta
+    title="Affiliate dashboards report. Refficks recommends."
+    lead="Every morning: the partners you're wasting, the evidence, and the decision left to you."
+  />
+</Base>

@@ -1,0 +1,425 @@
+@import "tailwindcss";
+
+/*
+  refficks.com design tokens.
+
+  The site continues the product's design language, so the app feels like
+  home when a visitor arrives in it (website prompt §8). Every colour below is
+  a step of the Refficks design system's ramps, copied from the design kit's
+  `css/refficks-tokens.css` (stage 4), and every semantic role is the kit's
+  role under the name this site uses for it. If a value here and the kit
+  disagree, the kit wins and this file has a bug.
+
+  The direction is the kit's "calm grid, one bright signal": the page is
+  mostly canvas and text; the logo green is a fill for the primary action and
+  the symbol, never a word, a line or a background behind text; success is
+  teal so it is never mistaken for the brand; borders before shadows; nothing
+  isometric, no gradients as decoration.
+
+  ## Light only
+
+  The product has a complete dark theme. The prompt's rule is that the site
+  offers one that is complete too, or none, and none is the honest choice for
+  a first release: every screenshot on the site is captured in the light
+  theme, and a dark page around a light screenshot is a page with a hole in
+  it. `color-scheme: light` tells the browser so its own controls match.
+
+  ## Tailwind's own vocabulary is removed
+
+  `--color-*: initial` and `--text-*: initial` take Tailwind's palette and
+  size ladder out, so a stray `text-gray-500` or `text-lg` emits nothing and
+  ESLint refuses the class. The product does the same for its sizes, and for
+  the same reason: two vocabularies, and only one of them is the design
+  system.
+*/
+
+:root {
+  color-scheme: light;
+
+  /* Primitives: the ramps, as the kit states them. */
+  --spring-50: #e9fdea;
+  --spring-100: #d5fad8;
+  --spring-200: #b3f3b8;
+  --spring-300: #88e892;
+  --spring-400: #56d66b;
+  --spring-500: #36bc51;
+  --spring-600: #159e3a;
+  --spring-700: #087f2b;
+  --spring-800: #00611e;
+  --spring-900: #004814;
+  --spring-950: #00300a;
+
+  --forest-50: #f2f8f5;
+  --forest-100: #e7f1ec;
+  --forest-200: #d4e4dc;
+  --forest-300: #bed4c9;
+  --forest-400: #a4bfb1;
+  --forest-500: #87a797;
+  --forest-600: #678d7b;
+  --forest-700: #4e7261;
+  --forest-800: #355948;
+  --forest-900: #234234;
+  --forest-925: #183428;
+  --forest-950: #12291f;
+  --forest-1000: #0a1b14;
+
+  --neutral-50: #f4f8f5;
+  --neutral-100: #ebf0ec;
+  --neutral-200: #dbe1dd;
+  --neutral-300: #c9d0cb;
+  --neutral-400: #b2b9b4;
+  --neutral-500: #99a19b;
+  --neutral-600: #7e8580;
+  --neutral-700: #646b66;
+  --neutral-800: #4b524d;
+  --neutral-900: #363c38;
+  --neutral-950: #222824;
+
+  --teal-50: #e8fcf9;
+  --teal-300: #82e2d9;
+  --teal-700: #067972;
+  --teal-800: #055c57;
+
+  --blue-50: #f1f8ff;
+  --blue-300: #aad2ff;
+  --blue-700: #206bb4;
+  --blue-800: #13518c;
+
+  --amber-50: #fff5e7;
+  --amber-300: #fdc261;
+  --amber-700: #8a6005;
+  --amber-800: #6b4800;
+
+  --red-50: #fff4f2;
+  --red-300: #febab2;
+  --red-700: #b6322d;
+  --red-800: #8e221f;
+
+  --iris-50: #f6f6ff;
+  --iris-600: #7f70de;
+  --iris-800: #4d428e;
+
+  --white: #ffffff;
+
+  /* Semantic roles, light. The kit's names are in the comments. */
+  --bg-canvas: var(--neutral-50);
+  --bg-surface: var(--white);
+  --bg-surface-raised: var(--white);
+  --bg-subtle: var(--neutral-100);
+  --bg-inverse: var(--forest-950); /* bg-inverse: the dark bands */
+  --bg-inverse-raised: var(--forest-925); /* a card on the dark band */
+  --bg-inverse-deep: var(--forest-1000);
+  --bg-brand-tint: var(--spring-50);
+  --bg-brand-solid: var(--spring-400);
+
+  --border-subtle: var(--neutral-200);
+  --border-default: var(--neutral-300);
+  --border-control: var(--neutral-600);
+  --border-brand: var(--spring-600);
+  --border-inverse: var(--forest-800); /* a line on the dark band */
+  --border-inverse-subtle: var(--forest-900);
+
+  --text-primary: var(--forest-950);
+  --text-secondary: var(--neutral-700); /* 5.47:1 on surface, 4.75 on subtle */
+  --text-disabled: var(--neutral-500);
+  --text-inverse: var(--forest-50);
+  --text-inverse-secondary: var(--forest-300); /* on forest-950: 9.87:1 */
+  --text-inverse-muted: var(--forest-400);
+  --text-on-brand: var(--forest-950); /* the only text allowed on spring-400: 8.24:1 */
+  --text-link: var(--spring-800); /* 7.70:1 on surface */
+  --text-link-inverse: var(--spring-300); /* 10.28:1 on forest-950 */
+
+  --icon-default: var(--neutral-700);
+  --icon-brand: var(--spring-700);
+  --icon-brand-inverse: var(--spring-400);
+
+  --action-primary-bg: var(--spring-400);
+  --action-primary-bg-hover: var(--spring-500);
+  --action-primary-fg: var(--forest-950);
+  --action-secondary-bg: var(--white);
+  --action-secondary-bg-hover: var(--neutral-100);
+
+  --focus-ring: var(--forest-950);
+  --focus-ring-inverse: var(--spring-300);
+
+  --status-success-bg: var(--teal-50);
+  --status-success-border: var(--teal-300);
+  --status-success-fg: var(--teal-800);
+  --status-success-solid: var(--teal-700);
+  --status-warning-bg: var(--amber-50);
+  --status-warning-border: var(--amber-300);
+  --status-warning-fg: var(--amber-800);
+  --status-warning-solid: var(--amber-700);
+  --status-error-bg: var(--red-50);
+  --status-error-border: var(--red-300);
+  --status-error-fg: var(--red-800);
+  --status-error-solid: var(--red-700);
+  --status-info-bg: var(--blue-50);
+  --status-info-border: var(--blue-300);
+  --status-info-fg: var(--blue-800);
+  --status-info-solid: var(--blue-700);
+
+  --accent-bg: var(--iris-50);
+  --accent-fg: var(--iris-800);
+  --accent-solid: var(--iris-600);
+
+  /* The mark itself: the exact logo green, the same on every ground. */
+  --mark: var(--spring-400);
+
+  --shadow-sm: 0 1px 2px rgba(18, 41, 31, 0.08);
+  --shadow-md: 0 4px 12px rgba(18, 41, 31, 0.12);
+  --shadow-lg: 0 16px 40px rgba(18, 41, 31, 0.18);
+}
+
+@theme inline {
+  --color-*: initial;
+
+  --color-canvas: var(--bg-canvas);
+  --color-surface: var(--bg-surface);
+  --color-surface-raised: var(--bg-surface-raised);
+  --color-subtle: var(--bg-subtle);
+  --color-inverse: var(--bg-inverse);
+  --color-inverse-raised: var(--bg-inverse-raised);
+  --color-inverse-deep: var(--bg-inverse-deep);
+  --color-brand-tint: var(--bg-brand-tint);
+  --color-brand: var(--bg-brand-solid);
+  --color-mark: var(--mark);
+
+  --color-border: var(--border-subtle);
+  --color-border-strong: var(--border-default);
+  --color-border-control: var(--border-control);
+  --color-border-brand: var(--border-brand);
+  --color-border-inverse: var(--border-inverse);
+  --color-border-inverse-subtle: var(--border-inverse-subtle);
+
+  --color-ink: var(--text-primary);
+  --color-ink-secondary: var(--text-secondary);
+  --color-ink-disabled: var(--text-disabled);
+  --color-ink-inverse: var(--text-inverse);
+  --color-ink-inverse-secondary: var(--text-inverse-secondary);
+  --color-ink-inverse-muted: var(--text-inverse-muted);
+  --color-ink-on-brand: var(--text-on-brand);
+  --color-link: var(--text-link);
+  --color-link-inverse: var(--text-link-inverse);
+
+  --color-icon: var(--icon-default);
+  --color-icon-brand: var(--icon-brand);
+  --color-icon-brand-inverse: var(--icon-brand-inverse);
+
+  --color-action: var(--action-primary-bg);
+  --color-action-hover: var(--action-primary-bg-hover);
+  --color-action-ink: var(--action-primary-fg);
+  --color-action-secondary: var(--action-secondary-bg);
+  --color-action-secondary-hover: var(--action-secondary-bg-hover);
+
+  --color-focus: var(--focus-ring);
+  --color-focus-inverse: var(--focus-ring-inverse);
+
+  --color-success: var(--status-success-fg);
+  --color-success-bg: var(--status-success-bg);
+  --color-success-border: var(--status-success-border);
+  --color-success-solid: var(--status-success-solid);
+  --color-warning: var(--status-warning-fg);
+  --color-warning-bg: var(--status-warning-bg);
+  --color-warning-border: var(--status-warning-border);
+  --color-warning-solid: var(--status-warning-solid);
+  --color-error: var(--status-error-fg);
+  --color-error-bg: var(--status-error-bg);
+  --color-error-border: var(--status-error-border);
+  --color-error-solid: var(--status-error-solid);
+  --color-info: var(--status-info-fg);
+  --color-info-bg: var(--status-info-bg);
+  --color-info-border: var(--status-info-border);
+  --color-info-solid: var(--status-info-solid);
+
+  --color-accent: var(--accent-fg);
+  --color-accent-bg: var(--accent-bg);
+  --color-accent-solid: var(--accent-solid);
+
+  /*
+    The type scale, in rem so it follows the reader's own font-size setting.
+
+    The kit's styles are the app's (display-lg 48, body-md 14); a marketing
+    page has more room and fewer words, so the ladder here runs one step
+    larger at the top and at the body, and each step names the job rather
+    than a size. Line heights are the kit's, loosened to 1.6 at body for
+    paragraphs that are read rather than operated. Letter spacing tightens
+    with size, as the kit states it.
+  */
+  --text-*: initial;
+
+  /* 56px. The home page's headline, at desktop. */
+  --text-display-xl: 3.5rem;
+  --text-display-xl--line-height: 1.07;
+  --text-display-xl--letter-spacing: -0.025em;
+  /* 48px. A page headline, and the home page's at tablet. */
+  --text-display-lg: 3rem;
+  --text-display-lg--line-height: 1.08;
+  --text-display-lg--letter-spacing: -0.02em;
+  /* 36px. A section heading. */
+  --text-display-md: 2.25rem;
+  --text-display-md--line-height: 1.11;
+  --text-display-md--letter-spacing: -0.02em;
+  /* 28px. A section heading at phone width, or a figure. */
+  --text-heading-xl: 1.75rem;
+  --text-heading-xl--line-height: 1.21;
+  --text-heading-xl--letter-spacing: -0.015em;
+  /* 22px. A card or beat title. */
+  --text-heading-lg: 1.375rem;
+  --text-heading-lg--line-height: 1.27;
+  --text-heading-lg--letter-spacing: -0.01em;
+  /* 18px. A smaller card title. */
+  --text-heading-md: 1.125rem;
+  --text-heading-md--line-height: 1.33;
+  --text-heading-md--letter-spacing: -0.005em;
+  /* 16px. A label-weight heading. */
+  --text-heading-sm: 1rem;
+  --text-heading-sm--line-height: 1.375;
+  /* 20px. The sentence under a headline. */
+  --text-lead: 1.25rem;
+  --text-lead--line-height: 1.5;
+  /* 18px. A section's standfirst. */
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.55;
+  /* 16px. Paragraphs. */
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+  /* 15px. Card text. */
+  --text-body-sm: 0.9375rem;
+  --text-body-sm--line-height: 1.47;
+  /* 14px. The line under a figure, a "Precisely:" line, navigation. */
+  --text-meta: 0.875rem;
+  --text-meta--line-height: 1.43;
+  /* 13px. A caption under a screenshot, a footer line. */
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.38;
+  /* 12px. An eyebrow or a badge. */
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.33;
+  --text-label--letter-spacing: 0.02em;
+  /* 13px, monospace. Code blocks. */
+  --text-code: 0.8125rem;
+  --text-code--line-height: 1.55;
+
+  /* radius-sm 4px (badges), md 8px (buttons, inputs, cards), lg 12px, xl 20px (marketing only). */
+  --radius-*: initial;
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 999px;
+
+  /* Elevation: borders first; a shadow only on something that floats. */
+  --shadow-*: initial;
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+
+  /* Motion snaps to the grid: short, straight, no bounce. */
+  --default-transition-duration: 160ms;
+  --default-transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+  /* The marketing container: 1200px, as the kit's layout section states. */
+  --container-marketing: 75rem;
+  --container-reading: 45rem;
+
+  /*
+    Figtree, self-hosted from `public/fonts` by the @font-face at the end of
+    layout, which defines `--font-figtree`. The fallbacks matter: the first
+    paint is drawn in one of them, and a stack ending at `ui-sans-serif` would
+    reflow noticeably when the real face arrives.
+  */
+  --font-sans: Figtree, "Segoe UI", system-ui, -apple-system,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas,
+    monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+  }
+
+  /*
+    Tabular figures on every number that sits beside another. The house tell
+    (prompt §8); the product sets it on tables, and the site has figures in
+    ledgers, callouts and the developer card.
+  */
+  table,
+  [data-numeric] {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /*
+    The focus ring is forest, not the brand green, and offset 2px so the
+    colour beside it is the page rather than the control: a spring-400 ring on
+    a white page would measure 1.87:1. Inside a dark band the ring is spring,
+    set on the band itself, so the one rule keeps working.
+  */
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  .on-inverse {
+    --focus-ring: var(--focus-ring-inverse);
+  }
+
+  /* Headlines wrap by balance, so no line is left holding one word. */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/*
+  Motion, for people who have asked for less of it.
+
+  Near-zero rather than `none`: a duration of exactly zero cancels the
+  `transitionend` events a component may wait on. The kit says the same:
+  state changes stay, movement goes.
+*/
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/*
+  Figtree, the product's typeface, shipped rather than fetched: no request to
+  a font host on the first paint, and no third party learning who opened what.
+  `swap` draws the first frame in the fallback and reflows once, which beats
+  a headline that is invisible while a face downloads; the layout preloads
+  the file so that window is short.
+*/
+@font-face {
+  font-family: "Figtree";
+  src: url("/fonts/Figtree-Variable.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}

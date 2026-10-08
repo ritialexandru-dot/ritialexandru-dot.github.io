@@ -1,0 +1,55 @@
+---
+/**
+ * The one primary call to action (prompt §7): "Start free", with "No card
+ * needed" directly under it, the same words and the same destination
+ * everywhere. Nothing else on the site may be a primary button.
+ */
+import Button from "@/components/ui/Button.astro";
+import { APP, CTA } from "@/lib/site";
+
+interface Props {
+  size?: "md" | "lg";
+  /** On a dark band the line under the button is drawn in the inverse ink. */
+  tone?: "default" | "inverse";
+  /** The reassurance line (O3, D6) under the pair, where a section wants it. */
+  reassurance?: boolean;
+  /** A secondary link beside the button, such as "See how it works". */
+  secondary?: { href: string; label: string };
+  align?: "start" | "center";
+  class?: string;
+}
+
+const {
+  size = "lg",
+  tone = "default",
+  reassurance = false,
+  secondary,
+  align = "start",
+  class: className = "",
+} = Astro.props;
+
+const under = tone === "inverse" ? "text-ink-inverse-secondary" : "text-ink-secondary";
+---
+
+<div
+  class:list={[
+    "flex flex-col gap-3",
+    align === "center" ? "items-center text-center" : "items-start",
+    className,
+  ]}
+>
+  <div class:list={["flex flex-wrap gap-3", align === "center" && "justify-center"]}>
+    <div class="flex flex-col items-center gap-1.5">
+      <Button href={APP.register} size={size} variant="primary">{CTA.label}</Button>
+      <span class:list={["text-caption", under]}>{CTA.under}</span>
+    </div>
+    {
+      secondary && (
+        <Button href={secondary.href} size={size} variant={tone === "inverse" ? "inverse" : "secondary"}>
+          {secondary.label}
+        </Button>
+      )
+    }
+  </div>
+  {reassurance && <p class:list={["text-meta", under]}>{CTA.reassurance}</p>}
+</div>

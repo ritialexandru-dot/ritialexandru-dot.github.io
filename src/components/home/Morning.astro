@@ -1,0 +1,69 @@
+---
+/** How it works, at the operator's level (Home 3): three beats, three screens. */
+import Container from "@/components/site/Container.astro";
+import Section from "@/components/site/Section.astro";
+import SectionHeading from "@/components/site/SectionHeading.astro";
+import Precisely from "@/components/ui/Precisely.astro";
+import Screenshot from "@/components/ui/Screenshot.astro";
+import { SHOTS } from "@/lib/shots";
+
+const BEATS = [
+  {
+    title: "It ranks what needs you",
+    body: "Overnight, every partner is scored and the ones the evidence has moved are raised: activate this one, contact that one, consider a raise here, review there. The list is ordered by what it costs you to ignore.",
+    precisely:
+      "seven factors, scored nightly. Performance is a percentile among your own partners, not a grade. Potential is deliberately not a function of current revenue. Weights are configuration, not code.",
+    shot: SHOTS.needsYouCard,
+    caption: "One item from the morning's list: the ask, the evidence, the figures, the step.",
+  },
+  {
+    title: "It shows its evidence",
+    body: "Every recommendation carries the sentence it rests on and the figures behind it. You can disagree with one line of it rather than with the product.",
+    precisely:
+      "deterministic rules, not machine learning. Every score shows each factor's weight, value and points. A partner with no history is not scored at all, rather than handed a confident zero.",
+    shot: SHOTS.scoreBreakdown,
+    caption: "Why this score: each factor's weight, value and points, with a sentence of evidence.",
+  },
+  {
+    title: "You decide. It never acts alone.",
+    body: "A raise or a tier move needs your confirmation of that exact number, and shows what it costs at the current run rate. “Not now” holds for 30 days. A risk finding has no apply button.",
+    precisely:
+      "no recommendation can put a partner above 50% or propose a bonus above $1,000 (€1,000, £800…), and the cap is enforced where money is written. Autopilot defaults to “Prepare, and ask me”. Set to run on its own, it may only send the low-risk activation nudge, within 25 actions a day, 2 emails per partner a week, a 14-day cooldown and quiet hours in the partner's own time. There is no fully autonomous mode.",
+    shot: SHOTS.confirmRaise,
+    caption: "The exact number, what it costs, and the decision left to you.",
+  },
+];
+---
+
+<Section tone="surface" labelledBy="morning-heading">
+  <Container>
+    <SectionHeading
+      id="morning-heading"
+      title="A morning with Refficks"
+      lead="What the Intelligence screen does with your programme overnight, and what it leaves for you."
+    />
+
+    <ol class="mt-12 flex flex-col gap-16 lg:gap-20">
+      {
+        BEATS.map((beat, index) => {
+          const reversed = index % 2 === 1;
+          return (
+            <li class="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12">
+              <div class:list={["lg:col-span-5", reversed && "lg:order-2"]}>
+                <p class="text-label font-semibold uppercase text-ink-secondary">Step {index + 1}</p>
+                <h3 class="mt-2 text-heading-xl font-bold text-ink">{beat.title}</h3>
+                <p class="mt-4 text-body text-ink-secondary">{beat.body}</p>
+                <Precisely class="mt-5">{beat.precisely}</Precisely>
+              </div>
+              <Screenshot
+                {...beat.shot}
+                caption={beat.caption}
+                class:list={["lg:col-span-7", reversed && "lg:order-1"]}
+              />
+            </li>
+          );
+        })
+      }
+    </ol>
+  </Container>
+</Section>

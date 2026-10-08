@@ -1,0 +1,66 @@
+---
+/** The three audiences (Home 6, prompt §2), each a card to its own page. */
+import Container from "@/components/site/Container.astro";
+import Section from "@/components/site/Section.astro";
+import SectionHeading from "@/components/site/SectionHeading.astro";
+import Icon from "@/components/ui/Icon.astro";
+
+const WAYS = [
+  {
+    href: "/stores/",
+    title: "Online stores",
+    platforms: "Shopify, WooCommerce, BigCommerce",
+    body: "Partner codes become real discounts in your store. A code alone credits the right partner. A refund takes its commission back by itself.",
+    label: "For stores",
+  },
+  {
+    href: "/saas/",
+    title: "SaaS and subscriptions",
+    platforms: "Stripe, Chargebee, Recurly",
+    body: "Recurring commission for as long as you say. A refund or a cancellation reverses it beside the original. Deals your partners bring in, linked back to them when the money arrives.",
+    label: "For SaaS",
+  },
+  {
+    href: "/creators/",
+    title: "Creators and course sellers",
+    platforms: "Kajabi, Thinkific, Teachable, ThriveCart, SamCart, Gumroad",
+    body: "A step-by-step guide per platform: paste an address and a snippet, no code to write. A partner's own code credits them. Partners see exactly what they earned and why.",
+    label: "For creators",
+  },
+];
+---
+
+<Section tone="surface" labelledBy="ways-heading">
+  <Container>
+    <SectionHeading id="ways-heading" title="Three ways in" />
+
+    <ul class="mt-10 grid gap-4 md:grid-cols-3">
+      {
+        WAYS.map((way) => (
+          <li>
+            <a
+              href={way.href}
+              class="group flex h-full flex-col rounded-lg border border-border bg-canvas p-6 transition-colors hover:border-border-strong hover:bg-subtle"
+            >
+              <h3 class="text-heading-lg font-semibold text-ink">{way.title}</h3>
+              <p class="mt-1 text-meta text-ink-secondary">{way.platforms}</p>
+              <p class="mt-4 text-body-sm text-ink-secondary">{way.body}</p>
+              <span class="mt-auto inline-flex items-center gap-1.5 pt-6 text-meta font-semibold text-link">
+                {way.label}
+                <Icon name="arrow-right" class="size-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="mt-8 max-w-3xl text-meta text-ink-secondary">
+      Works with Stripe, Shopify, WooCommerce, BigCommerce, Chargebee, Recurly, RevenueCat,
+      ThriveCart, Gumroad, SamCart, Kajabi, ClickFunnels, Thinkific and Teachable, plus the API.
+      {/* voice: allow. The copy draft's own wording for L8: in progress, not done. */}
+      Most were built from each provider&rsquo;s documentation and are being tested on live
+      accounts.
+    </p>
+  </Container>
+</Section>

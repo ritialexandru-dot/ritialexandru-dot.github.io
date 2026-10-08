@@ -1,0 +1,27 @@
+---
+/**
+ * The second reader's line (prompt §2, the two-readers rule): one sentence
+ * for the operator in the paragraph above, and under it, in smaller type,
+ * the exact figure or rule for the developer they forward the page to. Used
+ * consistently enough to be a house tell, so it is one component. The label
+ * changes where the copy calls it something else ("What you see:").
+ */
+interface Props {
+  label?: string;
+  tone?: "default" | "inverse";
+  class?: string;
+}
+
+const { label = "Precisely:", tone = "default", class: className = "" } = Astro.props;
+
+const colours =
+  tone === "inverse"
+    ? "text-ink-inverse-secondary border-border-inverse"
+    : "text-ink-secondary border-border-strong";
+const strong = tone === "inverse" ? "text-ink-inverse" : "text-ink";
+---
+
+<p class:list={["border-l-2 pl-3 text-meta", colours, className]}>
+  <span class:list={["font-semibold", strong]}>{label} </span>
+  <slot />
+</p>

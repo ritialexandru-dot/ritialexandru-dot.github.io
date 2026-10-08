@@ -1,0 +1,26 @@
+---
+/**
+ * A code sample on the dark band, exactly as a developer would paste it.
+ * Monospace, the kit's code size, horizontal scroll rather than wrapping so
+ * a header line stays a header line, and no syntax colouring: the sample is
+ * short enough to read as written. `min-w-0` because a grid child otherwise
+ * grows to its content's width, and a long line then pushes the whole page
+ * sideways on a phone.
+ */
+interface Props {
+  code: string;
+  language: "html" | "bash" | "text";
+  /** Said to screen readers and shown above the block. */
+  label: string;
+  class?: string;
+}
+
+const { code, language, label, class: className = "" } = Astro.props;
+---
+
+<figure class:list={["min-w-0", className]}>
+  <figcaption class="mb-2 text-label font-semibold uppercase text-ink-inverse-muted">{label}</figcaption>
+  <pre
+    class="overflow-x-auto rounded-lg border border-border-inverse bg-inverse-deep p-4 text-code text-ink-inverse"
+    tabindex="0"><code class={`language-${language}`}>{code}</code></pre>
+</figure>

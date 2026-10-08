@@ -1,0 +1,37 @@
+---
+/** Where the data lives and how it leaves (Home 9): the first objection, answered first. */
+import Container from "@/components/site/Container.astro";
+import Section from "@/components/site/Section.astro";
+import SectionHeading from "@/components/site/SectionHeading.astro";
+import Icon from "@/components/ui/Icon.astro";
+
+const FACTS = [
+  "Hosted by Refficks in the EU, in Romania. Nothing to install beyond a script tag or a store app.",
+  "Take a copy of your data: the whole account as CSV files in one archive, any time. Every download is recorded.",
+  "No raw IP address is ever stored. Fraud signals run on salted hashes. Global Privacy Control means nothing is written, not even a cookie, and on sites that ask for consent the tracker waits for it.",
+  "One organization cannot read another's data, and that is a tested property, not a promise: every resource carries a test that proves it.",
+  "Events, attributions, commission entries and audit logs are append-only. The audit log records who did what, when, with before and after values.",
+  "No merchant Stripe key is held at all. Other integrations connect by OAuth with the least scope, under their own encryption key, and are never shown back.",
+  "Roles for your team, two-factor sign-in with recovery codes, and single sign-on.",
+  "Partners and customers can be erased. A closed account is deleted after 90 days, and its connections are revoked at each provider.",
+];
+---
+
+<Section tone="canvas" labelledBy="data-heading">
+  <Container>
+    <SectionHeading id="data-heading" title="Where your data lives, and how it leaves" />
+
+    <ul class="mt-10 grid gap-x-10 gap-y-5 md:grid-cols-2">
+      {
+        FACTS.map((fact) => (
+          <li class="flex gap-3">
+            <span class="mt-0.5 inline-flex size-6 flex-none items-center justify-center rounded-full bg-brand-tint text-icon-brand">
+              <Icon name="check" class="size-4" strokeWidth={2} />
+            </span>
+            <p class="text-body text-ink-secondary">{fact}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+</Section>

@@ -1,0 +1,53 @@
+---
+/** The migration strip (Home 8), with the honest part said rather than buried. */
+import Container from "@/components/site/Container.astro";
+import Section from "@/components/site/Section.astro";
+import SectionHeading from "@/components/site/SectionHeading.astro";
+import Button from "@/components/ui/Button.astro";
+import Icon from "@/components/ui/Icon.astro";
+---
+
+<Section tone="surface" labelledBy="switching-heading">
+  <Container>
+    <div class="grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <SectionHeading
+          id="switching-heading"
+          title="Leaving Rewardful, FirstPromoter or LeadDyno? Or a spreadsheet?"
+        />
+        <p class="mt-6 text-body text-ink-secondary">
+          Upload the export as you downloaded it, or any spreadsheet with a header row, or read a
+          programme straight from Rewardful or FirstPromoter with your key. Refficks reads it back
+          before anything is imported: how many rows, how many it can take, and which lines it
+          cannot and why. Nothing happens until you say so. One bad row never loses the file, and
+          re-importing never duplicates anyone.
+        </p>
+        <div class="mt-6">
+          <Button href="/migrate/" variant="secondary" size="md">
+            How migration works
+            <Icon name="arrow-right" class="size-4" />
+          </Button>
+        </div>
+      </div>
+
+      <div class="grid gap-4 lg:col-span-7 lg:grid-cols-2">
+        <div class="rounded-lg border border-border bg-canvas p-6">
+          <h3 class="text-heading-md font-semibold text-ink">The honest part.</h3>
+          <p class="mt-2 text-body-sm text-ink-secondary">
+            Paid history comes across labelled as the old platform&rsquo;s figure, and never becomes
+            payable here. What is still owed can come across as an opening balance, pending until
+            you approve it. A ledger that only holds money it can explain is the product.
+          </p>
+        </div>
+        <div class="rounded-lg border border-border bg-canvas p-6">
+          <h3 class="text-heading-md font-semibold text-ink">Then the shadow run.</h3>
+          <p class="mt-2 text-body-sm text-ink-secondary">
+            While the old platform keeps paying, Refficks records what it would have paid, pays
+            none of it, and every morning compares the last 28 days partner by partner. At cutover,
+            exactly one system pays, and Refficks warns if a partner&rsquo;s earnings drop.
+          </p>
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>

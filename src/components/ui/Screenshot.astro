@@ -1,0 +1,106 @@
+---
+/**
+ * A real product screenshot in a flat frame: a 1px border and the large
+ * radius, no shadow, because a picture does not float. The image carries its
+ * own dimensions so the page does not move when it arrives, offers a 2x file
+ * to screens that can show it, and everything below the fold is lazy.
+ *
+ * A wide screen can also name a `narrow` crop: at phone width a 1176px
+ * capture shrinks to a third and cannot be read, so a tighter crop of the
+ * same screen is served there instead.
+ *
+ * Callouts are numbered markers positioned over the image and a numbered list
+ * under it, so the explanation is read by a screen reader and survives a
+ * phone width, where the markers are hidden and the list does the work.
+ */
+import type { Shot } from "@/lib/shots";
+
+export type Callout = { x: number; y: number; text: string };
+
+interface Props extends Shot {
+  caption?: string;
+  callouts?: Callout[];
+  narrow?: Shot;
+  priority?: boolean;
+  tone?: "default" | "inverse";
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  caption,
+  callouts = [],
+  narrow,
+  priority = false,
+  tone = "default",
+  class: className = "",
+} = Astro.props;
+
+const frame = tone === "inverse" ? "border-border-inverse bg-inverse-raised" : "border-border bg-surface";
+const secondary = tone === "inverse" ? "text-ink-inverse-secondary" : "text-ink-secondary";
+const twoX = (file: string) => file.replace(/\.webp$/, "@2x.webp");
+---
+
+<figure class={className}>
+  <div class:list={["relative overflow-hidden rounded-lg border", frame]}>
+    <picture>
+      {
+        narrow && (
+          <source
+            media="(max-width: 639px)"
+            srcset={`${narrow.src} 1x, ${twoX(narrow.src)} 2x`}
+            width={narrow.width}
+            height={narrow.height}
+          />
+        )
+      }
+      <img
+        src={src}
+        srcset={`${src} 1x, ${twoX(src)} 2x`}
+        alt={alt}
+        width={width}
+        height={height}
+        class="block h-auto w-full"
+        loading={priority ? "eager" : "lazy"}
+        decoding={priority ? "sync" : "async"}
+        fetchpriority={priority ? "high" : "auto"}
+      />
+    </picture>
+    {
+      callouts.map((callout, index) => (
+        <span
+          aria-hidden="true"
+          class:list={[
+            "absolute hidden size-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-inverse text-label font-semibold text-ink-inverse ring-2 ring-surface",
+            narrow ? "sm:flex" : "flex",
+          ]}
+          style={`left: ${callout.x}%; top: ${callout.y}%`}
+        >
+          {index + 1}
+        </span>
+      ))
+    }
+  </div>
+  {
+    (caption || callouts.length > 0) && (
+      <figcaption class:list={["mt-3 text-caption", secondary]}>
+        {caption && <span class="block">{caption}</span>}
+        {callouts.length > 0 && (
+          <ol class="mt-3 grid gap-2 sm:grid-cols-3">
+            {callouts.map((callout, index) => (
+              <li class="flex gap-2">
+                <span class="flex size-5 flex-none items-center justify-center rounded-full bg-inverse text-label font-semibold text-ink-inverse">
+                  {index + 1}
+                </span>
+                <span>{callout.text}</span>
+              </li>
+            ))}
+          </ol>
+        )}
+      </figcaption>
+    )
+  }
+</figure>

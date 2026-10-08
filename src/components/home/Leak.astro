@@ -1,0 +1,42 @@
+---
+/** The problem (Home 2): the dashboard watches three inches; the leak is elsewhere. */
+import JourneyDiagram from "@/components/home/JourneyDiagram.astro";
+import Container from "@/components/site/Container.astro";
+import Section from "@/components/site/Section.astro";
+import SectionHeading from "@/components/site/SectionHeading.astro";
+import Precisely from "@/components/ui/Precisely.astro";
+import Screenshot from "@/components/ui/Screenshot.astro";
+import { SHOTS } from "@/lib/shots";
+---
+
+<Section tone="surface" labelledBy="leak-heading">
+  <Container>
+    <SectionHeading id="leak-heading" title="Your programme is leaking, and the dashboard can't see where" />
+    <div class="mt-6 max-w-3xl space-y-4 text-body text-ink-secondary">
+      <p>
+        Most affiliate software watches the last three inches of the journey: click, conversion,
+        commission.
+      </p>
+      <p>
+        The money goes missing earlier. The partner you approved a month ago who has never placed a
+        link. The one whose traffic arrives and never buys. The good one who went quiet in March,
+        while the dashboard kept adding up the partners who were still working.
+      </p>
+      <p class="font-medium text-ink">Refficks models the whole journey and watches all of it.</p>
+    </div>
+
+    <JourneyDiagram class="mt-10" />
+
+    <Screenshot
+      {...SHOTS.funnel}
+      class="mt-12"
+      caption="Where partners stall, who is stuck there, and the median days between stages."
+    />
+
+    <Precisely class="mt-6 max-w-3xl">
+      stages are earned from behaviour, never assigned. A click onboards, a sale activates, silence
+      makes dormant. The nightly pass never moves anyone into applicant or rejected; who gets in
+      stays your call.
+    </Precisely>
+  </Container>
+</Section>

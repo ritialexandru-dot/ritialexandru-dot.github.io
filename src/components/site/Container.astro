@@ -1,0 +1,20 @@
+---
+/** The marketing column: 1200px, with the kit's page margins at each width. */
+interface Props {
+  /** The reading measure, 720px, for a section that is mostly prose. */
+  narrow?: boolean;
+  class?: string;
+}
+
+const { narrow = false, class: className = "" } = Astro.props;
+---
+
+<div
+  class:list={[
+    "mx-auto w-full px-4 sm:px-6 lg:px-8",
+    narrow ? "max-w-reading" : "max-w-marketing",
+    className,
+  ]}
+>
+  <slot />
+</div>

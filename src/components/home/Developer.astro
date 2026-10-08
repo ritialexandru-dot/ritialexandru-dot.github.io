@@ -1,0 +1,72 @@
+---
+/**
+ * The developer teaser (Home 10): the dark card, the two real snippets, one
+ * paragraph on idempotency, and the chain every number can be traced along.
+ */
+import Container from "@/components/site/Container.astro";
+import Section from "@/components/site/Section.astro";
+import SectionHeading from "@/components/site/SectionHeading.astro";
+import Button from "@/components/ui/Button.astro";
+import CodeBlock from "@/components/ui/CodeBlock.astro";
+import { APP } from "@/lib/site";
+
+const SCRIPT_TAG = `<script
+  src="https://go.refficks.com/refficks.js?a=rk_pub_…"
+  data-account="rk_pub_…">
+</script>`;
+
+const EVENT_CURL = `curl https://go.refficks.com/api/v1/events \\
+  -H "Authorization: Bearer rk_live_…" \\
+  -H "Idempotency-Key: inv_0A3F-paid" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "type": "invoice.paid",
+    "external_id": "inv_0A3F",
+    "occurred_at": "2026-10-08T09:14:00Z",
+    "customer": { "external_id": "cus_123", "email": "ana@example.com" },
+    "properties": { "amount": 13200, "net_amount": 10000, "currency": "USD" }
+  }'`;
+
+const inlineCode = "rounded-sm bg-inverse-deep px-1.5 py-0.5 text-code text-ink-inverse";
+---
+
+<Section tone="inverse" labelledBy="developer-heading">
+  <Container>
+    <SectionHeading
+      id="developer-heading"
+      tone="inverse"
+      eyebrow="For the developer you'll forward this to"
+      title="One script tag in the browser. One idempotent POST from your server."
+    />
+
+    <div class="mt-10 grid gap-6 lg:grid-cols-12">
+      <CodeBlock class="lg:col-span-5" label="The tracker, as a merchant pastes it" language="html" code={SCRIPT_TAG} />
+      <CodeBlock class="lg:col-span-7" label="A sale, from your server" language="bash" code={EVENT_CURL} />
+    </div>
+
+    <div class="mt-10 grid gap-8 lg:grid-cols-12">
+      <div class="min-w-0 space-y-4 text-body text-ink-inverse-secondary lg:col-span-7">
+        <p>
+          Send it twice and the second answers 200 with <code class={inlineCode}>"status": "duplicate"</code>.
+          Same key, different payload: 409. Retries are free and duplicates are structurally
+          impossible, because idempotency is a unique index in the database, not a check in code.
+        </p>
+        <p>
+          Every number can explain itself: <code class={inlineCode}>integration_event &rarr; event &rarr; attribution &rarr; commission_entry</code>,
+          append-only, end to end.
+        </p>
+      </div>
+      <div class="min-w-0 lg:col-span-5">
+        <p class="text-body text-ink-inverse-secondary">
+          OpenAPI 3.1 with 454 paths. A Server API with no endpoint that approves or pays. Signed
+          outbound webhooks. An MCP server for Claude and ChatGPT. Laravel 13 on PHP 8.4, MySQL 8.4
+          and Redis 7; Next.js 16 and React 19. Boring, inspectable technology.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <Button href={APP.apiReference} variant="inverse" size="md">Read the API reference</Button>
+          <Button href="/developers/" variant="inverse" size="md">For developers</Button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>

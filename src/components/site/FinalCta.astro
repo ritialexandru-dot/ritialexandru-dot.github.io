@@ -1,0 +1,26 @@
+---
+/**
+ * The closing band on every page (prompt §6): the headline echoed, the one
+ * call to action, "No card needed" under it, on forest.
+ */
+import Container from "@/components/site/Container.astro";
+import Section from "@/components/site/Section.astro";
+import StartFree from "@/components/site/StartFree.astro";
+
+interface Props {
+  title: string;
+  lead: string;
+}
+
+const { title, lead } = Astro.props;
+---
+
+<Section tone="inverse" labelledBy="final-heading">
+  <Container narrow class="text-center">
+    <h2 id="final-heading" class="text-heading-xl font-bold text-ink-inverse sm:text-display-md">
+      {title}
+    </h2>
+    <p class="mx-auto mt-4 max-w-2xl text-body-lg text-ink-inverse-secondary">{lead}</p>
+    <StartFree class="mt-8" tone="inverse" align="center" reassurance />
+  </Container>
+</Section>

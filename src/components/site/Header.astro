@@ -1,0 +1,171 @@
+---
+/**
+ * The slim top navigation (prompt §6): Product, Developers, Migrate, FAQ,
+ * Sign in, Partner sign in, and Start free with "No card needed" under it.
+ *
+ * Two menus and one small script: the Product menu and the phone menu each
+ * open from a button, and both close on Escape and on a click outside, which
+ * is what a menu owes a keyboard. The page is static, so this is the only
+ * script the site runs.
+ */
+import Wordmark from "@/components/site/Wordmark.astro";
+import Button from "@/components/ui/Button.astro";
+import Icon from "@/components/ui/Icon.astro";
+import { APP, CTA, PRIMARY_NAV, PRODUCT_PAGES } from "@/lib/site";
+
+const pathname = Astro.url.pathname;
+const onProduct = pathname.startsWith("/product");
+
+const link =
+  "inline-flex h-9 items-center rounded-md px-3 text-meta font-medium transition-colors hover:bg-subtle hover:text-ink";
+const tone = (active: boolean) => (active ? "text-ink" : "text-ink-secondary");
+const phoneLink = "block rounded-md px-3 py-2.5 text-body-sm font-medium text-ink hover:bg-subtle";
+---
+
+<header data-site-header class="sticky top-0 z-40 border-b border-border bg-canvas/95 backdrop-blur-sm">
+  <div class="mx-auto flex h-16 w-full max-w-marketing items-center gap-6 px-4 sm:px-6 lg:px-8">
+    <a href="/" class="rounded-md text-ink" aria-label="Refficks home">
+      <Wordmark />
+    </a>
+
+    <nav aria-label="Site" class="hidden flex-1 items-center gap-1 lg:flex">
+      <div data-product class="relative">
+        <button
+          type="button"
+          data-product-button
+          class:list={[link, "gap-1", tone(onProduct)]}
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-controls="product-menu"
+        >
+          Product
+          <Icon name="chevron-down" class="size-4 transition-transform" />
+        </button>
+        <div
+          id="product-menu"
+          hidden
+          class="absolute top-full left-0 mt-1 w-[22rem] rounded-lg border border-border bg-surface p-2 shadow-md"
+        >
+          <ul>
+            {
+              PRODUCT_PAGES.map((page) => (
+                <li>
+                  <a href={page.href} class="block rounded-md px-3 py-2.5 transition-colors hover:bg-subtle">
+                    <span class="block text-meta font-semibold text-ink">{page.label}</span>
+                    <span class="mt-0.5 block text-caption text-ink-secondary">{page.description}</span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      {
+        PRIMARY_NAV.map((item) => (
+          <a href={item.href} class:list={[link, tone(pathname.startsWith(item.href))]}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="ml-auto hidden items-center gap-1 lg:flex">
+      <a href={APP.signIn} class:list={[link, "text-ink-secondary"]}>Sign in</a>
+      <a href={APP.partnerSignIn} class:list={[link, "text-ink-secondary"]}>Partner sign in</a>
+      <div class="ml-2 flex flex-col items-center">
+        <Button href={APP.register} size="md" variant="primary">{CTA.label}</Button>
+        <span class="mt-0.5 text-label text-ink-secondary">{CTA.under}</span>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      data-menu-button
+      class="ml-auto inline-flex size-11 items-center justify-center rounded-md text-ink hover:bg-subtle lg:hidden"
+      aria-expanded="false"
+      aria-controls="site-menu"
+      aria-label="Open menu"
+    >
+      <Icon name="menu" class="size-6" data-when="closed" />
+      <Icon name="x" class="size-6 hidden" data-when="open" />
+    </button>
+  </div>
+
+  <nav
+    id="site-menu"
+    hidden
+    aria-label="Site"
+    class="border-t border-border bg-surface px-4 py-4 sm:px-6 lg:hidden"
+  >
+    <p class="px-3 pb-1 text-label font-semibold uppercase text-ink-secondary">Product</p>
+    <ul class="mb-3">
+      {
+        PRODUCT_PAGES.map((page) => (
+          <li>
+            <a href={page.href} class={phoneLink}>
+              {page.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <ul class="mb-3 border-t border-border pt-3">
+      {
+        PRIMARY_NAV.map((item) => (
+          <li>
+            <a href={item.href} class={phoneLink}>
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+      <li><a href={APP.signIn} class={phoneLink}>Sign in</a></li>
+      <li><a href={APP.partnerSignIn} class={phoneLink}>Partner sign in</a></li>
+    </ul>
+    <div class="flex flex-col items-stretch gap-1.5 border-t border-border px-3 pt-4">
+      <Button href={APP.register} size="lg" variant="primary" class="w-full">{CTA.label}</Button>
+      <span class="text-center text-caption text-ink-secondary">{CTA.under}</span>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>("[data-site-header]");
+  const product = header?.querySelector<HTMLElement>("[data-product]");
+  const productButton = header?.querySelector<HTMLButtonElement>("[data-product-button]");
+  const productMenu = header?.querySelector<HTMLElement>("#product-menu");
+  const menuButton = header?.querySelector<HTMLButtonElement>("[data-menu-button]");
+  const menu = header?.querySelector<HTMLElement>("#site-menu");
+
+  function setProduct(open: boolean) {
+    if (!productButton || !productMenu) return;
+    productMenu.hidden = !open;
+    productButton.setAttribute("aria-expanded", String(open));
+    productButton.querySelector("svg")?.classList.toggle("rotate-180", open);
+  }
+
+  function setMenu(open: boolean) {
+    if (!menuButton || !menu) return;
+    menu.hidden = !open;
+    menuButton.setAttribute("aria-expanded", String(open));
+    menuButton.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    for (const icon of menuButton.querySelectorAll<SVGElement>("svg")) {
+      icon.classList.toggle("hidden", (icon.dataset.when === "open") !== open);
+    }
+  }
+
+  productButton?.addEventListener("click", () => setProduct(productMenu?.hidden === true));
+  menuButton?.addEventListener("click", () => setMenu(menu?.hidden === true));
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setProduct(false);
+      setMenu(false);
+    }
+  });
+
+  document.addEventListener("pointerdown", (event) => {
+    if (product && !product.contains(event.target as Node)) setProduct(false);
+  });
+</script>

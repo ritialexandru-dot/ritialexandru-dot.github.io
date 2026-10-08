@@ -1,0 +1,32 @@
+{
+  "activation-funnel": {
+    "width": 1176,
+    "height": 690,
+    "oneX": 39460,
+    "twoX": 82608
+  },
+  "confirm-raise": {
+    "width": 828,
+    "height": 239,
+    "oneX": 17116,
+    "twoX": 35358
+  },
+  "needs-you-card": {
+    "width": 828,
+    "height": 239,
+    "oneX": 10102,
+    "twoX": 21116
+  },
+  "needs-you": {
+    "width": 1176,
+    "height": 728,
+    "oneX": 35984,
+    "twoX": 73458
+  },
+  "score-breakdown": {
+    "width": 566,
+    "height": 678,
+    "oneX": 20258,
+    "twoX": 43922
+  }
+}

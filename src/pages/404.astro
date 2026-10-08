@@ -1,0 +1,27 @@
+---
+import Container from "@/components/site/Container.astro";
+import Section from "@/components/site/Section.astro";
+import Button from "@/components/ui/Button.astro";
+import Base from "@/layouts/Base.astro";
+---
+
+<Base
+  title="Page not found · Refficks"
+  description="The address may have changed, or it was never here."
+  path="/404/"
+  noindex
+>
+  <Section tone="canvas">
+    <Container narrow>
+      <p class="text-label font-semibold uppercase text-ink-secondary">404</p>
+      <h1 class="mt-2 text-display-md font-bold text-ink">We couldn&rsquo;t find that page</h1>
+      <p class="mt-4 text-body-lg text-ink-secondary">
+        The address may have changed, or it was never here. The home page has everything the site
+        says.
+      </p>
+      <div class="mt-8">
+        <Button href="/" variant="secondary" size="lg">Go to the home page</Button>
+      </div>
+    </Container>
+  </Section>
+</Base>

@@ -1,0 +1,60 @@
+---
+/**
+ * Headline, subhead, the one call to action, the reassurance line, and the
+ * Intelligence screen's Needs you tab with three callouts: the whole site in
+ * one viewport (prompt §6, Home 1; §7, the 5-second rule).
+ *
+ * The words sit above the screen rather than beside it. A dense product
+ * screen shown in half a column has to be shrunk to fit, and the prompt's
+ * rule is crop, never shrink: at the full column the capture is drawn at
+ * nearly its own size, so the sentence the whole site rests on can be read
+ * off the picture. At phone width the single-card crop stands in for it.
+ */
+import Container from "@/components/site/Container.astro";
+import Section from "@/components/site/Section.astro";
+import StartFree from "@/components/site/StartFree.astro";
+import Screenshot from "@/components/ui/Screenshot.astro";
+import { SHOTS } from "@/lib/shots";
+---
+
+<Section tone="canvas" padding="none" class="pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24">
+  <Container>
+    <div class="grid gap-8 lg:grid-cols-12 lg:items-start">
+      <div class="lg:col-span-7">
+        <h1 class="text-display-md font-bold text-ink sm:text-display-lg xl:text-display-xl">
+          Affiliate dashboards report. Refficks recommends.
+        </h1>
+      </div>
+      <div class="lg:col-span-5">
+        <p class="text-lead text-ink-secondary">
+          Tracking, attribution, commissions and payouts for affiliate, referral, creator,
+          ambassador and B2B partner programmes. Plus the part no dashboard does: every morning it
+          names the partners you&rsquo;re wasting, shows its evidence, and leaves the decision to
+          you.
+        </p>
+        <StartFree
+          class="mt-6"
+          reassurance
+          secondary={{ href: "/product/intelligence/", label: "See how it works" }}
+        />
+      </div>
+    </div>
+
+    <Screenshot
+      {...SHOTS.needsYou}
+      narrow={SHOTS.needsYouCard}
+      class="mt-12 lg:mt-14"
+      priority
+      caption="“Ranked by what it costs you to ignore. Every one shows its evidence.”"
+      callouts={[
+        { x: 33.5, y: 57.2, text: "The reason in one sentence, with the figures it rests on." },
+        { x: 12.5, y: 20.2, text: "Ordered by what it costs to ignore, not by date." },
+        {
+          x: 16,
+          y: 75.8,
+          text: "“Not now” holds for 30 days. If it is still true after that, it comes back.",
+        },
+      ]}
+    />
+  </Container>
+</Section>

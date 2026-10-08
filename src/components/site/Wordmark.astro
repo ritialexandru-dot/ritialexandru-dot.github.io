@@ -1,0 +1,19 @@
+---
+/**
+ * The symbol with the name beside it, as live text in Figtree SemiBold. The
+ * outlined wordmark in the kit is marked proposed and waits for a designer's
+ * review, so the site sets the word in the face instead.
+ */
+import Mark from "@/components/site/Mark.astro";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<span class:list={["inline-flex items-center gap-2", className]}>
+  <Mark size={28} />
+  <span class="text-heading-md font-semibold tracking-tight">Refficks</span>
+</span>

@@ -1,0 +1,94 @@
+---
+/**
+ * Every page's frame: the head (one title and description per page, the
+ * link-preview image built from the page's lead screenshot, the canonical
+ * address), the skip link, the header, the footer, and cookieless analytics
+ * only when the deployment names a Plausible site (prompt §9).
+ */
+import "@/styles/global.css";
+import Footer from "@/components/site/Footer.astro";
+import Header from "@/components/site/Header.astro";
+import { SITE } from "@/lib/site";
+
+interface Props {
+  title: string;
+  description: string;
+  /** The page's path with its trailing slash, for the canonical address. */
+  path: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  path,
+  ogTitle = title,
+  ogDescription = description,
+  ogImage = "/og/default.png",
+  ogImageAlt = "Refficks",
+  noindex = false,
+} = Astro.props;
+
+const canonical = new URL(path, SITE.url).href;
+const image = new URL(ogImage, SITE.url).href;
+const plausible = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN as string | undefined;
+---
+
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap.xml" />
+    <link
+      rel="preload"
+      href="/fonts/Figtree-Variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    {
+      plausible && (
+        <script is:inline defer data-domain={plausible} src="https://plausible.io/js/script.js" />
+      )
+    }
+  </head>
+  <body class="flex min-h-full flex-col">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-surface focus:px-4 focus:py-2 focus:text-meta focus:font-semibold focus:text-ink focus:shadow-md"
+    >
+      Skip to content
+    </a>
+    <Header />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
