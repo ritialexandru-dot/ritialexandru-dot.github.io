@@ -173,7 +173,7 @@ Copy: 9 October 2026, from the T and A facts.
 | No raw IP; salted hashes; a store order's buyer IP replaced with its hash | Privacy | T4 |
 | Global Privacy Control writes nothing, not even a cookie; consent is waited for; Do Not Track alone is not read | Privacy | T4 |
 | A declined shopper is credited through a code with no visitor, buyer, IP hash, country or device recorded | Privacy | T8 |
-| Fifty-two public guides, readable without an account; each says what it cannot do first; none walked live yet and each says so | Guides | T9 |
+| Fifty-two public guides, readable without an account; each says what it cannot do first | Guides | T9 (the "none walked on a live site" line came out on the owner's call of 9 October) |
 | Duplicates are structurally impossible to process twice; a retried webhook or double-submitted event resolves to the original | Developer | T5 |
 | The tracker as pasted, at go.refficks.com | Developer | T2, D4 (the API host) |
 
