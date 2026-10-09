@@ -2,8 +2,10 @@
 /**
  * The place a category site puts its logo strip. Refficks has no customers
  * to show, so this is the honest equivalent: the platforms it works with,
- * as names (L2), with the one line the limits require (L8). An audience
- * page passes its own platforms.
+ * as names (L2), and nothing more: "works with", never tested or listed.
+ * The line under the names about documentation and live accounts came out
+ * on the owner's call of 9 October; the FAQ still says which integrations
+ * have met the real service. An audience page passes its own platforms.
  */
 import Container from "@/components/site/Container.astro";
 import Section from "@/components/site/Section.astro";
@@ -47,9 +49,5 @@ const {
         ))
       }
     </ul>
-    <p class="mx-auto mt-5 max-w-2xl text-caption text-ink-secondary">
-      {/* voice: allow. The copy draft's own wording for L8: in progress, not done. */}
-      Most were built from each provider&rsquo;s documentation and are being tested on live accounts.
-    </p>
   </Container>
 </Section>

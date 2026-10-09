@@ -38,7 +38,7 @@ screen beside each.
 | Every morning, the partners who need you, with the evidence, and the decision left to you | Hero, final band | I4, I2, I5 |
 | 30 days free; no card needed; your data, out any time | Hero, header, final band | O3, D6 |
 | The Needs you list is ranked by what it costs you to ignore, with evidence on every line | Hero caption | I4 |
-| Works with Stripe, Shopify, WooCommerce, BigCommerce, Chargebee, Recurly, RevenueCat, Kajabi, Thinkific, Teachable, ThriveCart, SamCart, Gumroad, ClickFunnels, and the API; most built from documentation and being tested on live accounts | Works with | L2, L8 |
+| Works with Stripe, Shopify, WooCommerce, BigCommerce, Chargebee, Recurly, RevenueCat, Kajabi, Thinkific, Teachable, ThriveCart, SamCart, Gumroad, ClickFunnels, and the API | Works with | L2 |
 | Stores: codes become real discounts; a code alone credits; refunds reverse by themselves | Built for how you sell | T7, T1, C3 |
 | SaaS: recurring commission; refund or cancellation reverses beside the original; deals link back to the partner | Built for how you sell | C1, C3, B1 |
 | Creators: a guide per platform, paste an address and a snippet; a partner's code credits them; partners see what they earned | Built for how you sell | T9, T1, PO1 |
@@ -94,6 +94,11 @@ screen beside each.
 - No price and no pricing link until billing is live (O4, O5; §6 Pricing).
 - No privacy or terms link until counsel approves the texts (§6 Legal pages).
 - No testimonial, logo, count or certification (§5; L5, L7).
+- The line under the Works with row ("Most were built from each provider's
+  documentation and are being tested on live accounts") came out on the
+  owner's call of 9 October, on every page that has the row. The names say
+  "works with" and nothing more (L2), and the FAQ's "What isn't built yet?"
+  still says which integrations have met the real service (L8).
 
 ## Page: `/product/intelligence/`
 
@@ -356,7 +361,7 @@ Copy: 9 October 2026, from the stores row of §2.
 |---|---|---|
 | A typed code credits the right partner; a refund takes commission back by itself; every morning, who is worth your time | Hero, final band | T1, C3, I4 |
 | Every partner has a code the day they join, the same one in their link | Hero caption | T1 (the Tracking screen's own line, shown) |
-| Works with Shopify, WooCommerce, BigCommerce, Stripe, Squarespace Commerce, Wix Stores, Ecwid, Shift4Shop; most built from documentation and being tested on live accounts | Works with | L2, T9 (the four store guides), L8 |
+| Works with Shopify, WooCommerce, BigCommerce, Stripe, Squarespace Commerce, Wix Stores, Ecwid, Shift4Shop | Works with | L2, T9 (the four store guides) |
 | Codes become Stripe promotion codes, Shopify discounts, BigCommerce coupon promotions, WooCommerce coupons; pause and return with the connection | Codes | T7 |
 | A coupon credits with no click | Codes | T1 |
 | The Shopify app, the WordPress plugin, the BigCommerce app | Codes | T6 |
@@ -386,7 +391,7 @@ Copy: 9 October 2026, from the SaaS row of §2.
 |---|---|---|
 | Pay on every renewal for as long as you say; a refund or cancellation reversed beside the original; deals stay with their partner until the invoice pays | Hero, final band | C1, C3, B1 |
 | 10% of each sale, recurring for the customer's lifetime, approved 45 days after the sale | Hero caption | C1, C5 (the plan shown) |
-| Works with Stripe, Chargebee, Recurly, RevenueCat and the API; most from documentation, being tested live | Works with | L2, L8 |
+| Works with Stripe, Chargebee, Recurly, RevenueCat and the API | Works with | L2 |
 | Percentage or flat; once or recurring for months or for life; a lower rate with a code | Recurring | C1 |
 | Stripe credits through a visitor id with no JavaScript; connects as a platform, no key held | Recurring | A5 |
 | Every renewal keeps paying the partner who won the subscription | Recurring | A1 (the programme's "Renewals stay with whoever won the subscription" setting, shown in exploration), C1 |
@@ -415,7 +420,7 @@ Copy: 9 October 2026, from the creators row of §2.
 |---|---|---|
 | A guide per platform; paste an address and a snippet; every sale arrives with the partner who sent it | Hero, final band | T9, A2 |
 | Each guide says what to paste where, what it credits and what it does not | Hero caption | T9 |
-| Works with Kajabi, Thinkific, Teachable, ThriveCart, SamCart, Gumroad, ClickFunnels, Stripe Payment Links; most from documentation, being tested live | Works with | L2, T9, L8 |
+| Works with Kajabi, Thinkific, Teachable, ThriveCart, SamCart, Gumroad, ClickFunnels, Stripe Payment Links | Works with | L2, T9 |
 | Fifty-two guides, readable without an account; checkouts, site builders, forms and booking, analytics; each says what it cannot do; checks what Refficks has seen; none walked live and each says so | Guides | T9 |
 | Those seven platforms report each payment; a platform that signs nothing has each commission wait for approval | Guides | L2, C5 |
 | A coupon credits with no click; every partner has a code the day they join | Codes | T1 |
