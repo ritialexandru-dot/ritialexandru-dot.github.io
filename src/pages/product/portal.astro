@@ -1,0 +1,224 @@
+---
+/**
+ * Partner portal and communications (prompt §6): the portal on a phone, the
+ * links and codes it gives, the arithmetic from the partner's side, the
+ * merchant's own domain, the emails, the automations' limits, and the
+ * programmes beyond affiliate. Drawn on the PO, M, R1, CR1, AM1 and B1
+ * facts; claims.md lists each.
+ */
+import CardGrid from "@/components/site/CardGrid.astro";
+import Container from "@/components/site/Container.astro";
+import FinalCta from "@/components/site/FinalCta.astro";
+import PageHero from "@/components/site/PageHero.astro";
+import Section from "@/components/site/Section.astro";
+import SectionHeading from "@/components/site/SectionHeading.astro";
+import Checklist from "@/components/ui/Checklist.astro";
+import Feature from "@/components/ui/Feature.astro";
+import Base from "@/layouts/Base.astro";
+import { SHOTS } from "@/lib/shots";
+
+const COMMUNICATIONS = [
+  {
+    icon: "mail",
+    title: "Nineteen emails on day one",
+    body: "Across affiliate, referral, creator and the directory, each working before you touch it. Override any of them.",
+  },
+  {
+    icon: "shield",
+    title: "Substituted, never compiled",
+    body: "Copy you type into a form is never handed to a template engine.",
+  },
+  {
+    icon: "send",
+    title: "Every send is recorded",
+    body: "So “did they get the email?” has an answer, with the time.",
+  },
+  {
+    icon: "users",
+    title: "Outreach from your own address",
+    body: "Recruiting sequences stop the moment somebody answers, applies or unsubscribes. Each list records why you may write to those people.",
+  },
+  {
+    icon: "globe",
+    title: "Newsletters and messages",
+    body: "Announcements, newsletters and two-way messages with partners, sent from your own verified domain.",
+  },
+  {
+    icon: "refresh",
+    title: "Your own systems",
+    body: "Signed outbound webhooks, and a Zapier app whose key cannot approve applicants, change earnings or record a sale.",
+  },
+] as const;
+
+const PROGRAMMES = [
+  {
+    noun: "partner",
+    title: "Referral",
+    body: "A refer-a-friend panel on your site. Rewards for the referrer, the friend or both, on sign-up, trial, subscription, paid invoice or order. New customers only by default. Milestones from 1 to 50.",
+  },
+  {
+    noun: "creator",
+    title: "Creator",
+    body: "Collaborations with briefs, deliverables, content review with revision requests, usage-rights windows with expiry warnings, gifts, fees and bonuses in the collaboration's own currency, and creator reports.",
+  },
+  {
+    noun: "ambassador",
+    title: "Ambassador",
+    body: "Missions with a review queue, a points ledger, rewards and redemptions including store credit, tiers, a leaderboard, a content library and training.",
+  },
+  {
+    noun: "programme",
+    title: "Agency and B2B",
+    body: "Partner-submitted leads, deal registration with protection windows, a pipeline that keeps sourced and influenced partners apart, and partner tiers. Revenue counts only when money arrives, never on a deal's value.",
+  },
+] as const;
+---
+
+<Base
+  title="Partner portal and communications: one sign-in, built for a phone"
+  description="Partners get one sign-in across every merchant they work with, built for a phone, with their clicks, sales, ledger, payouts, statements, links, codes and assets. Nineteen emails on day one. Automations that can email, tag and ask, and never touch money."
+  path="/product/portal/"
+  ogTitle="One sign-in for every programme a partner works with"
+  ogDescription="Built for a phone. Their clicks, sales, ledger and payouts, with the same arithmetic you see."
+  ogImage="/og/portal.png"
+  ogImageAlt="Refficks: the partner portal on a phone"
+>
+  <PageHero
+    eyebrow="Partner portal and communications"
+    title="One sign-in for every programme a partner works with"
+    lead="Partners see their clicks, sales, commission and payouts, with the same arithmetic you see, on a phone, under your logo and your domain. And when they have a question, raising it changes no money."
+    secondary={{ href: "/product/commissions/", label: "See the ledger behind it" }}
+    phones={[SHOTS.portal, SHOTS.portalLinks, SHOTS.portalCommissions]}
+    caption="The portal as a partner holds it: the overview, their links, and their commission, every entry showing how it was worked out."
+  />
+
+  <Section tone="surface" labelledBy="portal-heading" class="border-y border-border">
+    <Container>
+      <div class="flex flex-col gap-20 lg:gap-24">
+        <Feature
+          id="portal"
+          eyebrow="The portal"
+          title="Their own record, kept by them"
+          body="One sign-in across every merchant a partner works with. Their clicks, sales, commission ledger, payouts and statements, and the links, codes and assets each programme gives them."
+          checks={[
+            "Built for a phone first",
+            "Partners keep their own contact and payout details. You see that the record changed, not the bank details",
+            "Programme email off in one click and no sign-in, or one kind at a time. Emails about their own money still arrive",
+          ]}
+          phone
+          shot={SHOTS.portal}
+        />
+        <Feature
+          reversed
+          id="role"
+          eyebrow="By role"
+          title="The portal follows the partner's role"
+          body="The same sign-in shows each partner the work they actually do, and nothing they do not."
+          checks={[
+            "Links with sub-ids, deep links and QR codes for an affiliate",
+            "A Refer page for a referrer. Collaborations and gifts for a creator",
+            "Missions, points and rewards for an ambassador. Leads and deals for a B2B partner",
+            "Plus training, messages and notices",
+          ]}
+          phone
+          shot={SHOTS.portalLinks}
+        />
+        <Feature
+          id="query"
+          eyebrow="Raise a query"
+          title="A question that changes no money"
+          body="A partner reports a missing sale or a commission that looks wrong. Raising it changes nothing."
+          checks={[
+            "Partners see the same arithmetic as you for every entry",
+            "You see the sales that likely match what they describe",
+            "You answer with an outcome, in words",
+          ]}
+          phone
+          shot={SHOTS.portalCommissions}
+        />
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="canvas" labelledBy="domain-heading">
+    <Container>
+      <div class="grid gap-10 lg:grid-cols-12 lg:items-start">
+        <div class="lg:col-span-6">
+          <SectionHeading
+            id="domain-heading"
+            eyebrow="Your domain"
+            title="On your own domain, in your colours"
+            lead="The portal and the signup page can run on a domain you own, with HTTPS issued automatically, carrying your logo, your colours and your wording. Partners never have to learn a new name."
+          />
+          <Checklist
+            class="mt-6"
+            items={[
+              "A public signup page you link to from your own site, so partners apply without you adding them",
+              "Applicants wait for your review, or a programme you set that way approves them",
+              "An opt-in directory: merchants find only partners who published a card and said merchants may invite them",
+            ]}
+          />
+        </div>
+        <div class="lg:col-span-6">
+          <SectionHeading
+            eyebrow="Communications"
+            title="Say it once, to everyone, from your own address"
+            lead="Notices to a whole programme, newsletters, two-way messages, and every automatic email a programme sends, with a record of each."
+          />
+        </div>
+      </div>
+      <CardGrid items={COMMUNICATIONS} columns={3} class="mt-12" />
+    </Container>
+  </Section>
+
+  <Section tone="inverse" labelledBy="automations-heading">
+    <Container>
+      <SectionHeading
+        id="automations-heading"
+        align="center"
+        tone="inverse"
+        title="Automations that can do exactly six things"
+        lead="They fire on 42 kinds of real event, a partner approved, a first sale, gone dormant, a deliverable overdue, or on a schedule. None of the six touches money."
+      />
+      <ol class="mx-auto mt-12 grid max-w-4xl gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          [
+            "Send an email",
+            "Add a tag",
+            "Add to a campaign",
+            "Move a partner along the lifecycle, never into rejected or at-risk",
+            "Promote to a tier, never demote",
+            "Raise it for a person to decide",
+          ].map((item, index) => (
+            <li class="flex items-start gap-3 rounded-lg border border-border-inverse bg-inverse-raised p-4 text-body-sm text-ink-inverse">
+              <span class="text-heading-md font-bold text-icon-brand-inverse" data-numeric>
+                {index + 1}
+              </span>
+              <span class="pt-0.5">{item}</span>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="mx-auto mt-8 max-w-2xl text-center text-body text-ink-inverse-secondary">
+        An automation cannot approve, pay or reverse a commission. Not by setting, not by mistake.
+      </p>
+    </Container>
+  </Section>
+
+  <Section tone="canvas" labelledBy="programmes-heading">
+    <Container>
+      <SectionHeading
+        id="programmes-heading"
+        align="center"
+        title="Five kinds of programme, on by default"
+        lead="Affiliate is one of them. Switch off the ones you do not run."
+      />
+      <CardGrid items={PROGRAMMES} columns={2} class="mt-12" />
+    </Container>
+  </Section>
+
+  <FinalCta
+    title="One sign-in for every programme a partner works with"
+    lead="Their record, their links, their questions, on a phone, under your name."
+  />
+</Base>

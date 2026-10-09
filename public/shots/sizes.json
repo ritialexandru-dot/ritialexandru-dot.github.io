@@ -1,9 +1,15 @@
 {
-  "attribution-touches": {
-    "width": 828,
-    "height": 207,
-    "oneX": 8040,
-    "twoX": 16482
+  "activation": {
+    "width": 464,
+    "height": 367,
+    "oneX": 10648,
+    "twoX": 21522
+  },
+  "activation-stalled": {
+    "width": 412,
+    "height": 436,
+    "oneX": 11884,
+    "twoX": 24286
   },
   "attribution": {
     "width": 828,
@@ -11,11 +17,41 @@
     "oneX": 5984,
     "twoX": 13002
   },
+  "attribution-rules": {
+    "width": 828,
+    "height": 472,
+    "oneX": 22346,
+    "twoX": 49078
+  },
+  "attribution-touches": {
+    "width": 828,
+    "height": 207,
+    "oneX": 8040,
+    "twoX": 16482
+  },
   "confirm-raise": {
     "width": 828,
     "height": 239,
     "oneX": 17116,
     "twoX": 35358
+  },
+  "coupon-codes": {
+    "width": 828,
+    "height": 436,
+    "oneX": 13894,
+    "twoX": 29568
+  },
+  "guides": {
+    "width": 704,
+    "height": 640,
+    "oneX": 33180,
+    "twoX": 70050
+  },
+  "integrations": {
+    "width": 828,
+    "height": 576,
+    "oneX": 29252,
+    "twoX": 59530
   },
   "ledger": {
     "width": 826,
@@ -23,11 +59,35 @@
     "oneX": 20836,
     "twoX": 38732
   },
-  "needs-you-card": {
+  "migration-adds-up": {
     "width": 828,
-    "height": 239,
-    "oneX": 10102,
-    "twoX": 21116
+    "height": 719,
+    "oneX": 22622,
+    "twoX": 47080
+  },
+  "migration-columns": {
+    "width": 828,
+    "height": 416,
+    "oneX": 15622,
+    "twoX": 32774
+  },
+  "migration-found": {
+    "width": 828,
+    "height": 215,
+    "oneX": 5772,
+    "twoX": 12558
+  },
+  "migration-start": {
+    "width": 828,
+    "height": 304,
+    "oneX": 9790,
+    "twoX": 21004
+  },
+  "migration-switch": {
+    "width": 828,
+    "height": 489,
+    "oneX": 25916,
+    "twoX": 54024
   },
   "needs-you": {
     "width": 1176,
@@ -35,11 +95,65 @@
     "oneX": 29788,
     "twoX": 60500
   },
+  "needs-you-card": {
+    "width": 828,
+    "height": 239,
+    "oneX": 10102,
+    "twoX": 21116
+  },
+  "opportunity-growing": {
+    "width": 828,
+    "height": 239,
+    "oneX": 15730,
+    "twoX": 32240
+  },
+  "opportunity-job": {
+    "width": 828,
+    "height": 239,
+    "oneX": 16820,
+    "twoX": 34632
+  },
+  "overview": {
+    "width": 844,
+    "height": 640,
+    "oneX": 29880,
+    "twoX": 61046
+  },
+  "payout-files": {
+    "width": 828,
+    "height": 415,
+    "oneX": 19640,
+    "twoX": 39474
+  },
   "payouts": {
     "width": 828,
     "height": 536,
     "oneX": 18468,
     "twoX": 38432
+  },
+  "pending": {
+    "width": 826,
+    "height": 498,
+    "oneX": 19730,
+    "twoX": 41810
+  },
+  "pipeline": {
+    "width": 828,
+    "height": 543,
+    "oneX": 26902,
+    "twoX": 56374
+  },
+  "plans": {
+    "width": 828,
+    "height": 460,
+    "oneX": 20932,
+    "twoX": 42762
+  },
+  "portal": {
+    "width": 390,
+    "height": 844,
+    "oneX": 21626,
+    "twoX": 43904
   },
   "portal-commissions": {
     "width": 390,
@@ -53,11 +167,23 @@
     "oneX": 21788,
     "twoX": 42444
   },
-  "portal": {
-    "width": 390,
-    "height": 844,
-    "oneX": 21626,
-    "twoX": 43904
+  "recruiting": {
+    "width": 828,
+    "height": 252,
+    "oneX": 19324,
+    "twoX": 42468
+  },
+  "review-finding": {
+    "width": 828,
+    "height": 165,
+    "oneX": 14716,
+    "twoX": 30010
+  },
+  "risk-finding": {
+    "width": 828,
+    "height": 281,
+    "oneX": 16806,
+    "twoX": 34106
   },
   "score-breakdown": {
     "width": 566,

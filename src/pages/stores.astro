@@ -1,0 +1,91 @@
+---
+/**
+ * The audience hero for online stores (prompt §2, §6): its own headline from
+ * the audience's row, the platforms it works with, three sections from that
+ * row's facts (T1, T6, T7, C3, I4, L8), a Needs you screen, and the close.
+ */
+import Container from "@/components/site/Container.astro";
+import FinalCta from "@/components/site/FinalCta.astro";
+import PageHero from "@/components/site/PageHero.astro";
+import Section from "@/components/site/Section.astro";
+import WorksWith from "@/components/site/WorksWith.astro";
+import Feature from "@/components/ui/Feature.astro";
+import Base from "@/layouts/Base.astro";
+import { SHOTS } from "@/lib/shots";
+---
+
+<Base
+  title="Refficks for online stores: partner codes that are real discounts"
+  description="For Shopify, WooCommerce and BigCommerce stores. Partner codes become real discounts in your store, a code alone credits the right partner, a refund takes its commission back by itself, and every morning you see which partners are worth your time."
+  path="/stores/"
+  ogTitle="Partner codes that are real discounts in your store"
+  ogDescription="A code alone credits the right partner. A refund takes its commission back by itself."
+  ogImage="/og/stores.png"
+  ogImageAlt="Refficks: the coupon codes table on the Tracking screen"
+>
+  <PageHero
+    eyebrow="For online stores"
+    title="Partner codes that are real discounts in your store"
+    lead="A buyer who types a code instead of clicking still credits the right partner. A refund takes its commission back by itself. And every morning, the partners worth your time this week, with the evidence."
+    secondary={{ href: "/product/tracking/", label: "See how tracking works" }}
+    shot={SHOTS.couponCodes}
+    caption="Every partner has a code the day they join. It is the same code that is in their tracking link."
+  />
+
+  <WorksWith
+    title="Works with the store you already run"
+    platforms={["Shopify", "WooCommerce", "BigCommerce", "Stripe", "Squarespace Commerce", "Wix Stores", "Ecwid", "Shift4Shop"]}
+  />
+
+  <Section tone="canvas" labelledBy="stores-heading">
+    <Container>
+      <h2 id="stores-heading" class="sr-only">What Refficks does for a store</h2>
+      <div class="flex flex-col gap-20 lg:gap-24">
+        <Feature
+          id="codes"
+          eyebrow="Codes"
+          title="Made in your store, kept in step by Refficks"
+          body="Partner codes become real discounts where you sell: Stripe promotion codes, Shopify discounts, BigCommerce coupon promotions, WooCommerce coupons. Nobody copies a code into the store by hand."
+          checks={[
+            "A coupon credits the sale even when no click ever happened",
+            "Codes pause when the store disconnects and come back when it reconnects",
+            "No-code installs: the Shopify app, the Refficks WordPress plugin, the BigCommerce app",
+          ]}
+          shot={SHOTS.integrations}
+        />
+        <Feature
+          reversed
+          id="refunds"
+          eyebrow="Refunds"
+          title="A refund takes its commission back by itself"
+          body="When an order is refunded, Refficks writes a reversal beside the original commission, taking back the refund's share. Nothing is edited, nothing is forgotten, and nobody is paid for a sale that came back."
+          checks={[
+            "Every entry stores its arithmetic, “20% of USD 299.00”",
+            "A reversal is a new line beside the original, never an edit",
+            "A sale only a browser reported waits for a person before it is approved",
+          ]}
+          shot={SHOTS.ledger}
+        />
+        <Feature
+          id="needs-you"
+          eyebrow="Needs you"
+          title="Who is worth your time this week"
+          body="Every partner is scored overnight. Every morning the Needs you list ranks who to act on, what it saw, and what it suggests: the partner who never placed their link, the one whose traffic never buys, the one who went quiet."
+          checks={[
+            "Ranked by what it costs you to ignore, with the evidence on every card",
+            "The one who never started gets the one nudge Autopilot may send alone",
+            "Who is stuck where, and how long the middle partner took to a first sale",
+          ]}
+          link={{ href: "/product/intelligence/", label: "See partner intelligence" }}
+          shot={SHOTS.needsYouCard}
+          second={SHOTS.activationStalled}
+        />
+      </div>
+    </Container>
+  </Section>
+
+  <FinalCta
+    title="Partner codes that are real discounts in your store"
+    lead="A code alone credits the right partner. A refund reverses itself. Every morning, who is worth your time."
+  />
+</Base>

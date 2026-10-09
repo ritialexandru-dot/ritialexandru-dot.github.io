@@ -2,38 +2,45 @@
 /**
  * The place a category site puts its logo strip. Refficks has no customers
  * to show, so this is the honest equivalent: the platforms it works with,
- * as names (L2), with the one line the limits require (L8).
+ * as names (L2), with the one line the limits require (L8). An audience
+ * page passes its own platforms.
  */
 import Container from "@/components/site/Container.astro";
 import Section from "@/components/site/Section.astro";
 
-const PLATFORMS = [
-  "Stripe",
-  "Shopify",
-  "WooCommerce",
-  "BigCommerce",
-  "Chargebee",
-  "Recurly",
-  "RevenueCat",
-  "Kajabi",
-  "Thinkific",
-  "Teachable",
-  "ThriveCart",
-  "SamCart",
-  "Gumroad",
-  "ClickFunnels",
-  "and the API",
-];
+interface Props {
+  title?: string;
+  platforms?: string[];
+}
+
+const {
+  title = "Works with the tools you already sell through",
+  platforms = [
+    "Stripe",
+    "Shopify",
+    "WooCommerce",
+    "BigCommerce",
+    "Chargebee",
+    "Recurly",
+    "RevenueCat",
+    "Kajabi",
+    "Thinkific",
+    "Teachable",
+    "ThriveCart",
+    "SamCart",
+    "Gumroad",
+    "ClickFunnels",
+    "and the API",
+  ],
+} = Astro.props;
 ---
 
 <Section tone="surface" padding="tight" labelledBy="works-with-heading" class="border-y border-border">
   <Container class="text-center">
-    <h2 id="works-with-heading" class="text-heading-sm font-semibold text-ink">
-      Works with the tools you already sell through
-    </h2>
+    <h2 id="works-with-heading" class="text-heading-sm font-semibold text-ink">{title}</h2>
     <ul class="mt-5 flex flex-wrap justify-center gap-2">
       {
-        PLATFORMS.map((name) => (
+        platforms.map((name) => (
           <li class="rounded-md border border-border bg-canvas px-3 py-1.5 text-meta font-medium text-ink-secondary">
             {name}
           </li>

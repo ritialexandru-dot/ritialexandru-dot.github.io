@@ -1,0 +1,221 @@
+---
+/**
+ * For the technical evaluator (prompt §6): the tracker and the event as
+ * code, idempotency, the append-only chain, isolation as a tested property,
+ * what the API offers, and the stack. Drawn on T2, T3, T5, D2 to D11, A2,
+ * C2, M7 and D6; claims.md lists each.
+ */
+import CardGrid from "@/components/site/CardGrid.astro";
+import Container from "@/components/site/Container.astro";
+import FinalCta from "@/components/site/FinalCta.astro";
+import PageHero from "@/components/site/PageHero.astro";
+import Section from "@/components/site/Section.astro";
+import SectionHeading from "@/components/site/SectionHeading.astro";
+import Checklist from "@/components/ui/Checklist.astro";
+import CodeBlock from "@/components/ui/CodeBlock.astro";
+import Icon from "@/components/ui/Icon.astro";
+import Base from "@/layouts/Base.astro";
+import { APP } from "@/lib/site";
+
+const SCRIPT_TAG = `<script
+  src="https://go.refficks.com/refficks.js?a=rk_pub_…"
+  data-account="rk_pub_…">
+</script>`;
+
+const EVENT = `curl https://go.refficks.com/api/v1/events \\
+  -H "Authorization: Bearer rk_sec_…" \\
+  -H "Idempotency-Key: $(uuidgen)" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "event_type": "subscription.created",
+    "external_id": "sub_123",
+    "customer": { "external_id": "cus_123", "email": "customer@example.com" },
+    "properties": { "plan": "pro", "amount": 29900, "currency": "USD" }
+  }'`;
+
+const CHAIN = [
+  { name: "integration_event", body: "What arrived, exactly as it arrived, with its signature checked." },
+  { name: "event", body: "The one event it became. A duplicate resolves to this row." },
+  { name: "attribution", body: "Every touch considered, which won, which lost and why, and the confidence." },
+  { name: "commission_entry", body: "The arithmetic, literally “20% of USD 299.00”. A refund is a new row beside it." },
+] as const;
+
+const BUILD_ON = [
+  {
+    icon: "lock",
+    title: "The Server API",
+    body: "With a secret key: partners, programmes, enrolments, links, codes, read-only commissions and payouts, and webhook subscriptions. It has no endpoint that approves or pays.",
+  },
+  {
+    icon: "send",
+    title: "Signed outbound webhooks",
+    body: "Send events to your own systems, each delivery signed. And a Zapier app whose key cannot approve applicants, change earnings or record a sale.",
+  },
+  {
+    icon: "sparkle",
+    title: "An MCP server for AI apps",
+    body: "Claude and ChatGPT connect with a merchant's permission, read what that person's role may read, and can save drafts. No tool can approve, reverse, pay, reattribute, suspend or send.",
+  },
+  {
+    icon: "download",
+    title: "The export",
+    body: "The whole account as CSV files in one archive, any time, every download recorded. Your data, out when you want it.",
+  },
+] as const;
+
+const SECURITY = [
+  {
+    icon: "shield",
+    title: "Isolation is a tested property",
+    body: "Every resource carries a test proving one organization cannot read another's data. Stated exactly that way, because that is what is true.",
+  },
+  {
+    icon: "lock",
+    title: "No merchant Stripe key is held",
+    body: "Refficks connects as a platform. Other integrations are OAuth first with the least scope, under their own encryption key, and never shown back.",
+  },
+  {
+    icon: "users",
+    title: "Roles, two-factor, single sign-on",
+    body: "Owner, admin, manager, analyst and support. TOTP two-factor with recovery codes. OIDC single sign-on.",
+  },
+] as const;
+---
+
+<Base
+  title="For developers: one script tag, one idempotent POST"
+  description="One script tag in the browser. One idempotent POST from your server. An append-only chain from integration event to commission entry, isolation as a tested property, a Server API with no endpoint that approves or pays, signed webhooks, an MCP server, and OpenAPI 3.1."
+  path="/developers/"
+  ogTitle="One script tag in the browser. One idempotent POST from your server."
+  ogDescription="Retries are free. Duplicates are structurally impossible. Every number can explain itself."
+  ogImage="/og/developers.png"
+  ogImageAlt="Refficks: the tracker and the event, as code"
+>
+  <PageHero
+    eyebrow="For developers"
+    title="One script tag in the browser. One idempotent POST from your server."
+    lead="Written for someone deciding whether this wastes their weekend. The tracker is one tag. The event is one request with an Idempotency-Key, and a retry after a timeout is always safe."
+    secondary={{ href: APP.apiReference, label: "Read the API reference" }}
+    reassurances={["OpenAPI 3.1", "Idempotent by the database", "Append-only history"]}
+  >
+    <div slot="visual" class="grid gap-6 lg:grid-cols-2">
+      <CodeBlock label="The tracker, as a merchant pastes it" language="html" code={SCRIPT_TAG} />
+      <CodeBlock label="The event, from your server" language="bash" code={EVENT} />
+    </div>
+  </PageHero>
+
+  <Section tone="surface" labelledBy="retries-heading" class="border-y border-border">
+    <Container>
+      <div class="grid gap-10 lg:grid-cols-12">
+        <div class="lg:col-span-5">
+          <SectionHeading
+            id="retries-heading"
+            eyebrow="Idempotency"
+            title="Retries are free. Duplicates are structurally impossible."
+            lead="Send the same event twice with the same key and it is recorded once. A retried webhook or a double-submitted event resolves to the original."
+          />
+        </div>
+        <div class="lg:col-span-7">
+          <Checklist
+            items={[
+              "Idempotency is a unique index in the database, not a check-then-write in code: two concurrent requests both pass a SELECT, and only one passes the index",
+              "The second send answers 200 with status duplicate, so a client that lost the first answer learns what happened",
+              "The publishable key in the browser can record visits and identify customers. It cannot read anything, and its beacon refuses revenue",
+              "Anything involving money comes from your server with the secret key, or from a provider that signs what it sends",
+            ]}
+          />
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="canvas" labelledBy="chain-heading">
+    <Container>
+      <SectionHeading
+        id="chain-heading"
+        align="center"
+        eyebrow="The data model"
+        title="Append-only, and traceable end to end"
+        lead="Events, attributions, commission entries and audit logs are never updated or deleted. A correction is a new row. Every number can explain itself, because the rows it came from are still there."
+      />
+      <ol class="mt-12 grid gap-4 lg:grid-cols-4">
+        {
+          CHAIN.map((link, index) => (
+            <li class="relative rounded-xl border border-border bg-surface p-5">
+              {index < CHAIN.length - 1 && (
+                <span
+                  aria-hidden="true"
+                  class="absolute top-1/2 -right-4 hidden size-8 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-canvas text-icon-brand lg:inline-flex"
+                >
+                  <Icon name="arrow-right" class="size-4" />
+                </span>
+              )}
+              <code class="text-code font-semibold text-ink">{link.name}</code>
+              <p class="mt-2 text-body-sm text-ink-secondary">{link.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="mx-auto mt-8 max-w-3xl text-center text-body text-ink-secondary">
+        The audit log records who did what, when, with the values before and after. Attribution is
+        never silently changed, and nothing is ever recomputed to be explained.
+      </p>
+    </Container>
+  </Section>
+
+  <Section tone="inverse" labelledBy="security-heading">
+    <Container>
+      <SectionHeading
+        id="security-heading"
+        align="center"
+        tone="inverse"
+        title="Multi-tenancy, credentials and the team"
+      />
+      <CardGrid items={SECURITY} columns={3} tone="inverse" class="mt-12" />
+    </Container>
+  </Section>
+
+  <Section tone="canvas" labelledBy="build-heading">
+    <Container>
+      <SectionHeading
+        id="build-heading"
+        align="center"
+        title="What you can build on"
+        lead="Four doors, each with a lock that is described rather than implied."
+      />
+      <CardGrid items={BUILD_ON} class="mt-12" />
+    </Container>
+  </Section>
+
+  <Section tone="surface" labelledBy="stack-heading" class="border-y border-border">
+    <Container>
+      <div class="grid gap-10 lg:grid-cols-12">
+        <div class="lg:col-span-6">
+          <SectionHeading
+            id="stack-heading"
+            eyebrow="OpenAPI"
+            title="454 paths, specified"
+            lead="An OpenAPI 3.1 specification ships with the product and covers the whole Server API. The live API answers at go.refficks.com."
+          />
+          <p class="mt-4 text-body text-ink-secondary">
+            The specification has no public address yet. It ships with the product, and this page carries
+            the reference until it does.
+          </p>
+        </div>
+        <div class="lg:col-span-6">
+          <SectionHeading
+            eyebrow="The stack"
+            title="Boring, inspectable technology"
+            lead="Laravel 13 on PHP 8.4, MySQL 8.4 and Redis 7. Next.js 16 and React 19 for the dashboard and the portal. Caddy for HTTPS. Hosted by Refficks: nothing to install beyond the script tag or a store app."
+          />
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <FinalCta
+    title="One script tag. One idempotent POST."
+    lead="Retries are free, duplicates are impossible, and every number can explain itself."
+    secondary={{ href: APP.apiReference, label: "Read the API reference" }}
+  />
+</Base>

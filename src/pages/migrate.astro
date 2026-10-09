@@ -1,0 +1,137 @@
+---
+/**
+ * The highest-intent page (prompt §6): the import read back before anything
+ * is written, the honest section on paid history and money owed, prominent
+ * rather than buried, and the shadow run and the cutover. Drawn on G1 to G7;
+ * claims.md lists each.
+ */
+import Container from "@/components/site/Container.astro";
+import FinalCta from "@/components/site/FinalCta.astro";
+import PageHero from "@/components/site/PageHero.astro";
+import Section from "@/components/site/Section.astro";
+import SectionHeading from "@/components/site/SectionHeading.astro";
+import StartFree from "@/components/site/StartFree.astro";
+import Feature from "@/components/ui/Feature.astro";
+import Base from "@/layouts/Base.astro";
+import { SHOTS } from "@/lib/shots";
+
+const HONEST = [
+  {
+    title: "Paid history is theirs",
+    body: "What the old platform already paid comes across as that platform's reported figure, labelled as theirs. It never becomes payable here.",
+  },
+  {
+    title: "What is still owed is an opening balance",
+    body: "Its own entry type, never presented as Refficks's arithmetic, and pending until you approve it.",
+  },
+  {
+    title: "Why",
+    body: "A ledger that only holds money it can explain is the product. An imported total has no arithmetic behind it, so it is kept beside the ledger, not inside it.",
+  },
+] as const;
+---
+
+<Base
+  title="Migrate from Rewardful, FirstPromoter, LeadDyno or a spreadsheet"
+  description="Refficks reads your export, or your account, and shows you what is in it before anything is imported. Paid history comes across labelled as the old platform's; what is still owed becomes an opening balance you approve. Then a shadow run, and exactly one system pays."
+  path="/migrate/"
+  ogTitle="Read back before anything is imported"
+  ogDescription="Your export or your account, shown to you line by line, with nothing written until you say so."
+  ogImage="/og/migrate.png"
+  ogImageAlt="Refficks: a migration's Does it add up card, naming the line that could not be read"
+>
+  <PageHero
+    eyebrow="Migration"
+    title="Leaving Rewardful, FirstPromoter or LeadDyno? Or a spreadsheet?"
+    lead="Refficks reads your export, or your account, and shows you what is in it before anything is imported. The bad line is named. Nothing happens until you say so."
+    secondary={{ href: "/faq/", label: "Read the questions first" }}
+    shot={SHOTS.migrationFound}
+    second={SHOTS.migrationAddsUp}
+    caption="Six rows read: five look fine, one cannot be imported, and line 7 says why. None of it is in the account yet."
+  />
+
+  <Section tone="surface" labelledBy="read-heading" class="border-y border-border">
+    <Container>
+      <div class="flex flex-col gap-20 lg:gap-24">
+        <Feature
+          id="read"
+          eyebrow="Any export with a header row"
+          title="Your columns, recognised as they come"
+          body="Upload any spreadsheet with a header row, or a LeadDyno affiliates export as downloaded, or read a programme straight from Rewardful or FirstPromoter with your key. Column names are recognised as they come, and you check the guesses before anything is saved."
+          checks={[
+            "A spreadsheet, a LeadDyno export, or a Rewardful or FirstPromoter key",
+            "The key is deleted at cutover or after 60 days",
+            "Each guessed column is marked, and saving the mapping imports nothing",
+          ]}
+          precisely="The Rewardful and FirstPromoter connectors are built from the platforms' documentation and have not yet read a real account."
+          shot={SHOTS.migrationStart}
+          second={SHOTS.migrationColumns}
+        />
+        <Feature
+          reversed
+          id="preview"
+          eyebrow="Read back first"
+          title="How many rows, how many can be imported, and which cannot"
+          body="Before import, the file is read back to you: how many rows, how many can go in, and which lines cannot and why. One bad row never loses the file. The report names each failed line."
+          checks={[
+            "Re-importing never duplicates anyone",
+            "A partner already here is left alone, or has only their empty fields filled in, unless you ask otherwise",
+            "Imported partners are ordinary partners: the same audit trail, the same welcome automation, the same everything",
+          ]}
+          shot={SHOTS.migrationAddsUp}
+        />
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="inverse" labelledBy="honest-heading">
+    <Container>
+      <SectionHeading
+        id="honest-heading"
+        align="center"
+        tone="inverse"
+        title="What comes across, and what deliberately does not"
+        lead="For each of the old platform's statuses, you say what it means here. Money is handled more carefully than that, and this is the trade."
+      />
+      <ul class="mt-12 grid gap-5 lg:grid-cols-3">
+        {
+          HONEST.map((item) => (
+            <li class="rounded-xl border border-border-inverse bg-inverse-raised p-6">
+              <h3 class="text-heading-md font-semibold text-ink-inverse">{item.title}</h3>
+              <p class="mt-2 text-body-sm text-ink-inverse-secondary">{item.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </Section>
+
+  <Section tone="canvas" labelledBy="shadow-heading">
+    <Container>
+      <Feature
+        id="shadow"
+        eyebrow="The shadow run"
+        title="Exactly one system pays"
+        body="While the old platform still pays, Refficks records what it would have paid, pays none of it, and every morning compares the last 28 days partner by partner. When you switch, a sale belongs to whichever side of the cutover moment its money changed hands on."
+        checks={[
+          "Nothing is paid twice, and nothing is paid by nobody",
+          "A sale is judged by when it happened, not by when Refficks heard about it",
+          "After cutover, Refficks warns if a partner's earnings drop",
+        ]}
+        shot={SHOTS.migrationSwitch}
+      />
+      <div class="mt-12 text-center">
+        <p class="mx-auto max-w-2xl text-body text-ink-secondary">
+          Start the migration on day one of the trial. Reading an export changes nothing, and the
+          shadow run needs time to be worth reading.
+        </p>
+        <StartFree class="mt-6" align="center" />
+      </div>
+    </Container>
+  </Section>
+
+  <FinalCta
+    title="Read back before anything is imported"
+    lead="Your export or your account, line by line, with nothing written until you say so."
+  />
+</Base>

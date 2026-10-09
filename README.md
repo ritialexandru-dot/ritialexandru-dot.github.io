@@ -7,7 +7,7 @@ Tailwind 4, published to GitHub Pages at the apex.
 ```
 src/pages/          one file per route, plus the sitemap
 src/layouts/        Base.astro: the head, the header, the footer
-src/components/     site/ (chrome), home/ (the home page's sections), ui/ (primitives)
+src/components/     site/ (chrome and the shared sections), home/ (the home page's own), ui/ (primitives)
 src/styles/         global.css holds every design token
 src/lib/            the addresses the site links to, the routes, and the screenshots it shows
 public/shots/       product screenshots, packed as WebP at 1x and 2x
@@ -17,7 +17,7 @@ scripts/            the screenshot capture, pack and link-preview render, and th
 claims.md           every claim on the site, against the fact sheet
 ```
 
-## The shape of the page
+## The shape of the pages
 
 The home page follows the shape the category's own sites use (Rewardful,
 FirstPromoter, Tolt, LeadDyno, ReferralCandy and the rest, read 9 October
@@ -27,6 +27,13 @@ with a label, a heading, a sentence, three checks and the screen beside it,
 a trust section, three steps, questions, and a closing band. What those sites
 do with testimonials, logos and counts, this site does with the product's own
 screens, because there are no customers to quote yet (website prompt §5, §7).
+
+The ten other pages (§6's site map, less pricing, privacy and terms) keep
+that shape: `PageHero` over the page's lead screen, `Feature` blocks, a
+`CardGrid` where a list of facts reads better than prose, the product's own
+sentences in a `Quote`, and the same closing band. The audience pages open
+with their own `WorksWith` row. A "Precisely:" line under a feature is the
+one sentence for the developer the operator forwards the page to (§2).
 
 ## Why Astro
 
@@ -65,10 +72,16 @@ Every image is a real product screen (prompt §8). To capture them again:
    a copy, and `PLAYWRIGHT_BROWSERS_PATH` or `E2E_CHROMIUM` naming Chromium):
 
    ```bash
-   SHOTS_OUT=/tmp/shots node scripts/capture-shots.mjs
+   SHOTS_OUT=/tmp/shots node scripts/capture-shots.mjs      # SHOTS_SET=home or more for one set
    node scripts/pack-shots.mjs /tmp/shots
    node scripts/make-og.mjs home "Affiliate dashboards report. Refficks recommends." shots/needs-you@2x.webp
    ```
+
+   The `more` set starts a migration called "Off LeadDyno" in the demo
+   account and reads a six-line partner file into it, so the migrate page can
+   show a file read back with its bad line named. Each page's link-preview
+   image is one `make-og.mjs` line; the headline, the screen and the line
+   under it are in the page's `og*` props.
 
 3. Check the sizes in `src/lib/shots.ts` against `public/shots/sizes.json`.
 

@@ -12,9 +12,10 @@ import StartFree from "@/components/site/StartFree.astro";
 interface Props {
   title: string;
   lead: string;
+  secondary?: { href: string; label: string };
 }
 
-const { title, lead } = Astro.props;
+const { title, lead, secondary } = Astro.props;
 ---
 
 <Section tone="inverse" labelledBy="final-heading" class="relative overflow-hidden">
@@ -28,6 +29,6 @@ const { title, lead } = Astro.props;
       {title}
     </h2>
     <p class="mx-auto mt-4 max-w-2xl text-body-lg text-ink-inverse-secondary">{lead}</p>
-    <StartFree class="mt-8" tone="inverse" align="center" reassurance />
+    <StartFree class="mt-8" tone="inverse" align="center" reassurance secondary={secondary} />
   </Container>
 </Section>

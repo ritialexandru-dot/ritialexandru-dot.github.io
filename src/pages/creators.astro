@@ -1,0 +1,106 @@
+---
+/**
+ * The audience hero for creators and course sellers (prompt §2, §6): a guide
+ * per platform, a partner's own code, and partners who see exactly what
+ * they earned. Drawn on T9, T1, PO1, C2, I4 and L8; claims.md lists each.
+ */
+import Container from "@/components/site/Container.astro";
+import FinalCta from "@/components/site/FinalCta.astro";
+import PageHero from "@/components/site/PageHero.astro";
+import Section from "@/components/site/Section.astro";
+import WorksWith from "@/components/site/WorksWith.astro";
+import Feature from "@/components/ui/Feature.astro";
+import Base from "@/layouts/Base.astro";
+import { APP } from "@/lib/site";
+import { SHOTS } from "@/lib/shots";
+---
+
+<Base
+  title="Refficks for creators and course sellers: a guide for your platform, no developer needed"
+  description="For Kajabi, Thinkific, Teachable, ThriveCart, SamCart and Gumroad. A step-by-step guide per platform, paste an address and a snippet, a partner's own code credits them, and partners see exactly what they earned and why."
+  path="/creators/"
+  ogTitle="A guide for your platform. No developer needed."
+  ogDescription="Paste an address and a snippet. A partner's own code credits them. Partners see exactly what they earned."
+  ogImage="/og/creators.png"
+  ogImageAlt="Refficks: the public Where Refficks works guides"
+>
+  <PageHero
+    eyebrow="For creators and course sellers"
+    title="A guide for your platform. No developer needed."
+    lead="Your checkout lives on a platform you do not control, and you have been paying affiliates on trust. Paste an address and a snippet where the guide says, and every sale arrives with the partner who sent it."
+    secondary={{ href: "/product/portal/", label: "See what partners see" }}
+    shot={SHOTS.guides}
+    caption="Each guide says what to paste where, what it credits, and what it does not, before its steps."
+  />
+
+  <WorksWith
+    title="Works with the platform you already sell on"
+    platforms={["Kajabi", "Thinkific", "Teachable", "ThriveCart", "SamCart", "Gumroad", "ClickFunnels", "Stripe Payment Links"]}
+  />
+
+  <Section tone="canvas" labelledBy="creators-heading">
+    <Container>
+      <h2 id="creators-heading" class="sr-only">What Refficks does for a creator</h2>
+      <div class="flex flex-col gap-20 lg:gap-24">
+        <Feature
+          id="guides"
+          eyebrow="Guides"
+          title="Paste an address and a snippet. That is the install."
+          body="Fifty-two public guides, readable without an account: checkouts, payment links on site builders, forms and booking, analytics. Each says what it cannot do before its steps, and checks what Refficks has actually seen from your site."
+          checks={[
+            "Kajabi, Thinkific, Teachable, ThriveCart, SamCart, Gumroad and ClickFunnels report each payment to Refficks",
+            "A platform that signs nothing has each commission wait for your approval, and the guide says so",
+            "None has yet been walked on a live site, and each says so on the page",
+          ]}
+          link={{ href: APP.guides, label: "Read the guides" }}
+          shot={SHOTS.integrations}
+        />
+        <Feature
+          reversed
+          id="codes"
+          eyebrow="Codes"
+          title="Their own code credits them"
+          body="A listener who types a code from memory, with no click anywhere, still credits the partner who said it. Every partner has a code the day they join, and it is the same code that is in their link."
+          checks={[
+            "A coupon attributes a sale even when no click ever happened",
+            "Links with deep links and QR codes, for the ones who do click",
+            "Every sale is stored with its reasoning: which touches counted, which won, and why",
+          ]}
+          shot={SHOTS.couponCodes}
+        />
+        <Feature
+          id="portal"
+          eyebrow="Partners"
+          title="They see exactly what they earned, and why"
+          body="Every partner gets a portal built for a phone, with their clicks, sales, commission and payouts, and every entry showing how it was worked out. The same arithmetic you see, from their side."
+          checks={[
+            "One sign-in across every creator and merchant they work with",
+            "A missing sale is raised as a query, which changes no money",
+            "Payout details they keep themselves, and nobody ever sees",
+          ]}
+          phone
+          shot={SHOTS.portalCommissions}
+        />
+        <Feature
+          reversed
+          id="needs-you"
+          eyebrow="Needs you"
+          title="Every morning, the partners who need you"
+          body="Every partner is scored overnight. The Needs you list ranks who to act on, shows what it saw, and leaves the decision to you."
+          checks={[
+            "Ranked by what it costs you to ignore, with the evidence on every card",
+            "The one who never placed their link, the one who went quiet, the one worth a raise",
+            "“Not now” holds for 30 days",
+          ]}
+          link={{ href: "/product/intelligence/", label: "See partner intelligence" }}
+          shot={SHOTS.needsYouCard}
+        />
+      </div>
+    </Container>
+  </Section>
+
+  <FinalCta
+    title="A guide for your platform. No developer needed."
+    lead="Paste an address and a snippet. A partner's own code credits them. They see exactly what they earned."
+  />
+</Base>

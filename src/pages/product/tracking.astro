@@ -1,0 +1,196 @@
+---
+/**
+ * Tracking and attribution (prompt §6): the question, the capability with
+ * real screens, the relevant refusals, and the close. Drawn only on the T
+ * and A facts; claims.md lists each.
+ */
+import CardGrid from "@/components/site/CardGrid.astro";
+import Container from "@/components/site/Container.astro";
+import FinalCta from "@/components/site/FinalCta.astro";
+import PageHero from "@/components/site/PageHero.astro";
+import Section from "@/components/site/Section.astro";
+import SectionHeading from "@/components/site/SectionHeading.astro";
+import Button from "@/components/ui/Button.astro";
+import CodeBlock from "@/components/ui/CodeBlock.astro";
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+import Feature from "@/components/ui/Feature.astro";
+import Base from "@/layouts/Base.astro";
+import { APP } from "@/lib/site";
+import { SHOTS } from "@/lib/shots";
+
+const SCRIPT_TAG = `<script
+  src="https://go.refficks.com/refficks.js?a=rk_pub_…"
+  data-account="rk_pub_…">
+</script>`;
+
+const PRIVACY = [
+  {
+    icon: "shield",
+    title: "No raw IP address, ever",
+    body: "Fraud signals run on salted hashes, and a store order's buyer IP is replaced with its hash before anything is stored.",
+  },
+  {
+    icon: "lock",
+    title: "Global Privacy Control is honoured",
+    body: "A browser that sends it gets nothing written, not even a cookie. On sites that ask for consent, the tracker waits for it.",
+  },
+  {
+    noun: "coupon",
+    title: "Declined consent still credits a code",
+    body: "A shopper who declined can be credited through a partner's code, with no visitor, buyer, IP hash, country or device recorded.",
+  },
+  {
+    icon: "undo",
+    title: "Do Not Track alone is not read",
+    body: "It has no legal force. Global Privacy Control does, so that is the signal Refficks acts on.",
+  },
+] as const;
+---
+
+<Base
+  title="Tracking and attribution: every sale arrives with its reasoning"
+  description="Links and coupon codes for your partners, one script tag for your site or none at all, and a stored decision for every sale: which touches counted, which won, and why. Corrections supersede; nothing is overwritten."
+  path="/product/tracking/"
+  ogTitle="Every sale arrives with its reasoning"
+  ogDescription="Links, codes, one script tag, and a stored decision for every sale: which touches counted, which won, and why."
+  ogImage="/og/tracking.png"
+  ogImageAlt="Refficks: the decision card on a conversion"
+>
+  <PageHero
+    eyebrow="Tracking and attribution"
+    title="Every sale arrives with its reasoning"
+    lead="Links and codes for your partners. One script tag for your site, or none at all. And for every sale, a stored decision: which touches counted, which won, and why."
+    secondary={{ href: "/product/commissions/", label: "See what happens next" }}
+    shot={SHOTS.attribution}
+    second={SHOTS.attributionTouches}
+    caption="The dispute ends with a link, not an argument: every touch considered, which was eligible, which won, and the confidence."
+  />
+
+  <Section tone="surface" labelledBy="links-heading" class="border-y border-border">
+    <Container>
+      <div class="flex flex-col gap-20 lg:gap-24">
+        <Feature
+          id="links"
+          eyebrow="Links and codes"
+          title="A link for the click, a code for everyone else"
+          body="Every partner gets tracking links and a coupon code. A code credits the sale even when no click ever happened, which is how most of a podcast's or a newsletter's buyers arrive."
+          checks={[
+            "Tracking links with sub-ids, deep links and QR codes",
+            "A coupon code attributes a sale with no click at all",
+            "Codes become real discounts in Stripe, Shopify, BigCommerce and WooCommerce",
+            "They pause when a store disconnects and come back when it reconnects",
+          ]}
+          shot={SHOTS.tracking}
+          second={SHOTS.couponCodes}
+        />
+        <Feature
+          reversed
+          id="install"
+          eyebrow="On your site"
+          title="One script tag. Or none at all."
+          body="One script tag claims the referral first-party the moment a visitor lands. Selling through Stripe? A visitor id on the checkout credits the partner with no JavaScript on your pages at all."
+          checks={[
+            "The publishable key can record visits and identify customers. It cannot read anything",
+            "No-code installs: the Shopify app, the Refficks WordPress plugin, the BigCommerce app, a Tag Manager template",
+            "Stripe sales attribute through client_reference_id or a visitor id, with no script",
+            "Secret keys live on your server. The tracker's beacon refuses revenue",
+          ]}
+          precisely="A browser may report an order if you choose, but never who earns from it or how much. Unless your server signed it, the order is marked unsigned and waits for a person."
+          shot={SHOTS.integrations}
+        />
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="canvas" labelledBy="rules-heading">
+    <Container>
+      <div class="flex flex-col gap-20 lg:gap-24">
+        <Feature
+          id="rules"
+          eyebrow="The rules"
+          title="Written in words, applied the same way every time"
+          body="Last-touch by default, or first-touch, across the programme's window. Whether a code beats a click, and whether a customer stays with the partner who first won them, are settings you read as sentences."
+          checks={[
+            "A 30-day window unless you set otherwise; 60 for referral programmes",
+            "When touches compete, your own correction outranks a server's statement, which outranks a click",
+            "Before changing a rule, see what it would have done to up to 1,000 past sales. Nothing is written",
+          ]}
+          precisely="A click and a ?ref= visit are level, so the more recent wins; both outrank a coupon, which outranks an import."
+          shot={SHOTS.attributionRules}
+        />
+        <Feature
+          reversed
+          id="never-silently"
+          eyebrow="Never silently"
+          title="A decision is stored, not recomputed"
+          body="Every attribution is kept with every touch considered, which were eligible, which won, which lost and why, and a confidence score. A sale nobody earned is recorded as exactly that, not dropped."
+          checks={[
+            "“Why this conversion was attributed” shows the reasoning on screen",
+            "Corrections supersede. They never overwrite",
+            "A sale credited to nobody moves to a partner if the buyer is identified within 24 hours, with a reason, a History entry and “Credited later” on the partner's card",
+            "A person can credit one by hand, with a note",
+          ]}
+          shot={SHOTS.attribution}
+          second={SHOTS.attributionTouches}
+        />
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="inverse" labelledBy="privacy-heading">
+    <Container>
+      <SectionHeading
+        id="privacy-heading"
+        align="center"
+        tone="inverse"
+        title="Tracking that keeps its hands off the shopper"
+        lead="The same rules this site runs on."
+      />
+      <CardGrid items={PRIVACY} tone="inverse" class="mt-12" />
+    </Container>
+  </Section>
+
+  <Section tone="canvas" labelledBy="guides-heading">
+    <Container>
+      <Feature
+        id="guides"
+        eyebrow="Fifty-two guides"
+        title="A guide for where your customers pay you"
+        body="Payment links on site builders, checkouts, forms and booking, analytics, developer frameworks. Each guide says what it cannot do before its steps, and checks what Refficks has actually seen from your site."
+        checks={[
+          "Readable without an account",
+          "Each says what it credits and what it does not",
+          "None has yet been walked on a live site, and each says so on the page",
+        ]}
+        link={{ href: APP.guides, label: "Read the guides" }}
+        shot={SHOTS.guides}
+      />
+    </Container>
+  </Section>
+
+  <Section tone="inverse" labelledBy="developer-heading">
+    <Container>
+      <div class="grid gap-10 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-6">
+          <Eyebrow tone="inverse">For the developer</Eyebrow>
+          <h2 id="developer-heading" class="mt-4 text-heading-xl font-bold text-ink-inverse sm:text-display-md">
+            Nothing is processed twice
+          </h2>
+          <p class="mt-4 text-body-lg text-ink-inverse-secondary">
+            A retried webhook or a double-submitted event resolves to the original. Idempotency is
+            enforced by the database, so a duplicate is structurally impossible to process twice.
+          </p>
+          <div class="mt-6">
+            <Button href="/developers/" variant="inverse" size="md">For developers</Button>
+          </div>
+        </div>
+        <CodeBlock class="lg:col-span-6" label="The tracker, as a merchant pastes it" language="html" code={SCRIPT_TAG} />
+      </div>
+    </Container>
+  </Section>
+
+  <FinalCta
+    title="Every sale arrives with its reasoning"
+    lead="Links, codes, one script tag, and a decision you can read for every sale."
+  />
+</Base>

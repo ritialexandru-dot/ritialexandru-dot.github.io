@@ -4,6 +4,8 @@
  * short heading, one sentence, three or four checks, a link, and the real
  * screen beside it on a tinted panel. Alternate `reversed` down a page.
  * A `second` screen stacks under the first, for two cards from one page.
+ * `precisely` is the one line for the developer the operator forwards the
+ * page to (prompt §2, the two-readers rule), in smaller type under the checks.
  */
 import Button from "@/components/ui/Button.astro";
 import Checklist from "@/components/ui/Checklist.astro";
@@ -21,6 +23,7 @@ interface Props {
   link?: { href: string; label: string };
   shot: Shot;
   second?: Shot;
+  precisely?: string;
   phone?: boolean;
   reversed?: boolean;
   id?: string;
@@ -35,6 +38,7 @@ const {
   link,
   shot,
   second,
+  precisely,
   phone = false,
   reversed = false,
   id,
@@ -48,6 +52,13 @@ const {
     <h3 class="mt-4 text-heading-xl font-bold text-ink sm:text-display-md">{title}</h3>
     <p class="mt-4 text-body-lg text-ink-secondary">{body}</p>
     <Checklist items={checks} class="mt-6" />
+    {
+      precisely && (
+        <p class="mt-5 text-meta text-ink-secondary">
+          <span class="font-semibold text-ink">Precisely:</span> {precisely}
+        </p>
+      )
+    }
     {
       link && (
         <div class="mt-6">

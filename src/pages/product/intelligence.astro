@@ -1,0 +1,227 @@
+---
+/**
+ * The differentiator page (prompt §6): the question the product answers,
+ * the Needs you list in depth, scoring, stages earned rather than assigned,
+ * the funnel with its stalls, Autopilot's limits, the Results tab, and I8
+ * as the close. Every sentence rests on an I, AN or M fact; claims.md lists
+ * them.
+ */
+import CardGrid from "@/components/site/CardGrid.astro";
+import Container from "@/components/site/Container.astro";
+import FinalCta from "@/components/site/FinalCta.astro";
+import PageHero from "@/components/site/PageHero.astro";
+import Quote from "@/components/site/Quote.astro";
+import Section from "@/components/site/Section.astro";
+import SectionHeading from "@/components/site/SectionHeading.astro";
+import StartFree from "@/components/site/StartFree.astro";
+import Feature from "@/components/ui/Feature.astro";
+import Base from "@/layouts/Base.astro";
+import { SHOTS } from "@/lib/shots";
+
+const AUTOPILOT = [
+  {
+    icon: "sparkle",
+    title: "Prepare, and ask me",
+    body: "The default. Every recommendation is drafted with its evidence and waits for you. Autopilot can be switched off altogether.",
+  },
+  {
+    icon: "send",
+    title: "One thing it may do alone",
+    body: "Set to run on its own, it may only send the activation nudge to a partner who never placed their link. Nothing else.",
+  },
+  {
+    icon: "shield",
+    title: "Within limits you can read",
+    body: "25 actions a day, 2 emails per partner a week, a 14-day cooldown, and quiet hours in the partner's own time.",
+  },
+  {
+    icon: "lock",
+    title: "No fully autonomous mode",
+    body: "There is a pause switch, and there is no setting that lets it approve, pay, reverse or suspend. Those are yours.",
+  },
+] as const;
+---
+
+<Base
+  title="Partner intelligence: who needs your attention today, and why"
+  description="Every partner scored overnight on seven questions. Every morning, the Needs you list ranks what it costs you to ignore, shows its evidence, and leaves the decision to you. No machine learning: reasoning you can disagree with."
+  path="/product/intelligence/"
+  ogTitle="Who needs your attention today, why, and what to do about it"
+  ogDescription="Every morning, the partners who need you, ranked, with the evidence and the decision left to you."
+  ogImage="/og/intelligence.png"
+  ogImageAlt="Refficks: the Intelligence screen's Needs you tab"
+>
+  <PageHero
+    eyebrow="Partner intelligence"
+    title="Who needs your attention today, why, and what to do about it"
+    lead="Every partner is scored overnight. Every morning the Needs you list ranks what it costs you to ignore, with the evidence on every line, and leaves the decision to you."
+    secondary={{ href: "/product/tracking/", label: "See how sales are tracked" }}
+    shot={SHOTS.needsYou}
+    narrow={SHOTS.needsYouCard}
+    wide
+    caption="Ranked by what it costs you to ignore. Every one shows its evidence."
+  />
+
+  <Section tone="surface" labelledBy="needs-you-heading" class="border-y border-border">
+    <Container>
+      <SectionHeading
+        id="needs-you-heading"
+        align="center"
+        title="The list that replaces the dashboard"
+        lead="A dashboard tells you what happened. The Needs you list tells you which partner to act on this morning, what it saw, and what it suggests."
+      />
+      <div class="mt-12 flex flex-col gap-20 lg:gap-24">
+        <Feature
+          eyebrow="Needs you"
+          title="Four kinds of recommendation, each with its evidence"
+          body="Activate this partner, contact that one, consider a raise for this one, review that one. Every card carries the figures it was built from, so you can check the reasoning before you act."
+          checks={[
+            "Ranked by priority, with structured evidence on every card",
+            "Beside it: Opportunities, Reviews, Quality vs risk, Risks and Results",
+            "“Not now” holds for 30 days. Still true after that, it comes back",
+          ]}
+          shot={SHOTS.needsYouCard}
+          second={SHOTS.opportunityGrowing}
+        />
+        <Feature
+          reversed
+          eyebrow="Money needs a yes"
+          title="A raise is confirmed on the exact number"
+          body="A recommendation about money never acts on its own. You see the rate it proposes, what it costs at the partner's current run rate, and you confirm the number or press Not now."
+          checks={[
+            "Raise a rate or move a tier only after a person confirms the figures",
+            "The cost at the current run rate is shown before you say yes",
+            "No recommendation can put a partner above 50% or propose a bonus above $1,000, and the cap holds where money is written",
+          ]}
+          precisely="The cap is enforced in the code that writes the ledger entry, not only on the screen that proposes it."
+          shot={SHOTS.confirmRaise}
+        />
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="canvas" labelledBy="scoring-heading">
+    <Container>
+      <Feature
+        id="scoring"
+        eyebrow="Scoring"
+        title="Seven questions, answered every night"
+        body="Performance, potential, momentum, engagement, relationship health, economic efficiency and risk. Each score shows its factors, and each factor shows a sentence of evidence."
+        checks={[
+          "Performance is a rank in your programme, a percentile, not a grade",
+          "Potential is deliberately not a function of current revenue",
+          "Every factor shows its weight, value, points and evidence",
+          "One overall number exists only to put a list in order",
+        ]}
+        precisely="Weights are configuration, not code. A merchant can read every factor and change what it counts for."
+        shot={SHOTS.scoreBreakdown}
+      />
+    </Container>
+  </Section>
+
+  <Section tone="surface" labelledBy="stages-heading" class="border-y border-border">
+    <Container>
+      <div class="flex flex-col gap-20 lg:gap-24">
+        <Feature
+          reversed
+          id="stages"
+          eyebrow="Lifecycle"
+          title="Stages are earned, not assigned"
+          body="A click onboards a partner. A sale activates them. Silence makes them dormant. Nobody has to move a card, and the nightly pass never decides who gets in."
+          checks={[
+            "The nightly pass never puts anyone into applicant or rejected",
+            "No automation may reject anyone: who gets in is your call",
+            "A partner good at a job you have not offered them is pointed out",
+          ]}
+          shot={SHOTS.opportunityJob}
+        />
+        <Feature
+          id="funnel"
+          eyebrow="Activation"
+          title="Where partners stall, by name"
+          body="Signed up but never clicked. Clicked but never sold. The funnel names who is stuck at each step and how long the middle partner took to move on."
+          checks={[
+            "Every partner who is not archived, wherever they are in the journey",
+            "The median days between stages, never the mean",
+            "The one who never started gets the one nudge Autopilot may send alone",
+          ]}
+          shot={SHOTS.activation}
+        />
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="canvas" labelledBy="reviews-heading">
+    <Container>
+      <Feature
+        reversed
+        id="reviews"
+        eyebrow="Reviews"
+        title="Review recommended. Never “fraud”."
+        body="A risk finding says what it saw, what that usually means, and what to ask. It holds nobody's money and has no apply button, by design."
+        checks={[
+          "A finding carries its evidence and the ordinary explanation first",
+          "There is no apply button on a risk finding",
+          "A review is a look. The decision stays with you",
+        ]}
+        shot={SHOTS.reviewFinding}
+        second={SHOTS.riskFinding}
+      />
+      <Quote
+        class="mx-auto mt-12 max-w-3xl"
+        text="Nothing here withholds anybody's money. A review is a look, and the decision stays with you."
+        source="The Reviews tab"
+      />
+    </Container>
+  </Section>
+
+  <Section tone="inverse" labelledBy="autopilot-heading">
+    <Container>
+      <SectionHeading
+        id="autopilot-heading"
+        align="center"
+        tone="inverse"
+        title="Autopilot, and its limits"
+        lead="What it may do on its own is short enough to read in one breath."
+      />
+      <CardGrid items={AUTOPILOT} tone="inverse" class="mt-12" />
+    </Container>
+  </Section>
+
+  <Section tone="canvas" labelledBy="results-heading">
+    <Container>
+      <div class="grid gap-10 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-6">
+          <SectionHeading
+            id="results-heading"
+            title="What happened after you acted"
+            lead="The Results tab watches each partner for 30 days after you act on a recommendation and records what followed. It is honest about what that proves."
+          />
+        </div>
+        <Quote
+          class="lg:col-span-6"
+          text="Things that happened after. Never proof that acting caused them."
+          source="The Results tab"
+        />
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="surface" labelledBy="rules-heading" class="border-y border-border">
+    <Container narrow class="text-center">
+      <h2 id="rules-heading" class="text-heading-xl font-bold text-ink sm:text-display-md">
+        No machine learning. Every recommendation shows reasoning you can disagree with.
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-body-lg text-ink-secondary">
+        The rules are deterministic. A merchant can read every reason, say it is wrong, and the
+        product records the answer.
+      </p>
+      <StartFree class="mt-8" align="center" />
+    </Container>
+  </Section>
+
+  <FinalCta
+    title="Affiliate dashboards report. Refficks recommends."
+    lead="Every morning: the partners who need you, the evidence, and the decision left to you."
+  />
+</Base>

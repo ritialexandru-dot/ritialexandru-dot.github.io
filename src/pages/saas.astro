@@ -1,0 +1,117 @@
+---
+/**
+ * The audience hero for SaaS and subscription businesses (prompt §2, §6):
+ * recurring plans, reversals beside the original, deals linked to the
+ * partner who sourced them, payouts from a preview. Drawn on C1, C3, A5,
+ * B1, P1, P2 and I4; claims.md lists each.
+ */
+import Container from "@/components/site/Container.astro";
+import FinalCta from "@/components/site/FinalCta.astro";
+import PageHero from "@/components/site/PageHero.astro";
+import Section from "@/components/site/Section.astro";
+import WorksWith from "@/components/site/WorksWith.astro";
+import Feature from "@/components/ui/Feature.astro";
+import Base from "@/layouts/Base.astro";
+import { SHOTS } from "@/lib/shots";
+---
+
+<Base
+  title="Refficks for SaaS: recurring commission that stops when the revenue does"
+  description="For Stripe, Chargebee and Recurly businesses. Recurring plans for as long as you say, a refund or a cancellation reversed beside the original, deals linked back to the partner who sourced them, and payouts from a preview rather than a spreadsheet."
+  path="/saas/"
+  ogTitle="Recurring commission that stops when the revenue does"
+  ogDescription="A refund or a cancellation reverses it beside the original. Deals link back to the partner who sourced them."
+  ogImage="/og/saas.png"
+  ogImageAlt="Refficks: a programme's commission plans, including one that pays on every renewal"
+>
+  <PageHero
+    eyebrow="For SaaS and subscriptions"
+    title="Recurring commission that stops when the revenue does"
+    lead="Pay on every renewal for as long as you say. When an invoice is refunded or a subscription cancelled, the commission is reversed beside the original. And the deals partners bring in are theirs, right up to the invoice that pays."
+    secondary={{ href: "/product/commissions/", label: "See how commissions work" }}
+    shot={SHOTS.plans}
+    caption="A plan says what it pays: 10% of each sale, recurring for the customer's lifetime, approved 45 days after the sale."
+  />
+
+  <WorksWith
+    title="Works with the billing you already run"
+    platforms={["Stripe", "Chargebee", "Recurly", "RevenueCat", "and the API"]}
+  />
+
+  <Section tone="canvas" labelledBy="saas-heading">
+    <Container>
+      <h2 id="saas-heading" class="sr-only">What Refficks does for a subscription business</h2>
+      <div class="flex flex-col gap-20 lg:gap-24">
+        <Feature
+          id="recurring"
+          eyebrow="Recurring"
+          title="On every renewal, for as long as you choose"
+          body="A plan pays a percentage or a flat amount, once, or on every renewal for a set number of months or for as long as the customer pays. Stripe sales credit the partner with no JavaScript at all, through a visitor id on the checkout."
+          checks={[
+            "A lower rate when a discount code was used, if you want one",
+            "Refficks connects to Stripe as a platform and holds no key of yours",
+            "Every renewal keeps paying the partner who won the subscription",
+          ]}
+          shot={SHOTS.plans}
+        />
+        <Feature
+          reversed
+          id="reversals"
+          eyebrow="Refunds and cancellations"
+          title="Reversed beside the original, never edited"
+          body="A refund writes a reversal beside the entry it undoes, taking back the refund's share. The original stays, with its arithmetic, so the ledger still adds up on any date you export it."
+          checks={[
+            "Every entry stores the sum that produced it",
+            "Yen stay yen. Every total is per currency",
+            "History is never edited: not a commission, not an attribution, not a raw event",
+          ]}
+          shot={SHOTS.ledger}
+        />
+        <Feature
+          id="deals"
+          eyebrow="Deals"
+          title="Deals linked back to the partner who sourced them"
+          body="Partners submit leads and register deals, with protection windows. The pipeline keeps the partner who sourced a deal apart from the ones who influenced it. Revenue counts only when money arrives, never on a deal's value."
+          checks={[
+            "Deal registration with protection windows",
+            "Sourced and influenced partners kept apart",
+            "A won deal records a decision, not a payment",
+          ]}
+          shot={SHOTS.pipeline}
+        />
+        <Feature
+          reversed
+          id="payouts"
+          eyebrow="Payouts"
+          title="From a preview, not a spreadsheet"
+          body="The payout preview shows who is owed, who cannot be paid, and exactly why, before anything is committed. Then a batch, built in one transaction and approved by a person, and a file to pay from."
+          checks={[
+            "A general CSV, PayPal's Payouts upload or Wise's batch template",
+            "Or PayPal payouts sent from your own balance, on a button you press",
+            "Each payout marked paid with a reference",
+          ]}
+          shot={SHOTS.payouts}
+        />
+        <Feature
+          id="needs-you"
+          eyebrow="Needs you"
+          title="Every morning, the partners who need you"
+          body="Every partner is scored overnight. The Needs you list ranks who to act on, shows what it saw, and leaves the decision to you."
+          checks={[
+            "Ranked by what it costs you to ignore, with the evidence on every card",
+            "A raise is confirmed on the exact number, with its cost at the current run rate",
+            "“Not now” holds for 30 days",
+          ]}
+          link={{ href: "/product/intelligence/", label: "See partner intelligence" }}
+          shot={SHOTS.needsYouCard}
+          second={SHOTS.confirmRaise}
+        />
+      </div>
+    </Container>
+  </Section>
+
+  <FinalCta
+    title="Recurring commission that stops when the revenue does"
+    lead="Reversed beside the original, deals that stay with their partner, and payouts from a preview."
+  />
+</Base>

@@ -19,7 +19,10 @@ const sizes = JSON.parse(readFileSync(join(from, "sizes.json"), "utf8"));
 const to = join(process.cwd(), "public", "shots");
 mkdirSync(to, { recursive: true });
 
-const report = {};
+// Packing one set keeps the other set's sizes: the home page's screens and the
+// other pages' are captured separately (SHOTS_SET) and land in one file.
+const sizesFile = join(to, "sizes.json");
+const report = existsSync(sizesFile) ? JSON.parse(readFileSync(sizesFile, "utf8")) : {};
 
 for (const name of readdirSync(from)) {
   if (!name.endsWith(".png") || name.startsWith("raw-")) continue;
@@ -42,4 +45,4 @@ for (const name of readdirSync(from)) {
   );
 }
 
-writeFileSync(join(to, "sizes.json"), JSON.stringify(report, null, 2));
+writeFileSync(sizesFile, JSON.stringify(Object.fromEntries(Object.entries(report).sort()), null, 2));

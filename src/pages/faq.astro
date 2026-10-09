@@ -1,0 +1,156 @@
+---
+/**
+ * Objections, answered plainly (prompt §6): where the data lives, whether
+ * it can leave, the AI and bank details, automations and money, paying
+ * partners, history from another platform, what is not built. Every answer
+ * is a fact from the sheet; claims.md lists each. The pricing question
+ * waits for billing to go live (O3 to O5).
+ */
+import Container from "@/components/site/Container.astro";
+import FinalCta from "@/components/site/FinalCta.astro";
+import PageHero from "@/components/site/PageHero.astro";
+import Section from "@/components/site/Section.astro";
+import Faq from "@/components/ui/Faq.astro";
+import Base from "@/layouts/Base.astro";
+
+const GROUPS = [
+  {
+    title: "Your data",
+    items: [
+      {
+        q: "Where does my data live?",
+        a: "In the EU, in Romania, hosted by Refficks with Orange Romania. There is no cloud file bucket, and nothing to install beyond a script tag or a store app.",
+      },
+      {
+        q: "Can I take it out?",
+        a: "Yes. Take a copy of your data gives you the whole account as CSV files in one archive, any time. Every download is recorded.",
+      },
+      {
+        q: "What happens if I close my account?",
+        a: "A closed account is deleted after 90 days, and its connections are revoked at each provider. Visits and clicks are kept two years, except the touches a sale was decided on; correspondence two years; legal records seven. Partners and customers can be erased on request.",
+      },
+      {
+        q: "Do you store IP addresses?",
+        a: "No raw IP address, ever. Fraud signals run on salted hashes, and a store order's buyer IP is replaced with its hash before anything is stored. A browser sending Global Privacy Control gets nothing written, not even a cookie.",
+      },
+      {
+        q: "Can another customer of Refficks see my data?",
+        a: "Isolation is a tested property: every resource carries a test proving one organization cannot read another's data.",
+      },
+    ],
+  },
+  {
+    title: "Money",
+    items: [
+      {
+        q: "Can Refficks pay my partners?",
+        a: "You pay from a file Refficks builds, a general CSV, PayPal's Payouts upload or Wise's batch template, or send PayPal payouts from your own PayPal balance. Each needs a person's press, once. No timer, automation or AI can move money.",
+      },
+      {
+        q: "Can an automation pay someone?",
+        a: "No. An automation can send an email, add a tag, add to a campaign, move a partner along the lifecycle, promote to a tier, or raise something for you to decide. It cannot touch money. Ever.",
+      },
+      {
+        q: "What happens to a commission when the sale is refunded?",
+        a: "A reversal is written beside the original entry, taking back the refund's share. The original stays. History is never edited.",
+      },
+      {
+        q: "Who can see a partner's bank details?",
+        a: "Nobody. Payout details are encrypted at rest and never shown on any screen, including to the partner who typed them. They leave Refficks only in the file you pay from, or to PayPal when you send through it, and each time it is recorded.",
+      },
+      {
+        q: "Does the AI see bank details?",
+        a: "No, provably: a test asserts that payout details are absent from what the model is given, and no connected app can hand them over, nor a phone number, nor a customer's name or email.",
+      },
+      {
+        q: "Can the AI approve or reverse a commission?",
+        a: "No, structurally. The in-app assistant has no tools and no write path. An outside AI app you connect can read what your role may read and save drafts for a person to send. Nothing it can call approves, reverses or pays a commission, changes who a sale is credited to, suspends a partner, or sends anything.",
+      },
+    ],
+  },
+  {
+    title: "Switching",
+    items: [
+      {
+        q: "What happens to my history from another platform?",
+        a: "Paid history comes across as the old platform's reported figure, labelled as theirs, and never becomes payable here. What is still owed can come across as an opening balance, pending until you approve it. For each of the old platform's statuses, you say what it means.",
+      },
+      {
+        q: "Will the import duplicate my partners?",
+        a: "No. Re-importing never duplicates anyone. A partner already here is left alone, or has only their empty fields filled in, unless you ask otherwise. One bad row never loses the file.",
+      },
+      {
+        q: "Can two systems pay during the switch?",
+        a: "Exactly one system pays. While the old platform still pays, Refficks records what it would have paid and pays none of it. At cutover, a sale belongs to whichever side of that moment its money changed hands on.",
+      },
+    ],
+  },
+  {
+    title: "What it is",
+    items: [
+      {
+        q: "What does the trial include?",
+        a: "30 days from signup, everything included, no card until you subscribe. One trial per email address.",
+      },
+      {
+        q: "Is it an affiliate tool, or something else?",
+        a: "All five programme types ship, on by default: affiliate, referral, creator, ambassador, and agency or B2B. You switch off the ones you do not run. A reseller is a B2B partner on a revenue share, not a separate module.",
+      },
+      {
+        q: "Does Refficks use machine learning?",
+        a: "No. Recommendations come from deterministic rules. Every one shows reasoning you can read and disagree with.",
+      },
+      {
+        q: "Can I run it on my own servers?",
+        a: "Refficks is hosted by Refficks at app.refficks.com. There is nothing to install beyond a script tag or a store app.",
+      },
+      {
+        q: "What isn't built yet?",
+        a: "Refficks is early. Only Stripe, Shopify, WooCommerce, Zapier, Claude and ChatGPT have met the real service, each partly. Every other integration was built from the provider's documentation and tested against stand-ins, and its page says so. Paddle is not built. Slack, YouTube checks, AppsFlyer and billing are built and switched off until a registration, a review or the owner turns them on.",
+      },
+      {
+        // voice: allow. The question says "listed" so the answer can say it is not (L9).
+        q: "Is Refficks listed in the Shopify App Store, or on WordPress.org?",
+        a: "Not yet. Refficks is in no app directory. The Shopify app, the WordPress plugin (a zip from Refficks) and the Tag Manager template are installed by hand.",
+      },
+    ],
+  },
+] as const;
+---
+
+<Base
+  title="Questions people ask before they start"
+  description="Where the data lives and how it leaves, whether the AI sees bank details, whether an automation can pay anyone, what happens to history from another platform, and what is not built yet. Answered from the facts."
+  path="/faq/"
+  ogTitle="Questions, answered plainly"
+  ogDescription="Where the data lives, who can move money, what happens to your history, and what is not built yet."
+  ogImage="/og/faq.png"
+  ogImageAlt="Refficks: questions people ask before they start"
+>
+  <PageHero
+    eyebrow="FAQ"
+    title="Questions people ask before they start"
+    lead="Answered from what the product does, not from what a page would like it to do. If a question is missing, write to support@refficks.com and it will be added here."
+  />
+
+  <Section tone="surface" padding="tight" labelledBy="faq-heading" class="border-y border-border">
+    <Container narrow>
+      <h2 id="faq-heading" class="sr-only">The questions</h2>
+      <div class="flex flex-col gap-12">
+        {
+          GROUPS.map((group) => (
+            <div>
+              <h3 class="text-heading-lg font-semibold text-ink">{group.title}</h3>
+              <Faq items={[...group.items]} class="mt-4" />
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <FinalCta
+    title="Affiliate dashboards report. Refficks recommends."
+    lead="Every morning: the partners who need you, the evidence, and the decision left to you."
+  />
+</Base>

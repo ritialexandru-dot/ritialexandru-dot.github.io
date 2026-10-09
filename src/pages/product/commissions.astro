@@ -1,0 +1,206 @@
+---
+/**
+ * Commissions and payouts (prompt §6): plans, the ledger, approval,
+ * recruiting, the payout preview, paying, the refusals, tax. Drawn only on
+ * the C and P facts, with M3 and AI3 where money is refused; claims.md
+ * lists each.
+ */
+import CardGrid from "@/components/site/CardGrid.astro";
+import Container from "@/components/site/Container.astro";
+import FinalCta from "@/components/site/FinalCta.astro";
+import PageHero from "@/components/site/PageHero.astro";
+import Section from "@/components/site/Section.astro";
+import SectionHeading from "@/components/site/SectionHeading.astro";
+import Feature from "@/components/ui/Feature.astro";
+import Base from "@/layouts/Base.astro";
+import { SHOTS } from "@/lib/shots";
+
+const REFUSALS = [
+  {
+    icon: "lock",
+    title: "No timer moves money",
+    body: "A PayPal payout, a store credit, a gift certificate: each on a named button, one press per decision, never twice.",
+  },
+  {
+    icon: "shield",
+    title: "Payout details are never shown",
+    body: "Encrypted at rest and shown on no screen, to anyone, including the partner who typed them. Each time they leave, it is recorded.",
+  },
+  {
+    icon: "send",
+    title: "Automations can't touch money",
+    body: "They can email, tag, move a partner along or ask you. They cannot approve, pay or reverse. Ever.",
+  },
+  {
+    icon: "sparkle",
+    title: "Neither can the AI",
+    body: "It can summarise a payout run before it is created. It has no way to approve, reverse or pay a commission.",
+  },
+] as const;
+
+const TAX = [
+  {
+    icon: "users",
+    title: "Forms in the portal",
+    body: "Partners give a W-9, W-8BEN or W-8BEN-E in their own portal.",
+  },
+  {
+    icon: "download",
+    title: "A 1099-NEC year",
+    body: "The merchant gets the year with an audited export and files it themselves.",
+  },
+  {
+    icon: "building",
+    title: "Self-billed invoices",
+    body: "UK and EU merchants can issue them once a partner accepts. DAC7 is not built.",
+  },
+] as const;
+---
+
+<Base
+  title="Commissions and payouts: every entry shows its arithmetic"
+  description="Plans that pay a percentage or a flat amount, once or on every renewal. A ledger where every entry stores its arithmetic and a refund writes a reversal beside the original. Payouts previewed before anything is committed, and money that moves only when a person presses."
+  path="/product/commissions/"
+  ogTitle="Every entry shows its arithmetic. Money moves only when you press."
+  ogDescription="A ledger that explains itself, a refund that reverses beside the original, and a payout that waits for a person."
+  ogImage="/og/commissions.png"
+  ogImageAlt="Refficks: the commission ledger with a reversal beside its original"
+>
+  <PageHero
+    eyebrow="Commissions and payouts"
+    title="Every entry shows its arithmetic. Money moves only when you press."
+    lead="A plan says what it pays. The ledger keeps the sum behind every entry, writes a refund beside the sale it undoes, and never recalculates its past. Paying is a preview, a decision, and a file."
+    secondary={{ href: "/product/portal/", label: "See what partners see" }}
+    shot={SHOTS.ledger}
+    caption="A refund takes back its share as a new line beside the original. History is never edited."
+  />
+
+  <Section tone="surface" labelledBy="plans-heading" class="border-y border-border">
+    <Container>
+      <div class="flex flex-col gap-20 lg:gap-24">
+        <Feature
+          id="plans"
+          eyebrow="Plans"
+          title="A plan says what it pays, in a sentence"
+          body="A percentage or a flat amount. Once, or on every renewal for a set number of months or for as long as the customer pays. With conditions, a priority, and a lower rate when a discount code was used, if you want one."
+          checks={[
+            "Percentage or flat, one-time or recurring, for as long as you choose",
+            "On Shopify and BigCommerce, limited to collections, products, variants or SKUs",
+            "A partner can be given their own rate on a rule",
+            "The highest-priority plan whose conditions match wins",
+          ]}
+          shot={SHOTS.plans}
+        />
+        <Feature
+          reversed
+          id="ledger"
+          eyebrow="The ledger"
+          title="Nothing is ever recomputed to be explained"
+          body="Every entry stores the arithmetic that produced it, literally “20% of USD 299.00”. A refund writes a reversal beside the original, taking back the refund's share. Yen stay yen."
+          checks={[
+            "History is never edited: not a commission, not an attribution, not a raw event",
+            "Money is integer minor units plus a currency, everywhere. Never a float",
+            "Every total is per currency. Nothing adds euros to dollars",
+          ]}
+          precisely="A correction is a new entry that supersedes the old one. The old one stays, with the reason, so an export from any date still adds up."
+          shot={SHOTS.ledger}
+        />
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="canvas" labelledBy="approval-heading">
+    <Container>
+      <div class="flex flex-col gap-20 lg:gap-24">
+        <Feature
+          id="approval"
+          eyebrow="Approval"
+          title="Approved by you, or by a plan after a holding period"
+          body="Approve commission singly or in bulk, or let a plan approve each one by itself once a holding period has passed. Either way, some entries wait for a person, and the ledger says why."
+          checks={[
+            "Waits for a person when a review is open on the partner",
+            "Waits when the sale was only reported by a browser, or by a provider that signs nothing",
+            "Waits when the partner is suspended or the workspace is read-only",
+            "Partners see the same arithmetic for their own earnings",
+          ]}
+          shot={SHOTS.pending}
+        />
+        <Feature
+          reversed
+          id="recruiting"
+          eyebrow="Recruiting"
+          title="A recruiter earns on top, never out of the recruit"
+          body="A partner who brings in another partner can earn a share of what the recruit earns, paid by you on top. The recruit's own commission is never reduced."
+          checks={[
+            "A share for a set number of months, on the recruit's first sales, or for as long as both stay",
+            "Two tiers at most: nobody earns from their recruit's recruits",
+            "Shares already earned keep the rate they were earned at",
+          ]}
+          shot={SHOTS.recruiting}
+        />
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="surface" labelledBy="payouts-heading" class="border-y border-border">
+    <Container>
+      <div class="flex flex-col gap-20 lg:gap-24">
+        <Feature
+          id="preview"
+          eyebrow="Payouts"
+          title="See who is owed, and who can't be paid, before anything is committed"
+          body="The payout preview lists who is owed, who cannot be paid, and exactly why: no payout details on file, below the minimum. Nothing is committed until you say so."
+          checks={[
+            "A batch is built in one transaction and approved by a person",
+            "Each payout is marked paid with a reference",
+            "A payment the bank sends back is recorded as returned",
+          ]}
+          shot={SHOTS.payouts}
+        />
+        <Feature
+          reversed
+          id="paying"
+          eyebrow="Paying"
+          title="Pay from a file, or from your own PayPal balance"
+          body="Refficks builds the files in each platform's own layout: a general CSV, PayPal's Payouts upload, Wise's batch template. Or it sends approved PayPal payouts from your own balance, on a button you press."
+          checks={[
+            "PayPal and Wise files built from the approved payouts, ready to upload",
+            "A payout in neither file is paid from the general file, and the screen says which",
+            "PayPal payouts sent from your own balance, one press per batch",
+          ]}
+          precisely="The PayPal and Wise layouts come from the platforms' published templates and have not yet been uploaded to a real account."
+          shot={SHOTS.payoutFiles}
+        />
+      </div>
+    </Container>
+  </Section>
+
+  <Section tone="inverse" labelledBy="refusals-heading">
+    <Container>
+      <SectionHeading
+        id="refusals-heading"
+        align="center"
+        tone="inverse"
+        title="Four things that never move money"
+        lead="Money moves only when a person presses for it."
+      />
+      <CardGrid items={REFUSALS} tone="inverse" class="mt-12" />
+    </Container>
+  </Section>
+
+  <Section tone="canvas" labelledBy="tax-heading">
+    <Container>
+      <SectionHeading
+        id="tax-heading"
+        align="center"
+        title="Tax, without pretending to file it for you"
+      />
+      <CardGrid items={TAX} columns={3} class="mt-12" />
+    </Container>
+  </Section>
+
+  <FinalCta
+    title="Every entry shows its arithmetic"
+    lead="A ledger you can read, a refund that reverses itself, and a payout that waits for you."
+  />
+</Base>
