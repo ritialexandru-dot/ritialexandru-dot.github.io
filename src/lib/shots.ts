@@ -221,4 +221,16 @@ export const SHOTS = {
     640,
     "The public Where Refficks works page: Checkouts and billing, with a guide each for Stripe Payment Links, Stripe Buy Button, Stripe Pricing Table, Stripe promotion codes, SamCart and Squarespace Commerce.",
   ),
+  partnerScores: shot(
+    "partner-scores",
+    828,
+    321,
+    "The head of a partner's page: Lena Brandt, Active, Affiliate, then four tiles: Score 84, their rank in your programme, not a grade; Potential 77, room to grow, not the same as revenue; Revenue $249.00 attributed to date; Commission $41.50 earned to date.",
+  ),
+  qualityVsRisk: shot(
+    "quality-vs-risk",
+    828,
+    474,
+    "The Quality vs risk tab: four readings as a grid. Worth more of your money, 7 partners, each with their quality score and low risk; Good, with something to check, 1; Worth a conversation, 4; Worth looking into, 2, with quality and high risk beside each name.",
+  ),
 } as const;

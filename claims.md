@@ -111,7 +111,7 @@ Copy: 9 October 2026, from the I, AN and M facts, in the home page's shape.
 | `needs-you` | Dashboard › Intelligence, Needs you tab, at 1440 | 9 Oct 2026 |
 | `needs-you-card`, `opportunity-growing` | A Needs you recommendation; an Opportunities card, "is growing fast" | 9 Oct 2026 |
 | `confirm-raise` | A raise pressed once: the confirmation and its cost | 9 Oct 2026 |
-| `score-breakdown` | A partner's "Why this score" card | 9 Oct 2026 |
+| `partner-scores`, `quality-vs-risk` | The head of a partner's page, its four score tiles; Intelligence › Quality vs risk | 9 Oct 2026 |
 | `opportunity-job` | Opportunities, "would make a strong affiliate" | 9 Oct 2026 |
 | `activation` | Dashboard › Analysis › Activation, "How far partners get" | 9 Oct 2026 |
 | `review-finding`, `risk-finding` | Intelligence › Reviews, "sent 844 clicks and 2 sales"; Risks, "costs more than the work returns" | 9 Oct 2026 |
@@ -125,6 +125,7 @@ Copy: 9 October 2026, from the I, AN and M facts, in the home page's shape.
 | "Not now" holds for 30 days, then returns if still true | The list, final checks | I7 |
 | A raise or a tier move needs a person's yes on the figures; the cost at the current run rate is shown; no partner above 50%, no bonus above $1,000; the cap holds where money is written | Money needs a yes | I5 |
 | Seven questions: performance (a percentile), potential (not current revenue), momentum, engagement, relationship health, economic efficiency, risk; one overall number only orders a list | Scoring | I1 |
+| Quality and risk are two readings allowed to disagree; the grid places partners by both | Scoring, the second screen | I1, I4 (the Quality vs risk tab, shown as the product draws it) |
 | Every factor shows weight, value, points and a sentence of evidence; weights are configuration | Scoring | I2 |
 | A click onboards, a sale activates, silence makes dormant; the nightly pass never puts anyone into applicant or rejected; no automation may reject; who gets in is the merchant's call | Lifecycle | I3 |
 | A partner good at a job they have not been offered is pointed out | Lifecycle | I4 (the Opportunities tab, shown) |

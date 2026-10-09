@@ -119,6 +119,12 @@
     "oneX": 29880,
     "twoX": 61046
   },
+  "partner-scores": {
+    "width": 828,
+    "height": 321,
+    "oneX": 13116,
+    "twoX": 26304
+  },
   "payout-files": {
     "width": 828,
     "height": 415,
@@ -166,6 +172,12 @@
     "height": 844,
     "oneX": 21788,
     "twoX": 42444
+  },
+  "quality-vs-risk": {
+    "width": 828,
+    "height": 474,
+    "oneX": 31634,
+    "twoX": 69320
   },
   "recruiting": {
     "width": 828,

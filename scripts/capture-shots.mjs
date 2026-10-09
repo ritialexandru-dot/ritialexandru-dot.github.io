@@ -463,6 +463,42 @@ async function moreScreens() {
     await take("migration-adds-up", await cardByText(page, "Does it add up"));
   }
 
+  // A partner's page, its head: the name, then Score, Potential, Revenue and
+  // Commission as four tiles, each with the product's own line under it
+  // ("Their rank in your programme, not a grade"). The first partner with a
+  // score breakdown, as the hero's score card is chosen.
+  const scored = await page.evaluate(async () => {
+    const response = await fetch(`${location.origin}/api/v1/partners?per_page=50`, { credentials: "include" });
+    const body = await response.json();
+    return (body.data ?? []).map((row) => row.id);
+  });
+  for (const id of scored) {
+    await open(page, `/dashboard/partners/${id}`);
+    const text = await page.locator("main").innerText().catch(() => "");
+    if (!/Why this score/.test(text) || !/of \d+/.test(text)) continue;
+    const back = page.locator("main").getByRole("link", { name: "Partners" }).first();
+    const score = page.locator("main").getByText("Score", { exact: true }).first();
+    const top = await back.boundingBox();
+    const tile = await cardOf(score).boundingBox();
+    if (top && tile) {
+      await take("partner-scores", { x: tile.x - 8, y: top.y - 8, width: 828, height: tile.y + tile.height - top.y + 16 });
+    }
+    break;
+  }
+
+  // Intelligence, Quality vs risk: the four readings as a grid.
+  await open(page, "/dashboard/intelligence");
+  await page.getByRole("button", { name: "Quality vs risk", exact: true }).first().click();
+  await page.waitForTimeout(1200);
+  const firstReading = page.locator("main").getByText("Worth more of your money", { exact: true }).first();
+  const lastReading = page.locator("main").getByText("Worth looking into", { exact: true }).first();
+  if ((await firstReading.count()) > 0 && (await lastReading.count()) > 0) {
+    await nearTop(page, cardOf(firstReading));
+    const a = await cardOf(firstReading).boundingBox();
+    const b = await cardOf(lastReading).boundingBox();
+    await take("quality-vs-risk", { x: a.x - 8, y: a.y - 8, width: b.x + b.width - a.x + 16, height: b.y + b.height - a.y + 16 });
+  }
+
   // Integrations: where a merchant sells, the tracker, the server, the panel.
   await open(page, "/dashboard/integrations");
   await take("integrations", await cardByText(page, "Where do you sell?", { maxHeight: 560 }));
