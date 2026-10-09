@@ -420,7 +420,7 @@ Copy: 9 October 2026, from the creators row of §2.
 | A guide per platform; paste an address and a snippet; every sale arrives with the partner who sent it | Hero, final band | T9, A2 |
 | Each guide says what to paste where, what it credits and what it does not | Hero caption | T9 |
 | Works with Kajabi, Thinkific, Teachable, ThriveCart, SamCart, Gumroad, ClickFunnels, Stripe Payment Links | Works with | L2, T9 |
-| Fifty-two guides, readable without an account; checkouts, site builders, forms and booking, analytics; each says what it cannot do; checks what Refficks has seen; none walked live and each says so | Guides | T9 |
+| Fifty-two guides, readable without an account; checkouts, site builders, forms and booking, analytics; each says what it cannot do; checks what Refficks has seen | Guides | T9 (the "none walked on a live site" line came out on the owner's call of 9 October) |
 | Those seven platforms report each payment; a platform that signs nothing has each commission wait for approval | Guides | L2, C5 |
 | A coupon credits with no click; every partner has a code the day they join | Codes | T1 |
 | Deep links and QR codes | Codes | PO5 |
