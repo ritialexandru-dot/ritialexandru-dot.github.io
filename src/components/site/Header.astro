@@ -73,10 +73,10 @@ const phoneLink = "block rounded-md px-3 py-2.5 text-body-sm font-medium text-in
     <div class="ml-auto hidden items-center gap-1 lg:flex">
       <a href={APP.signIn} class:list={[link, "text-ink-secondary"]}>Sign in</a>
       <a href={APP.partnerSignIn} class:list={[link, "text-ink-secondary"]}>Partner sign in</a>
-      <div class="ml-2 flex flex-col items-center">
-        <Button href={APP.register} size="md" variant="primary">{CTA.label}</Button>
-        <span class="mt-0.5 text-label text-ink-secondary">{CTA.under}</span>
-      </div>
+      {/* The owner's call (9 October): the header's button sits on the row's
+          centre line and carries no line under it; "No card needed" stays
+          under every other Start free on the site. */}
+      <Button href={APP.register} size="md" variant="primary" class="ml-2">{CTA.label}</Button>
     </div>
 
     <button
