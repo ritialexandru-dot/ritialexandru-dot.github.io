@@ -2,7 +2,7 @@
  * The link-preview image for a page, built from its lead screenshot (prompt
  * §9): the mark, the headline, and the screen, on forest, at 1200×630.
  *
- *   node scripts/make-og.mjs home "Affiliate dashboards report. Refficks recommends." shots/needs-you@2x.webp
+ *   node scripts/make-og.mjs home "Affiliate dashboards report. Refficks recommends." shots/needs-you@2x.webp ["the line under it"]
  *
  * Rendered with the same Playwright the capture uses (PLAYWRIGHT_DIR,
  * PLAYWRIGHT_BROWSERS_PATH or E2E_CHROMIUM as there), from an HTML string
@@ -12,7 +12,7 @@ import { readFileSync, readdirSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 
-const [name, headline, shot] = process.argv.slice(2);
+const [name, headline, shot, line = "Every morning: the partners who need you, the evidence, and the decision left to you."] = process.argv.slice(2);
 if (!name || !headline || !shot) {
   console.error('usage: node scripts/make-og.mjs <name> "<headline>" <public path of the screenshot>');
   process.exit(1);
@@ -53,7 +53,7 @@ p { margin: 24px 0 0; font-size: 22px; line-height: 1.4; color: #BED4C9; }
 .shot { position: absolute; left: 680px; top: 96px; width: 760px; border: 1px solid #355948; border-radius: 12px; overflow: hidden; background: #fff; }
 .shot img { display: block; width: 100%; }
 </style></head><body>
-<div class="text"><div class="brand">${mark}<span>Refficks</span></div><h1>${headline}</h1><p>Every morning: the partners you're wasting, the evidence, and the decision left to you.</p></div>
+<div class="text"><div class="brand">${mark}<span>Refficks</span></div><h1>${headline}</h1><p>${line}</p></div>
 <div class="shot"><img src="data:image/webp;base64,${image}"></div>
 </body></html>`;
 

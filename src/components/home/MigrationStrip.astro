@@ -1,0 +1,35 @@
+---
+/** The migration strip (prompt §6, Home 7): one line, one link, the kit's growth spot illustration. */
+import Container from "@/components/site/Container.astro";
+import Section from "@/components/site/Section.astro";
+import Button from "@/components/ui/Button.astro";
+import Icon from "@/components/ui/Icon.astro";
+---
+
+<Section tone="canvas" padding="tight" labelledBy="migrate-heading">
+  <Container>
+    <div class="flex flex-col items-start gap-6 rounded-xl border border-border bg-surface p-6 sm:p-8 md:flex-row md:items-center">
+      <img
+        src="/illustrations/spot-growth.svg"
+        alt=""
+        width="96"
+        height="96"
+        class="size-20 flex-none md:size-24"
+        loading="lazy"
+      />
+      <div class="flex-1">
+        <h2 id="migrate-heading" class="text-heading-lg font-semibold text-ink">
+          Leaving Rewardful, FirstPromoter or LeadDyno? Or a spreadsheet?
+        </h2>
+        <p class="mt-2 text-body text-ink-secondary">
+          Refficks reads your export, or your account, and shows you what is in it before anything
+          is imported. Nothing happens until you say so.
+        </p>
+      </div>
+      <Button href="/migrate/" variant="secondary" size="lg" class="flex-none">
+        How migration works
+        <Icon name="arrow-right" class="size-4" />
+      </Button>
+    </div>
+  </Container>
+</Section>

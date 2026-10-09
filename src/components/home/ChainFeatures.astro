@@ -1,0 +1,91 @@
+---
+/** The chain under the morning: tracking, attribution, commissions, payouts, the portal, each with its real screen. */
+import Container from "@/components/site/Container.astro";
+import Section from "@/components/site/Section.astro";
+import SectionHeading from "@/components/site/SectionHeading.astro";
+import Feature from "@/components/ui/Feature.astro";
+import { SHOTS } from "@/lib/shots";
+---
+
+<Section tone="surface" labelledBy="chain-heading">
+  <Container>
+    <SectionHeading
+      id="chain-heading"
+      align="center"
+      eyebrow="From click to payout"
+      title="Everything between the click and the payout, explained"
+      lead="Tracking, attribution, commissions and payouts, each showing its working."
+    />
+
+    <div class="mt-14 flex flex-col gap-20 lg:mt-20 lg:gap-28">
+      <Feature
+        eyebrow="Tracking"
+        title="Links, codes, and one script tag"
+        body="Partners get links and coupon codes, and a code credits a partner even when nobody clicked."
+        checks={[
+          "One script tag on your site",
+          "No-code installs for Shopify, WooCommerce and BigCommerce",
+          "Stripe with no JavaScript at all",
+        ]}
+        link={{ href: "/product/tracking/", label: "How tracking works" }}
+        shot={SHOTS.tracking}
+      />
+
+      <Feature
+        reversed
+        eyebrow="Attribution"
+        title="Every decision shows its working"
+        body="Last-touch by default, first-touch if you choose. Every touch considered is stored, with which won, which lost and why."
+        checks={[
+          "A confidence score on every decision",
+          "A sale nobody earned is recorded, not dropped",
+          "Corrections supersede. They never overwrite",
+        ]}
+        link={{ href: "/product/tracking/", label: "How attribution works" }}
+        shot={SHOTS.attribution}
+        second={SHOTS.attributionTouches}
+      />
+
+      <Feature
+        eyebrow="Commissions"
+        title="Commission that explains itself"
+        body="A percentage or a flat amount, once or on every renewal. Every entry stores the arithmetic that made it."
+        checks={[
+          "“20% of USD 299.00”, kept beside the entry",
+          "A refund writes a reversal beside the original",
+          "Yen stay yen: every total is per currency",
+        ]}
+        link={{ href: "/product/commissions/", label: "How commissions work" }}
+        shot={SHOTS.ledger}
+      />
+
+      <Feature
+        reversed
+        eyebrow="Payouts"
+        title="Pay the right people, once"
+        body="The preview shows who is owed, who cannot be paid and exactly why, before anything is committed."
+        checks={[
+          "A file to pay from, or PayPal from your own balance",
+          "One press per decision, never twice",
+          "Payout details encrypted and never shown to anyone",
+        ]}
+        link={{ href: "/product/commissions/", label: "How payouts work" }}
+        shot={SHOTS.payouts}
+      />
+
+      <Feature
+        phone
+        eyebrow="Partner portal"
+        title="A portal partners actually use"
+        body="One sign-in across every merchant a partner works with, built for a phone."
+        checks={[
+          "Their clicks, sales, payouts and statements",
+          "The same commission arithmetic you see",
+          "On your own domain, in your logo and colours",
+        ]}
+        link={{ href: "/product/portal/", label: "See the partner portal" }}
+        shot={SHOTS.portal}
+      />
+    </div>
+  </Container>
+</Section>

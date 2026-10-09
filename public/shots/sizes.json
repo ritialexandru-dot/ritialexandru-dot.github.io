@@ -1,15 +1,27 @@
 {
-  "activation-funnel": {
-    "width": 1176,
-    "height": 690,
-    "oneX": 39460,
-    "twoX": 82608
+  "attribution-touches": {
+    "width": 828,
+    "height": 207,
+    "oneX": 8040,
+    "twoX": 16482
+  },
+  "attribution": {
+    "width": 828,
+    "height": 175,
+    "oneX": 5984,
+    "twoX": 13002
   },
   "confirm-raise": {
     "width": 828,
     "height": 239,
     "oneX": 17116,
     "twoX": 35358
+  },
+  "ledger": {
+    "width": 826,
+    "height": 438,
+    "oneX": 20836,
+    "twoX": 38732
   },
   "needs-you-card": {
     "width": 828,
@@ -19,14 +31,44 @@
   },
   "needs-you": {
     "width": 1176,
-    "height": 728,
-    "oneX": 35984,
-    "twoX": 73458
+    "height": 600,
+    "oneX": 29788,
+    "twoX": 60500
+  },
+  "payouts": {
+    "width": 828,
+    "height": 536,
+    "oneX": 18468,
+    "twoX": 38432
+  },
+  "portal-commissions": {
+    "width": 390,
+    "height": 844,
+    "oneX": 16152,
+    "twoX": 32514
+  },
+  "portal-links": {
+    "width": 390,
+    "height": 844,
+    "oneX": 21788,
+    "twoX": 42444
+  },
+  "portal": {
+    "width": 390,
+    "height": 844,
+    "oneX": 21626,
+    "twoX": 43904
   },
   "score-breakdown": {
     "width": 566,
     "height": 678,
-    "oneX": 20258,
-    "twoX": 43922
+    "oneX": 21302,
+    "twoX": 40254
+  },
+  "tracking": {
+    "width": 828,
+    "height": 416,
+    "oneX": 17040,
+    "twoX": 35270
   }
 }

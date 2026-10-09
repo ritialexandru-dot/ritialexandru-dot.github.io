@@ -1,0 +1,67 @@
+---
+/** Where the data lives, who can see it, and how it leaves: the first objection, answered plainly. */
+import Container from "@/components/site/Container.astro";
+import Section from "@/components/site/Section.astro";
+import SectionHeading from "@/components/site/SectionHeading.astro";
+import Icon from "@/components/ui/Icon.astro";
+
+const FACTS = [
+  {
+    icon: "globe",
+    title: "Hosted in the EU",
+    body: "In Romania. Nothing to install beyond a script tag or a store app.",
+  },
+  {
+    icon: "download",
+    title: "Export any time",
+    body: "The whole account as CSV files in one archive. Every download is recorded.",
+  },
+  {
+    icon: "shield",
+    title: "No raw IP addresses",
+    body: "Fraud signals run on salted hashes. Global Privacy Control writes nothing, not even a cookie.",
+  },
+  {
+    icon: "lock",
+    title: "Isolation is tested",
+    body: "Every resource carries a test proving one organization cannot read another's data.",
+  },
+  {
+    icon: "users",
+    title: "Team security",
+    body: "Roles for your team, two-factor sign-in with recovery codes, and single sign-on.",
+  },
+  {
+    icon: "trash",
+    title: "Erasure, when asked",
+    body: "Partners and customers can be erased. A closed account is deleted after 90 days.",
+  },
+] as const;
+---
+
+<Section tone="surface" labelledBy="data-heading">
+  <Container>
+    <SectionHeading
+      id="data-heading"
+      align="center"
+      title="Your data stays yours"
+      lead="Where it lives, who can see it, and how it leaves."
+    />
+
+    <ul class="mt-12 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        FACTS.map((fact) => (
+          <li class="flex gap-4">
+            <span class="inline-flex size-10 flex-none items-center justify-center rounded-md rounded-tl-xs bg-brand-tint text-icon-brand">
+              <Icon name={fact.icon} class="size-5" />
+            </span>
+            <div>
+              <h3 class="text-heading-sm font-semibold text-ink">{fact.title}</h3>
+              <p class="mt-1 text-body-sm text-ink-secondary">{fact.body}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+</Section>

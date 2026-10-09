@@ -1,7 +1,9 @@
 ---
 /**
  * The closing band on every page (prompt §6): the headline echoed, the one
- * call to action, "No card needed" under it, on forest.
+ * call to action, "No card needed" under it, on forest. The mark's tile
+ * pattern sits at the band's edges and fades out under the words, because
+ * the kit allows it under no text smaller than 24px.
  */
 import Container from "@/components/site/Container.astro";
 import Section from "@/components/site/Section.astro";
@@ -15,8 +17,13 @@ interface Props {
 const { title, lead } = Astro.props;
 ---
 
-<Section tone="inverse" labelledBy="final-heading">
-  <Container narrow class="text-center">
+<Section tone="inverse" labelledBy="final-heading" class="relative overflow-hidden">
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 hidden opacity-40 bg-[url('/patterns/tiles-sparse.svg')] bg-[length:220px_220px] [mask-image:linear-gradient(to_right,black_0%,transparent_28%,transparent_72%,black_100%)] md:block"
+  >
+  </div>
+  <Container narrow class="relative text-center">
     <h2 id="final-heading" class="text-heading-xl font-bold text-ink-inverse sm:text-display-md">
       {title}
     </h2>

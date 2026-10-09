@@ -1,0 +1,27 @@
+---
+/** The differentiator (prompt §2): the Needs you list, as one feature block with the real card. */
+import Container from "@/components/site/Container.astro";
+import Section from "@/components/site/Section.astro";
+import Feature from "@/components/ui/Feature.astro";
+import { SHOTS } from "@/lib/shots";
+---
+
+<Section tone="surface" labelledBy="intelligence-heading">
+  <Container>
+    <Feature
+      id="intelligence-heading"
+      eyebrow="Partner intelligence"
+      title="Every morning, the partners who need you"
+      body="Overnight, Refficks scores every partner and raises the ones the evidence has moved: activate this one, contact that one, consider a raise here. You read the reason and decide."
+      checks={[
+        "Ranked by what it costs you to ignore",
+        "Every recommendation shows its evidence",
+        "A raise needs your yes on the exact number, with its cost",
+        "“Not now” holds for 30 days, then it comes back if still true",
+      ]}
+      link={{ href: "/product/intelligence/", label: "See partner intelligence" }}
+      shot={SHOTS.needsYouCard}
+      second={SHOTS.confirmRaise}
+    />
+  </Container>
+</Section>

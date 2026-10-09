@@ -1,0 +1,31 @@
+---
+/** Three or four short facts under a feature's sentence, each with a check in a spring tint. */
+interface Props {
+  items: string[];
+  tone?: "default" | "inverse";
+  size?: "md" | "sm";
+  class?: string;
+}
+
+const { items, tone = "default", size = "md", class: className = "" } = Astro.props;
+
+const text = tone === "inverse" ? "text-ink-inverse" : "text-ink";
+const badge =
+  tone === "inverse" ? "bg-inverse-raised text-icon-brand-inverse" : "bg-brand-tint text-icon-brand";
+const type = size === "sm" ? "text-body-sm" : "text-body";
+---
+
+<ul class:list={["flex flex-col gap-3", className]}>
+  {
+    items.map((item) => (
+      <li class:list={["flex items-start gap-3", type, text]}>
+        <span class:list={["mt-0.5 inline-flex size-6 flex-none items-center justify-center rounded-full", badge]}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="size-3.5">
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        </span>
+        <span>{item}</span>
+      </li>
+    ))
+  }
+</ul>

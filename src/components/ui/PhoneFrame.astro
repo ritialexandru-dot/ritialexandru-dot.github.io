@@ -1,0 +1,26 @@
+---
+/** The partner portal as a partner holds it: a 390px capture inside a drawn phone. */
+import type { Shot } from "@/lib/shots";
+
+interface Props extends Shot {
+  class?: string;
+}
+
+const { src, alt, width, height, class: className = "" } = Astro.props;
+const twoX = src.replace(/\.webp$/, "@2x.webp");
+---
+
+<div class:list={["mx-auto w-[280px] rounded-[2.25rem] border-[6px] border-inverse bg-inverse p-1.5", className]}>
+  <div class="overflow-hidden rounded-[1.75rem] bg-surface">
+    <img
+      src={src}
+      srcset={`${src} 1x, ${twoX} 2x`}
+      alt={alt}
+      width={width}
+      height={height}
+      class="block h-auto w-full"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+</div>

@@ -17,6 +17,17 @@ scripts/            the screenshot capture, pack and link-preview render, and th
 claims.md           every claim on the site, against the fact sheet
 ```
 
+## The shape of the page
+
+The home page follows the shape the category's own sites use (Rewardful,
+FirstPromoter, Tolt, LeadDyno, ReferralCandy and the rest, read 9 October
+2026): a short headline and one sentence over a real product screen, the
+platforms it works with, who it is for, one feature block per capability
+with a label, a heading, a sentence, three checks and the screen beside it,
+a trust section, three steps, questions, and a closing band. What those sites
+do with testimonials, logos and counts, this site does with the product's own
+screens, because there are no customers to quote yet (website prompt §5, §7).
+
 ## Why Astro
 
 The website prompt allows Astro or a Next.js static export and sets a budget

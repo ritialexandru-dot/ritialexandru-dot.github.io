@@ -11,71 +11,81 @@ rule); the screens each page shows are listed with its section.
 
 ## Page: `/`
 
-Copy: `refficks-homepage-copy.md`, draft 1 of 8 October 2026.
+Copy: draft 2 of 9 October 2026, written from the fact sheet after the
+owner's note that draft 1 read as clunky and too technical, and shaped like
+the category's own sites: short headings, one sentence, three checks, a real
+screen beside each.
 
 ### Screens shown
 
 | Screenshot | Screen | Captured |
 |---|---|---|
-| `needs-you` | Dashboard › Intelligence, Needs you tab | 8 Oct 2026, from `refficks:demo`, light theme, 1440 wide |
-| `needs-you-card` | The first recommendation on the same list, at 1100 wide | 8 Oct 2026 |
-| `activation-funnel` | Dashboard › Analysis › Activation | 8 Oct 2026 |
-| `score-breakdown` | A partner's profile, the "Why this score" card | 8 Oct 2026 |
-| `confirm-raise` | Needs you, a raise pressed once (confirmation and cost) | 8 Oct 2026 |
+| `needs-you` | Dashboard › Intelligence, Needs you tab, at 1440 | 9 Oct 2026, from `refficks:demo`, light theme |
+| `needs-you-card` | The first recommendation on the same list, at 1100 | 9 Oct 2026 |
+| `confirm-raise` | A raise pressed once: the confirmation and its cost | 9 Oct 2026 |
+| `tracking` | Dashboard › Programme › Tracking, the links table | 9 Oct 2026 |
+| `attribution`, `attribution-touches` | A conversion's "The decision" and "Every touch considered" cards | 9 Oct 2026 |
+| `ledger` | Dashboard › Money › Commissions, filtered to Reversed | 9 Oct 2026 |
+| `payouts` | Dashboard › Money › Payouts, the Ready to pay card | 9 Oct 2026 |
+| `portal` | The partner portal's overview on a 390px phone, as a demo affiliate | 9 Oct 2026 |
 
 ### Claims
 
 | Claim | Where | Fact IDs |
 |---|---|---|
-| Tracking, attribution, commissions and payouts for affiliate, referral, creator, ambassador and B2B programmes | Hero subhead | L3, T1, A1, C1, P1 |
-| Every morning it names the partners you're wasting, shows its evidence, leaves the decision to you | Hero subhead, final band | I4, I2, I5 |
+| For affiliate, referral, creator, ambassador and B2B programmes | Hero eyebrow | L3 |
+| Tracking, attribution, commissions and payouts in one place | Hero | T1, A1, C1, P1 |
+| Every morning, the partners who need you, with the evidence, and the decision left to you | Hero, final band | I4, I2, I5 |
 | 30 days free; no card needed; your data, out any time | Hero, header, final band | O3, D6 |
-| "Ranked by what it costs you to ignore. Every one shows its evidence." | Hero caption | I4 (verbatim, the Needs you tab) |
-| The reason in one sentence with its figures; ordered by cost to ignore; "Not now" holds 30 days | Hero callouts | I2, I4, I7 |
-| Most software watches click, conversion, commission; the leak is earlier | The leak | AN4, I3, I4 |
-| The eight-stage journey, modelled and watched | The leak, diagram | I3, AN4 |
-| Activation funnel names where partners stall, who is stuck, median days | The leak, funnel caption | AN4 |
-| Stages earned from behaviour; nightly pass never moves anyone into applicant or rejected | The leak, Precisely | I3 |
-| The eight product sentences and where each is shown | In its own words | L1, L7, I4, A3, C2, AN5, I6, AN6, AI5 (quoted strings verified in app source, 8 Oct) |
-| Every partner scored nightly; seven factors; percentile not grade; potential not revenue; weights are configuration | A morning, step 1 | I1, I2 |
-| Every recommendation carries its evidence; deterministic rules; no score for a partner with no history | A morning, step 2 | I2, I8 |
-| Financial recommendations need confirmation of the number and show the run-rate cost; "Not now" 30 days; risk findings have no apply button | A morning, step 3 | I5, I7, I6 |
-| Caps: never above 50%, no bonus above $1,000; Autopilot defaults, limits, no fully autonomous mode | A morning, step 3, Precisely | I5, I9 |
-| Links and codes; a code credits without a click; one script tag; no-code installs; Stripe without JavaScript | The chain, Tracking | T1, T2, T6, A5 |
-| Publishable key records visits and identifies customers, cannot read, refuses revenue; secret keys server-side | The chain, Tracking, Precisely | T3 |
-| Last-touch or first-touch across the window; every decision stored with its reasoning; a sale nobody earned recorded as such | The chain, Attribution | A1, A2, A3 |
-| 30 days, 60 for referral; corrections supersede; preview against up to 1,000 past sales | The chain, Attribution, Precisely | A1, A4, A6 |
-| Percentage or flat, once or recurring; every entry stores its arithmetic; refunds reverse beside the original | The chain, Commissions | C1, C2, C3 |
-| Integer minor units plus ISO currency; per-currency totals | The chain, Commissions, Precisely | C4 |
-| Payout preview shows who is owed and who cannot be paid and why; a file or PayPal from own balance; one press per decision | The chain, Payouts | P1, P2, P3 |
-| Payout details encrypted, never shown; each disclosure recorded | The chain, Payouts, Precisely | P4 |
-| One sign-in across merchants, built for phones, same arithmetic | The chain, Portal | PO1 |
-| Own domain with automatic HTTPS, logo, colours, wording | The chain, Portal, Precisely | PO6 |
-| Stores: codes become real discounts; a code alone credits; refunds reverse by themselves | Three ways in | T7, T1, C3 |
-| SaaS: recurring commission; refund or cancellation reverses beside the original; deals linked when money arrives | Three ways in | C1, C3, B1 |
-| Creators: a guide per platform, paste an address and a snippet; a partner's code credits them; partners see what they earned | Three ways in | T9, T1, PO1, C2 |
-| Works with the named platforms plus the API; most built from documentation and being tested on live accounts | Three ways in, closing line | L2, L8 |
-| Four kinds of wasted partner, each with what the screen says | Find the partners you're wasting | I4, I3, I5, AN4, I9 |
-| "Approved 29 days ago and has not sent a single click." | Find the partners, first card | I4 (verified in `ActivationInsights.php`) |
-| Nothing on the list changes earnings until confirmed; no automation, timer or AI can act on it | Find the partners, closing | M3, AI3, P3, I5 |
-| Upload an export, any spreadsheet, or read Rewardful or FirstPromoter by key; read back before import; nothing until you say; one bad row never loses the file; re-import never duplicates | Switching | G1, G2, G3 |
-| Paid history labelled as the old platform's, never payable here; what is owed as an opening balance pending approval | Switching, the honest part | G5 |
-| Shadow run compares the last 28 days each morning; exactly one system pays; warns if earnings drop | Switching, shadow run | G6, G7 |
-| Hosted in the EU, in Romania; nothing to install beyond a script tag or store app | Where your data lives | O2, D1 |
-| Whole account as CSV in one archive; every download recorded | Where your data lives | D6 |
-| No raw IP stored; salted hashes; GPC writes nothing; tracker waits for consent | Where your data lives | T4 |
-| Tenant isolation is a tested property | Where your data lives | D2 |
-| Append-only events, attributions, entries, audit logs; before and after values | Where your data lives | D3 |
-| No merchant Stripe key held; OAuth with least scope, own key, never shown back | Where your data lives | D8 |
-| Roles, two-factor with recovery codes, single sign-on | Where your data lives | D9 |
-| Partners and customers can be erased; closed account deleted after 90 days; connections revoked | Where your data lives | D7 |
-| One script tag; one idempotent POST; the snippet and the event shape | Developer | T2, T5 (snippet from `tracker-snippet.tsx`, event shape from `openapi.yaml`) |
-| Second send answers 200 with `"status": "duplicate"`; different payload 409; idempotency is a unique index | Developer | T5 (`api.md` §5) |
-| `integration_event → event → attribution → commission_entry`, append-only | Developer | D3, A2, C2 |
-| OpenAPI 3.1 with 454 paths; Server API with no endpoint that approves or pays; signed webhooks; MCP server for Claude and ChatGPT; the stack | Developer | D4, D10, M7, D11, D5 |
-| 30 days free, everything included, no card until you subscribe, one trial per email | Before you start | O3 |
-| It is early; every screen on this page is real; what has not met a real provider says so | Before you start | L1, L8 |
-| Export, erasure, deletion after 90 days | Before you start | D6, D7 |
+| The Needs you list is ranked by what it costs you to ignore, with evidence on every line | Hero caption | I4 |
+| Works with Stripe, Shopify, WooCommerce, BigCommerce, Chargebee, Recurly, RevenueCat, Kajabi, Thinkific, Teachable, ThriveCart, SamCart, Gumroad, ClickFunnels, and the API; most built from documentation and being tested on live accounts | Works with | L2, L8 |
+| Stores: codes become real discounts; a code alone credits; refunds reverse by themselves | Built for how you sell | T7, T1, C3 |
+| SaaS: recurring commission; refund or cancellation reverses beside the original; deals link back to the partner | Built for how you sell | C1, C3, B1 |
+| Creators: a guide per platform, paste an address and a snippet; a partner's code credits them; partners see what they earned | Built for how you sell | T9, T1, PO1 |
+| Every partner scored overnight; recommendations raised: activate, contact, consider a raise | Partner intelligence | I1, I4 |
+| Ranked by what it costs to ignore; every recommendation shows its evidence | Partner intelligence | I4, I2 |
+| A raise needs a yes on the exact number and shows its cost | Partner intelligence | I5 |
+| "Not now" holds for 30 days, then returns if still true | Partner intelligence | I7 |
+| Four kinds of wasted partner, found nightly, each with its reasoning | Find the partners you're wasting | I4, I3, AN4, I5 |
+| The activation nudge is the one thing Autopilot may send on its own | Find the partners, first card | I9 |
+| The median days other partners took to a first sale | Find the partners, second card | AN4 |
+| When a partner went dormant and what they used to send | Find the partners, third card | I3, I4 |
+| The suggested raise and its cost at the current run rate | Find the partners, fourth card | I5 |
+| Nothing changes what anybody earns until confirmed; no automation, timer or AI can act on it | Find the partners, closing | I5, M3, AI3, P3 |
+| Links and coupon codes; a code credits without a click; one script tag; no-code installs; Stripe with no JavaScript | Tracking | T1, T2, T6, A5 |
+| Last-touch or first-touch; every touch stored with which won, which lost and why; a confidence score | Attribution | A1, A2 |
+| A sale nobody earned is recorded, not dropped; corrections supersede, never overwrite | Attribution | A3, A4 |
+| Percentage or flat, once or recurring; every entry stores its arithmetic, "20% of USD 299.00" | Commissions | C1, C2 |
+| A refund writes a reversal beside the original | Commissions | C3 |
+| Yen stay yen; every total is per currency | Commissions | C4 |
+| Preview shows who is owed, who cannot be paid and why, before anything is committed | Payouts | P1 |
+| A file to pay from, or PayPal from the merchant's own balance; one press per decision, never twice | Payouts | P2, P3 |
+| Payout details encrypted and never shown to anyone | Payouts | P4 |
+| One sign-in across merchants, built for a phone; clicks, sales, payouts, statements; the same arithmetic | Partner portal | PO1, C5 |
+| On the merchant's own domain, in their logo and colours | Partner portal | PO6 |
+| History is never edited: commissions, attributions and raw events; a correction is a new line | Built to be trusted with money | C3, A4, D3 |
+| Money moves only when a person presses: payout, store credit, gift certificate, one press each, no timer | Built to be trusted with money | P3 |
+| Automations can email, tag, move a partner along or ask you; never approve, pay or reverse | Built to be trusted with money | M3 |
+| The AI explains and drafts; cannot approve, pay or suspend; never sees bank details | Built to be trusted with money | AI2, AI3, AI4 |
+| Connect Stripe, Shopify, WooCommerce or BigCommerce, or one script tag | Three steps | A5, T6, T2 |
+| A percentage or a flat amount, once or on every renewal | Three steps | C1 |
+| Partners get links, codes and a portal; a sale arrives with its reasoning | Three steps | T1, PO1, A2 |
+| Hosted in the EU, in Romania; nothing to install beyond a script tag or a store app | Your data stays yours | O2, D1 |
+| Whole account as CSV in one archive; every download recorded | Your data stays yours | D6 |
+| No raw IP; salted hashes; Global Privacy Control writes nothing | Your data stays yours | T4 |
+| Tenant isolation is a tested property | Your data stays yours | D2 |
+| Roles, two-factor with recovery codes, single sign-on | Your data stays yours | D9 |
+| Partners and customers can be erased; closed accounts deleted after 90 days | Your data stays yours | D7 |
+| Reads an export or an account and shows what is in it before anything is imported; nothing happens until you say so | Migration strip | G1, G2 |
+| One script tag; an idempotent POST; the second send answers 200 with status duplicate; idempotency is a unique index | Developer | T2, T5 |
+| OpenAPI 3.1; a Server API with no endpoint that approves or pays; signed webhooks; an MCP server for Claude and ChatGPT | Developer | D4, D10, M7, D11 |
+| 30 days free, everything included, no card until you subscribe, one trial per email | FAQ | O3 |
+| Hosted in the EU, in Romania; CSV export, every download recorded | FAQ | O2, D6 |
+| The AI provably never sees bank details; no connected app hands them over | FAQ | AI4 |
+| An automation can email, tag, move a partner along or raise something; it cannot touch money | FAQ | M3 |
+| A file for PayPal, Wise or the bank, or PayPal from own balance; each needs a person's press, once | FAQ | P2, P3 |
+| Paid history labelled as the old platform's, never payable; owed amounts as an opening balance pending approval | FAQ | G5 |
+| Early product; beyond Stripe, Shopify, WooCommerce and Zapier, integrations have not met the real provider and say so; Paddle is not built | FAQ | L1, L8, L2 |
 | Support address and the legal sender | Footer | O1 |
 | No cookies on this site | Footer | no fact needed: a property of this site, not the product (§9, analytics) |
 

@@ -1,0 +1,45 @@
+---
+/** The questions people ask before they start (prompt §6, FAQ), answered from the fact sheet. */
+import Container from "@/components/site/Container.astro";
+import Section from "@/components/site/Section.astro";
+import SectionHeading from "@/components/site/SectionHeading.astro";
+import Faq from "@/components/ui/Faq.astro";
+
+const QUESTIONS = [
+  {
+    q: "What does it cost?",
+    a: "30 days free from signup, everything included, no card until you subscribe. One trial per email address.",
+  },
+  {
+    q: "Where does my data live, and can I take it out?",
+    a: "Refficks hosts it in the EU, in Romania. The whole account comes out as CSV files in one archive, any time, and every download is recorded.",
+  },
+  {
+    q: "Does the AI see bank details?",
+    a: "No, provably. A test asserts that payout details are absent from what the model is given, and no connected app can hand them over.",
+  },
+  {
+    q: "Can an automation pay someone?",
+    a: "No. An automation can send an email, add a tag, move a partner along the lifecycle or raise something for you to decide. It cannot touch money.",
+  },
+  {
+    q: "Can Refficks pay my partners?",
+    a: "You pay from a file Refficks builds for PayPal, Wise or your bank, or send PayPal payouts from your own balance. Each needs a person's press, once.",
+  },
+  {
+    q: "What happens to my history from another platform?",
+    a: "Paid history comes across labelled as the old platform's figure and never becomes payable here. What is still owed can become an opening balance, pending until you approve it.",
+  },
+  {
+    q: "What isn't built yet?",
+    a: "Refficks is early. Beyond Stripe, Shopify, WooCommerce and Zapier, each integration was built from the provider's documentation and has not yet met the real provider, and its page says so. Paddle is not built.",
+  },
+];
+---
+
+<Section tone="canvas" labelledBy="faq-heading">
+  <Container narrow>
+    <SectionHeading id="faq-heading" align="center" title="Questions people ask before they start" />
+    <Faq items={QUESTIONS} class="mt-10" />
+  </Container>
+</Section>

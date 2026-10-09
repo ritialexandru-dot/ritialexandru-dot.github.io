@@ -1,0 +1,80 @@
+---
+/**
+ * One capability, the way the category's sites present theirs: a label, a
+ * short heading, one sentence, three or four checks, a link, and the real
+ * screen beside it on a tinted panel. Alternate `reversed` down a page.
+ * A `second` screen stacks under the first, for two cards from one page.
+ */
+import Button from "@/components/ui/Button.astro";
+import Checklist from "@/components/ui/Checklist.astro";
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+import Frame from "@/components/ui/Frame.astro";
+import Icon from "@/components/ui/Icon.astro";
+import PhoneFrame from "@/components/ui/PhoneFrame.astro";
+import type { Shot } from "@/lib/shots";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  body: string;
+  checks: string[];
+  link?: { href: string; label: string };
+  shot: Shot;
+  second?: Shot;
+  phone?: boolean;
+  reversed?: boolean;
+  id?: string;
+  class?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  body,
+  checks,
+  link,
+  shot,
+  second,
+  phone = false,
+  reversed = false,
+  id,
+  class: className = "",
+} = Astro.props;
+---
+
+<div id={id} class:list={["grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12", className]}>
+  <div class:list={["lg:col-span-5", reversed && "lg:order-2"]}>
+    <Eyebrow>{eyebrow}</Eyebrow>
+    <h3 class="mt-4 text-heading-xl font-bold text-ink sm:text-display-md">{title}</h3>
+    <p class="mt-4 text-body-lg text-ink-secondary">{body}</p>
+    <Checklist items={checks} class="mt-6" />
+    {
+      link && (
+        <div class="mt-6">
+          <Button href={link.href} variant="secondary" size="md">
+            {link.label}
+            <Icon name="arrow-right" class="size-4" />
+          </Button>
+        </div>
+      )
+    }
+  </div>
+  <div
+    class:list={[
+      "rounded-xl bg-brand-tint p-4 sm:p-6 lg:col-span-7 lg:p-8",
+      reversed && "lg:order-1",
+      phone && "flex items-center justify-center",
+    ]}
+  >
+    {
+      phone ? (
+        <PhoneFrame {...shot} />
+      ) : (
+        <div class="flex flex-col gap-4">
+          <Frame {...shot} />
+          {second && <Frame {...second} />}
+        </div>
+      )
+    }
+  </div>
+</div>
