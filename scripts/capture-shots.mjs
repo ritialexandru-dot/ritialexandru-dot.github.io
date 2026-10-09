@@ -245,42 +245,45 @@ async function homeScreens() {
     console.log(`attribution from conversion ${chosen}`);
   }
 
-  // Commissions: rows that show the arithmetic and a reversal, where the list has them.
+  // Commissions: the Approved list, header plus the first four rows whose
+  // "How it was worked out" is an arithmetic sentence ("20% of USD 97.50"),
+  // each with its Why? link; cut on whole rows, never mid-row.
   await open(card, "/dashboard/commissions");
-  let ledgerDone = false;
-  for (let pageNo = 1; pageNo <= 8 && !ledgerDone; pageNo += 1) {
-    const rows = await card.locator("main table tbody tr").all();
-    let first = -1;
-    for (let i = 0; i < rows.length; i += 1) {
-      const text = await rows[i].innerText().catch(() => "");
-      if (/% of/.test(text)) {
-        first = i;
-        break;
-      }
-    }
-    if (first >= 0) {
-      const last = Math.min(first + 5, rows.length - 1);
-      await rows[first].scrollIntoViewIfNeeded();
-      await card.waitForTimeout(300);
-      const a = await rows[first].boundingBox();
-      const b = await rows[last].boundingBox();
-      const header = await card.locator("main table thead").first().boundingBox();
-      const start = header && a.y - header.y < 480 ? header : a;
-      await clip(card, "ledger", {
-        x: a.x - 8,
-        y: start.y - 8,
-        width: a.width + 16,
-        height: b.y + b.height - start.y + 16,
-      });
-      ledgerDone = true;
+  await card.locator("main select").first().selectOption({ label: "Approved" });
+  await card.waitForTimeout(1200);
+  const ledgerRows = card.locator("main table tbody tr");
+  let firstArithmetic = -1;
+  for (let i = 0, n = await ledgerRows.count(); i < n; i += 1) {
+    if (/% of/.test(await ledgerRows.nth(i).innerText().catch(() => ""))) {
+      firstArithmetic = i;
       break;
     }
-    const next = card.getByRole("button", { name: "Next", exact: true });
-    if ((await next.count()) === 0 || (await next.isDisabled())) break;
-    await next.click();
-    await card.waitForTimeout(900);
   }
-  if (!ledgerDone) console.warn("no commission row showing its arithmetic was found");
+  if (firstArithmetic >= 0) {
+    await nearTop(card, card.locator("main table thead").first());
+    const header = await card.locator("main table thead").first().boundingBox();
+    const first = await ledgerRows.nth(firstArithmetic).boundingBox();
+    const last = await ledgerRows.nth(Math.min(firstArithmetic + 3, (await ledgerRows.count()) - 1)).boundingBox();
+    // The header is drawn directly over the first row cut to, by taking the
+    // header's own height off the top of that row's position.
+    await card.evaluate(({ from, to }) => {
+      // Rows above the first wanted one are hidden so the header sits on it.
+      const rows = document.querySelectorAll("main table tbody tr");
+      for (let i = from; i < to; i += 1) rows[i].style.display = "none";
+    }, { from: 0, to: firstArithmetic });
+    await card.waitForTimeout(300);
+    const header2 = await card.locator("main table thead").first().boundingBox();
+    const last2 = await ledgerRows.nth(Math.min(firstArithmetic + 3, (await ledgerRows.count()) - 1)).boundingBox();
+    await clip(card, "ledger", {
+      x: header2.x - 8,
+      y: header2.y - 8,
+      width: header2.width + 16,
+      height: last2.y + last2.height - header2.y + 16,
+    });
+    void header; void first; void last;
+  } else {
+    console.warn("no commission row showing its arithmetic was found");
+  }
 
   // Payouts: the Ready to pay card, who is left out and why.
   await open(card, "/dashboard/payouts");

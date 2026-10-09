@@ -83,9 +83,8 @@ screen beside each.
 | Hosted in the EU, in Romania; CSV export, every download recorded | FAQ | O2, D6 |
 | The AI provably never sees bank details; no connected app hands them over | FAQ | AI4 |
 | An automation can email, tag, move a partner along or raise something; it cannot touch money | FAQ | M3 |
-| A file for PayPal, Wise or the bank, or PayPal from own balance; each needs a person's press, once | FAQ | P2, P3 |
+| A file for PayPal, Wise or the bank, or PayPal from own balance; each needs a click, once | FAQ | P2, P3 |
 | Paid history labelled as the old platform's, never payable; owed amounts as an opening balance pending approval | FAQ | G5 |
-| Early product; beyond Stripe, Shopify, WooCommerce and Zapier, integrations have not met the real provider and say so; Paddle is not built | FAQ | L1, L8, L2 |
 | Support address and the legal sender | Footer | O1 |
 | No cookies on this site | Footer | no fact needed: a property of this site, not the product (§9, analytics) |
 
@@ -96,9 +95,10 @@ screen beside each.
 - No testimonial, logo, count or certification (§5; L5, L7).
 - The line under the Works with row ("Most were built from each provider's
   documentation and are being tested on live accounts") came out on the
-  owner's call of 9 October, on every page that has the row. The names say
-  "works with" and nothing more (L2), and the FAQ's "What isn't built yet?"
-  still says which integrations have met the real service (L8).
+  owner's call of 9 October, on every page that has the row, and so did the
+  FAQ question "What isn't built yet?", on the home page and on /faq/. The
+  names say "works with" and nothing more (L2), and no page says an
+  integration is tested, certified or listed (L8, L9).
 
 ## Page: `/product/intelligence/`
 
@@ -257,7 +257,7 @@ Copy: 9 October 2026, for the technical evaluator (prompt §6).
 
 ### Screens shown
 
-None. The two code samples are written out: the tracker as the product's Integrations screen prints it, with the production host, and a `POST /api/v1/events` with the `Idempotency-Key` header, as the same screen's "Server events" card prints it.
+None. The two code samples are written out: the tracker as the product's Integrations screen prints it, with the production host, and a `POST /api/v1/events` with the `Idempotency-Key` header, as the same screen's "Server events" card prints it. The stack (D5) is not on the page: it came out on the owner's call of 9 October.
 
 ### Claims
 
@@ -279,7 +279,6 @@ None. The two code samples are written out: the tracker as the product's Integra
 | Claude and ChatGPT over MCP read what the role may read and save drafts; no tool approves, reverses, pays, reattributes, suspends or sends | Build on | D11, AI3 |
 | The whole account as CSV in one archive, every download recorded | Build on | D6 |
 | OpenAPI 3.1, 454 paths, the whole Server API; the live API at go.refficks.com; no public address for the document yet | OpenAPI | D4 |
-| Laravel 13, PHP 8.4, MySQL 8.4, Redis 7, Next.js 16, React 19, Caddy; hosted by Refficks, nothing to install | The stack | D5, D1 |
 
 ## Page: `/migrate/`
 
@@ -311,7 +310,7 @@ Copy: 9 October 2026, from G1 to G7. The honest section (G5) is a band of its ow
 
 ## Page: `/faq/`
 
-Copy: 9 October 2026. The pricing question waits for billing (O3 to O5; §6 Pricing).
+Copy: 9 October 2026. The pricing question waits for billing (O3 to O5; §6 Pricing); "What isn't built yet?" came out on the owner's call of 9 October.
 
 ### Screens shown
 
@@ -326,7 +325,7 @@ None.
 | Deleted 90 days after closing, connections revoked; visits and clicks two years except decided touches, correspondence two years, legal records seven; erasure on request | Your data | D7 |
 | No raw IP; salted hashes; buyer IP replaced with its hash; GPC writes nothing | Your data | T4 |
 | Isolation is a tested property | Your data | D2 |
-| A file for PayPal, Wise or the bank, or PayPal from own balance; a person's press, once; no timer, automation or AI | Money | P2, P3 |
+| A file for PayPal, Wise or the bank, or PayPal from own balance; a click, once; no timer, automation or AI | Money | P2, P3 |
 | An automation's six things; never money | Money | M3 |
 | A reversal beside the original; history never edited | Money | C3 |
 | Payout details encrypted, never shown; leave only in the file or to PayPal, recorded | Money | P4 |
@@ -339,7 +338,6 @@ None.
 | Five programme types on by default; reseller is a B2B partner on a revenue share | What it is | L3 |
 | No machine learning; deterministic rules | What it is | I8 |
 | Hosted only, at app.refficks.com | What it is | D1, L4 (said as what is offered, never as a self-hosting mention) |
-| Early; only Stripe, Shopify, WooCommerce, Zapier, Claude and ChatGPT have met the real service, partly; the rest from documentation and stand-ins; Paddle not built; Slack, YouTube checks, AppsFlyer and billing switched off | What it is | L1, L8, L2, L10 |
 | In no app directory; installed by hand | What it is | L9, T6 |
 
 ## Page: `/stores/`

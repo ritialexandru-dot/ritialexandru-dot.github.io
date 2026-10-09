@@ -2,8 +2,9 @@
 /**
  * For the technical evaluator (prompt §6): the tracker and the event as
  * code, idempotency, the append-only chain, isolation as a tested property,
- * what the API offers, and the stack. Drawn on T2, T3, T5, D2 to D11, A2,
- * C2, M7 and D6; claims.md lists each.
+ * what the API offers, and OpenAPI. Drawn on T2, T3, T5, D2 to D11, A2,
+ * C2, M7 and D6; claims.md lists each. The stack (D5) came out on the
+ * owner's call of 9 October.
  */
 import CardGrid from "@/components/site/CardGrid.astro";
 import Container from "@/components/site/Container.astro";
@@ -187,29 +188,19 @@ const SECURITY = [
     </Container>
   </Section>
 
-  <Section tone="surface" labelledBy="stack-heading" class="border-y border-border">
-    <Container>
-      <div class="grid gap-10 lg:grid-cols-12">
-        <div class="lg:col-span-6">
-          <SectionHeading
-            id="stack-heading"
-            eyebrow="OpenAPI"
-            title="454 paths, specified"
-            lead="An OpenAPI 3.1 specification ships with the product and covers the whole Server API. The live API answers at go.refficks.com."
-          />
-          <p class="mt-4 text-body text-ink-secondary">
-            The specification has no public address yet. It ships with the product, and this page carries
-            the reference until it does.
-          </p>
-        </div>
-        <div class="lg:col-span-6">
-          <SectionHeading
-            eyebrow="The stack"
-            title="Boring, inspectable technology"
-            lead="Laravel 13 on PHP 8.4, MySQL 8.4 and Redis 7. Next.js 16 and React 19 for the dashboard and the portal. Caddy for HTTPS. Hosted by Refficks: nothing to install beyond the script tag or a store app."
-          />
-        </div>
-      </div>
+  <Section tone="surface" labelledBy="openapi-heading" class="border-y border-border">
+    <Container narrow class="text-center">
+      <SectionHeading
+        id="openapi-heading"
+        align="center"
+        eyebrow="OpenAPI"
+        title="454 paths, specified"
+        lead="An OpenAPI 3.1 specification ships with the product and covers the whole Server API. The live API answers at go.refficks.com."
+      />
+      <p class="mx-auto mt-4 max-w-2xl text-body text-ink-secondary">
+        The specification has no public address yet. It ships with the product, and this page carries
+        the reference until it does.
+      </p>
     </Container>
   </Section>
 

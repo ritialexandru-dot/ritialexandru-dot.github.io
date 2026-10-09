@@ -68,8 +68,8 @@ export const SHOTS = {
   ledger: shot(
     "ledger",
     826,
-    438,
-    "The commission ledger filtered to reversals: a row reading Reversed because the sale was refunded, minus $99.83, beside the original entry 20% of USD 499.17, $99.83, each with a Why? link.",
+    353,
+    "The commission ledger filtered to reversals, four whole rows: Reversed because the sale was refunded, minus $99.83, and the original entry it undoes, 20% of USD 499.17, $99.83, each with a Why? link.",
   ),
   payouts: shot(
     "payouts",
