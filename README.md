@@ -93,5 +93,25 @@ app.refficks.com (§1's time rule).
 `.github/workflows/pages.yml` builds and deploys on every push to `main`.
 `public/CNAME` names `refficks.com`; point the apex's A records at GitHub
 Pages and enable Pages for the repository with the GitHub Actions source.
-Set the repository variable `PLAUSIBLE_DOMAIN` to switch on cookieless
-analytics; unset, no analytics script is sent.
+
+### Analytics
+
+Cookieless, and off until a repository variable switches it on (Settings ›
+Secrets and variables › Actions › Variables). Set one of the two:
+
+- **`CF_BEACON_TOKEN`: Cloudflare Web Analytics**, the owner's choice of 19
+  October. In Cloudflare, Web Analytics › Add a site, enter `refficks.com`
+  (the site is not proxied through Cloudflare), and copy the token from the
+  snippet it shows: the value of `"token"` in `data-cf-beacon`, letters and
+  digits only. The token is public, it ships in every page, so it is a
+  variable and not a secret. A value with anything else in it stops the
+  build. Cloudflare counts visits (an arrival from another site or a typed
+  address) and page views, not people, keeps no query strings, and has no
+  campaign breakdown.
+- **`PLAUSIBLE_DOMAIN`: Plausible**, the fallback the launch plan names if
+  Cloudflare's numbers prove too thin (about US$9 a month). It counts unique
+  visitors with a daily identifier and breaks visits down by campaign.
+
+With neither set, no analytics script is sent. Either way the footer's "No
+cookies on this site" stays true. A change to the variable reaches the site
+at the next deploy: push to `main`, or run the workflow by hand.

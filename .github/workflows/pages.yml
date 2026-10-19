@@ -33,6 +33,8 @@ jobs:
       - run: npm run verify
       - run: npm run build
         env:
+          # Cookieless analytics, one of the two (README, Publishing).
+          PUBLIC_CF_BEACON_TOKEN: ${{ vars.CF_BEACON_TOKEN }}
           PUBLIC_PLAUSIBLE_DOMAIN: ${{ vars.PLAUSIBLE_DOMAIN }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

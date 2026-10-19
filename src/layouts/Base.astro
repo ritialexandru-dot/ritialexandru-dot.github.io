@@ -3,7 +3,14 @@
  * Every page's frame: the head (one title and description per page, the
  * link-preview image built from the page's lead screenshot, the canonical
  * address), the skip link, the header, the footer, and cookieless analytics
- * only when the deployment names a Plausible site (prompt §9).
+ * only when the deployment names one (prompt §9).
+ *
+ * Two switches, and a deployment sets one. Cloudflare Web Analytics is the
+ * owner's choice of 19 October: free, no cookies, no query strings kept. It
+ * counts visits (an arrival from another site or a typed address) and page
+ * views, not people, and has no campaign breakdown. Plausible is the fallback
+ * the launch plan names if those numbers prove too thin. Unset, no analytics
+ * script is sent at all.
  */
 import "@/styles/global.css";
 import Footer from "@/components/site/Footer.astro";
@@ -36,6 +43,20 @@ const {
 const canonical = new URL(path, SITE.url).href;
 const image = new URL(ogImage, SITE.url).href;
 const plausible = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN as string | undefined;
+
+/*
+ * The site token from Cloudflare's snippet for refficks.com. It is public:
+ * it ships in every page's source, which is why it is a repository variable
+ * and not a secret. Letters and digits only, so a value pasted with the rest
+ * of the snippet around it stops the build here instead of reaching a page.
+ */
+const cfBeacon = (import.meta.env.PUBLIC_CF_BEACON_TOKEN as string | undefined)?.trim() || undefined;
+
+if (cfBeacon !== undefined && !/^[A-Za-z0-9]{16,64}$/.test(cfBeacon)) {
+  throw new Error(
+    "PUBLIC_CF_BEACON_TOKEN is not a Cloudflare Web Analytics site token: paste only the token from the snippet, letters and digits.",
+  );
+}
 ---
 
 <!doctype html>
@@ -90,5 +111,15 @@ const plausible = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN as string | undefined;
       <slot />
     </main>
     <Footer />
+    {
+      cfBeacon && (
+        <script
+          is:inline
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: cfBeacon })}
+        />
+      )
+    }
   </body>
 </html>
