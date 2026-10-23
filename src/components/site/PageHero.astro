@@ -1,0 +1,103 @@
+---
+/**
+ * The first viewport of every page but home, in the home page's shape: an
+ * eyebrow, a short headline, one sentence, the one call to action with its
+ * reassurances, and the page's lead screen on the forest panel under the
+ * words (prompt §7, the 5-second rule). The screen is one or two browser
+ * frames, a row of phones, or whatever the page puts in the `visual` slot.
+ */
+import Container from "@/components/site/Container.astro";
+import Section from "@/components/site/Section.astro";
+import StartFree from "@/components/site/StartFree.astro";
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+import Frame from "@/components/ui/Frame.astro";
+import Icon from "@/components/ui/Icon.astro";
+import PhoneFrame from "@/components/ui/PhoneFrame.astro";
+import type { Shot } from "@/lib/shots";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  secondary?: { href: string; label: string };
+  shot?: Shot;
+  second?: Shot;
+  /** A tighter crop of `shot` for phones, as the home page's hero has. */
+  narrow?: Shot;
+  /** Show `shot` at the full column, as the home page does, rather than the reading width. */
+  wide?: boolean;
+  phones?: Shot[];
+  caption?: string;
+  /** The page's own reassurances, where the default three do not fit. */
+  reassurances?: string[];
+}
+
+const {
+  eyebrow,
+  title,
+  lead,
+  secondary,
+  shot,
+  second,
+  narrow,
+  wide = false,
+  phones,
+  caption,
+  reassurances = ["30 days free", "Everything included", "Your data, out any time"],
+} = Astro.props;
+
+const hasVisual = Boolean(shot || phones || Astro.slots.has("visual"));
+---
+
+<Section tone="canvas" padding="none" class="pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24">
+  <Container>
+    <div class="mx-auto flex max-w-3xl flex-col items-center text-center">
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h1 class="mt-5 text-display-md font-bold text-ink sm:text-display-lg">{title}</h1>
+      <p class="mt-5 max-w-2xl text-lead text-ink-secondary">{lead}</p>
+      <StartFree class="mt-8" align="center" secondary={secondary} />
+      <ul class="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-meta text-ink-secondary">
+        {
+          reassurances.map((item) => (
+            <li class="inline-flex items-center gap-1.5">
+              <Icon name="check" class="size-4 text-icon-brand" strokeWidth={2.25} />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    {
+      hasVisual && (
+        <figure class="mt-12 lg:mt-16">
+          <div class="relative overflow-hidden rounded-xl bg-inverse p-3 sm:p-6 lg:p-10">
+            <div
+              aria-hidden="true"
+              class="absolute inset-0 opacity-40 bg-[url('/patterns/tiles-sparse.svg')] bg-[length:220px_220px]"
+            />
+            <div class="relative">
+              {phones ? (
+                <div class="flex flex-wrap items-start justify-center gap-6 sm:gap-10">
+                  {phones.map((phone) => (
+                    <PhoneFrame {...phone} class="mx-0" />
+                  ))}
+                </div>
+              ) : shot ? (
+                <div class:list={["mx-auto flex flex-col gap-4", !wide && "max-w-4xl"]}>
+                  <Frame {...shot} narrow={narrow} priority />
+                  {second && <Frame {...second} />}
+                </div>
+              ) : (
+                <slot name="visual" />
+              )}
+            </div>
+          </div>
+          {caption && (
+            <figcaption class="mt-4 text-center text-caption text-ink-secondary sm:text-meta">{caption}</figcaption>
+          )}
+        </figure>
+      )
+    }
+  </Container>
+</Section>

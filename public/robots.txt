@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://refficks.com/sitemap.xml
+Sitemap: https://refficks.com/blog/sitemap.xml

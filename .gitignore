@@ -1,0 +1,23 @@
+# dependencies
+/node_modules
+
+# astro
+/dist/
+/.astro/
+
+# misc
+.DS_Store
+*.pem
+*.tsbuildinfo
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# env files
+.env*
+!.env.example
+
+# the screenshot capture's working files live outside the repository
+/.shots/

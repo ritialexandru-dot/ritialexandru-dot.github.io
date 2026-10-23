@@ -1,0 +1,33 @@
+---
+/**
+ * A section's heading and standfirst, the two lines a reader takes from a
+ * section at a glance (the 5-second rule, prompt §7).
+ */
+interface Props {
+  id?: string;
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  tone?: "default" | "inverse";
+  align?: "start" | "center";
+  class?: string;
+}
+
+const {
+  id,
+  eyebrow,
+  title,
+  lead,
+  tone = "default",
+  align = "start",
+  class: className = "",
+} = Astro.props;
+
+const secondary = tone === "inverse" ? "text-ink-inverse-secondary" : "text-ink-secondary";
+---
+
+<div class:list={["max-w-3xl", align === "center" && "mx-auto text-center", className]}>
+  {eyebrow && <p class:list={["mb-3 text-label font-semibold uppercase", secondary]}>{eyebrow}</p>}
+  <h2 id={id} class="text-heading-xl font-bold sm:text-display-md">{title}</h2>
+  {lead && <p class:list={["mt-4 text-body-lg", secondary]}>{lead}</p>}
+</div>

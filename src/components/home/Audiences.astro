@@ -1,0 +1,70 @@
+---
+/** The three audiences (prompt §2, Home 5), each a card to its own page. */
+import Container from "@/components/site/Container.astro";
+import Section from "@/components/site/Section.astro";
+import SectionHeading from "@/components/site/SectionHeading.astro";
+import Icon from "@/components/ui/Icon.astro";
+import NounIcon from "@/components/ui/NounIcon.astro";
+
+const AUDIENCES = [
+  {
+    href: "/stores/",
+    icon: "coupon",
+    title: "Online stores",
+    platforms: "Shopify, WooCommerce, BigCommerce",
+    body: "Partner codes become real discounts in your store. A code alone credits the right partner. A refund takes its commission back by itself.",
+    label: "For stores",
+  },
+  {
+    href: "/saas/",
+    icon: "commission",
+    title: "SaaS and subscriptions",
+    platforms: "Stripe, Chargebee, Recurly",
+    body: "Recurring commission for as long as you say. A refund or a cancellation reverses it beside the original. Deals link back to the partner who brought them.",
+    label: "For SaaS",
+  },
+  {
+    href: "/creators/",
+    icon: "creator",
+    title: "Creators and course sellers",
+    platforms: "Kajabi, Thinkific, Teachable, ThriveCart, SamCart, Gumroad",
+    body: "A guide per platform: paste an address and a snippet, no code to write. A partner's own code credits them. Partners see exactly what they earned.",
+    label: "For creators",
+  },
+] as const;
+---
+
+<Section tone="canvas" labelledBy="audiences-heading">
+  <Container>
+    <SectionHeading
+      id="audiences-heading"
+      align="center"
+      title="Built for how you sell"
+      lead="Three kinds of business, three starting points. The same programme underneath."
+    />
+
+    <ul class="mt-12 grid gap-5 md:grid-cols-3">
+      {
+        AUDIENCES.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="group flex h-full flex-col rounded-xl border border-border bg-surface p-6 transition-colors hover:border-border-strong"
+            >
+              <span class="inline-flex size-12 items-center justify-center rounded-md rounded-tl-xs bg-brand-tint text-icon-brand">
+                <NounIcon name={item.icon} size={26} />
+              </span>
+              <h3 class="mt-5 text-heading-lg font-semibold text-ink">{item.title}</h3>
+              <p class="mt-1 text-meta text-ink-secondary">{item.platforms}</p>
+              <p class="mt-4 text-body-sm text-ink-secondary">{item.body}</p>
+              <span class="mt-auto inline-flex items-center gap-1.5 pt-6 text-meta font-semibold text-link">
+                {item.label}
+                <Icon name="arrow-right" class="size-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+</Section>

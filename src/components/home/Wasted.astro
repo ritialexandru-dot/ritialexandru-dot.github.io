@@ -1,0 +1,62 @@
+---
+/** The four kinds of wasted partner, one line each, and the call to action after the strongest section. */
+import Container from "@/components/site/Container.astro";
+import Section from "@/components/site/Section.astro";
+import SectionHeading from "@/components/site/SectionHeading.astro";
+import StartFree from "@/components/site/StartFree.astro";
+import NounIcon from "@/components/ui/NounIcon.astro";
+
+const KINDS = [
+  {
+    icon: "partner",
+    title: "The one who never started",
+    body: "Approved weeks ago, link never placed. The nudge is the one thing Autopilot may send on its own.",
+  },
+  {
+    icon: "conversion",
+    title: "The one whose traffic never buys",
+    body: "Clicks arrive, sales don't. You see it beside the median days others took to a first sale.",
+  },
+  {
+    icon: "monitor",
+    title: "The one who went quiet",
+    body: "A good partner stops and the total barely moves. You see when, and what they used to send.",
+  },
+  {
+    icon: "commission",
+    title: "The one you're underpaying",
+    body: "Growing fast on an old rate. You see the raise it suggests and what it costs at the current run rate.",
+  },
+] as const;
+---
+
+<Section tone="canvas" labelledBy="wasted-heading">
+  <Container>
+    <SectionHeading
+      id="wasted-heading"
+      align="center"
+      title="Find the partners you're wasting"
+      lead="A wasted partner could be earning for you and isn't, while the dashboard counts the ones who are. Refficks looks for four kinds every night and shows its reasoning on each."
+    />
+
+    <ul class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        KINDS.map((kind) => (
+          <li class="rounded-xl border border-border bg-surface p-6">
+            <span class="inline-flex size-11 items-center justify-center rounded-md rounded-tl-xs bg-brand-tint text-icon-brand">
+              <NounIcon name={kind.icon} size={24} />
+            </span>
+            <h3 class="mt-4 text-heading-md font-semibold text-ink">{kind.title}</h3>
+            <p class="mt-2 text-body-sm text-ink-secondary">{kind.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="mx-auto mt-10 max-w-2xl text-center text-body text-ink-secondary">
+      Nothing on the list changes what anybody earns until you confirm it. No automation, timer or
+      AI can act on it for you.
+    </p>
+    <StartFree class="mt-6" align="center" />
+  </Container>
+</Section>

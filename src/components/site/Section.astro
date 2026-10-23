@@ -1,0 +1,38 @@
+---
+/**
+ * A band of the page. Dark bands are forest, and everything inside them reads
+ * from the inverse tokens; `on-inverse` moves the focus ring to spring there.
+ * The vertical rhythm is 64 / 80 / 96px, as the kit's spacing steps allow.
+ */
+interface Props {
+  id?: string;
+  tone?: "canvas" | "surface" | "inverse";
+  padding?: "default" | "tight" | "none";
+  labelledBy?: string;
+  class?: string;
+}
+
+const {
+  id,
+  tone = "canvas",
+  padding = "default",
+  labelledBy,
+  class: className = "",
+} = Astro.props;
+
+const TONES = {
+  canvas: "bg-canvas text-ink",
+  surface: "bg-surface text-ink",
+  inverse: "bg-inverse text-ink-inverse on-inverse",
+};
+
+const PADDINGS = {
+  default: "py-16 sm:py-20 lg:py-24",
+  tight: "py-12 sm:py-14 lg:py-16",
+  none: "",
+};
+---
+
+<section id={id} aria-labelledby={labelledBy} class:list={[TONES[tone], PADDINGS[padding], className]}>
+  <slot />
+</section>

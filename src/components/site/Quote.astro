@@ -1,0 +1,24 @@
+---
+/**
+ * A line of the product's own copy, quoted (prompt §3): it was written to be
+ * read by paying customers, and it says what a screen does better than a
+ * paraphrase. The source names the screen it is on.
+ */
+interface Props {
+  text: string;
+  source: string;
+  tone?: "default" | "inverse";
+  class?: string;
+}
+
+const { text, source, tone = "default", class: className = "" } = Astro.props;
+
+const rule = tone === "inverse" ? "border-icon-brand-inverse" : "border-border-brand";
+const words = tone === "inverse" ? "text-ink-inverse" : "text-ink";
+const from = tone === "inverse" ? "text-ink-inverse-secondary" : "text-ink-secondary";
+---
+
+<figure class:list={["border-l-4 pl-5", rule, className]}>
+  <blockquote class:list={["text-heading-md font-medium", words]}>&ldquo;{text}&rdquo;</blockquote>
+  <figcaption class:list={["mt-2 text-meta", from]}>{source}</figcaption>
+</figure>

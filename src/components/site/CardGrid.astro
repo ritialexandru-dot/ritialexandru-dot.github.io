@@ -1,0 +1,57 @@
+---
+/**
+ * A row of short cards, each an icon, a heading and a sentence: the shape
+ * the home page uses for the four kinds of wasted partner and the four
+ * refusals. On forest the cards read from the inverse tokens.
+ */
+import Icon from "@/components/ui/Icon.astro";
+import NounIcon from "@/components/ui/NounIcon.astro";
+
+type Item = {
+  title: string;
+  body: string;
+  /** A kit icon (`icon`) or one of the product's noun marks (`noun`). */
+  icon?: string;
+  noun?: string;
+};
+
+interface Props {
+  items: readonly Item[];
+  columns?: 2 | 3 | 4;
+  tone?: "default" | "inverse";
+  class?: string;
+}
+
+const { items, columns = 4, tone = "default", class: className = "" } = Astro.props;
+
+const COLUMNS = {
+  2: "sm:grid-cols-2",
+  3: "sm:grid-cols-2 lg:grid-cols-3",
+  4: "sm:grid-cols-2 lg:grid-cols-4",
+};
+
+const card =
+  tone === "inverse"
+    ? "border-border-inverse bg-inverse-raised"
+    : "border-border bg-surface";
+const badge =
+  tone === "inverse" ? "bg-inverse text-icon-brand-inverse" : "bg-brand-tint text-icon-brand";
+const heading = tone === "inverse" ? "text-ink-inverse" : "text-ink";
+const body = tone === "inverse" ? "text-ink-inverse-secondary" : "text-ink-secondary";
+---
+
+<ul class:list={["grid gap-5", COLUMNS[columns], className]}>
+  {
+    items.map((item) => (
+      <li class:list={["rounded-xl border p-6", card]}>
+        {(item.icon || item.noun) && (
+          <span class:list={["inline-flex size-11 items-center justify-center rounded-md rounded-tl-xs", badge]}>
+            {item.noun ? <NounIcon name={item.noun as any} size={24} /> : <Icon name={item.icon as any} class="size-6" />}
+          </span>
+        )}
+        <h3 class:list={["text-heading-md font-semibold", heading, (item.icon || item.noun) && "mt-4"]}>{item.title}</h3>
+        <p class:list={["mt-2 text-body-sm", body]}>{item.body}</p>
+      </li>
+    ))
+  }
+</ul>

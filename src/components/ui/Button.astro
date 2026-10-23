@@ -1,0 +1,42 @@
+---
+/**
+ * The kit's button, with marketing room: radius-md, 40px or 48px tall, a
+ * colour change on hover and nothing that travels. Primary is the logo green
+ * as a field under forest ink, the one place the brand colour is a fill.
+ * Secondary is a bordered surface. Inverse is secondary for the dark bands,
+ * where a white border on forest reads as a control and a white fill would
+ * shout. Every button on this site is a link: nothing here submits.
+ */
+interface Props {
+  href: string;
+  variant?: "primary" | "secondary" | "inverse";
+  size?: "md" | "lg";
+  class?: string;
+}
+
+const { href, variant = "primary", size = "md", class: className = "" } = Astro.props;
+
+const VARIANTS = {
+  primary: "bg-action text-action-ink hover:bg-action-hover border border-transparent",
+  secondary:
+    "bg-action-secondary text-ink border border-border-control hover:bg-action-secondary-hover",
+  inverse: "bg-transparent text-ink-inverse border border-border-inverse hover:bg-inverse-raised",
+};
+
+const SIZES = {
+  md: "h-10 px-4 text-meta",
+  lg: "h-12 px-5 text-body-sm",
+};
+---
+
+<a
+  href={href}
+  class:list={[
+    "inline-flex items-center justify-center gap-2 rounded-md font-semibold whitespace-nowrap transition-colors",
+    VARIANTS[variant],
+    SIZES[size],
+    className,
+  ]}
+>
+  <slot />
+</a>

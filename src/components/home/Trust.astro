@@ -1,0 +1,56 @@
+---
+/** Trust as differentiation (prompt §7): four things Refficks refuses to do, on forest. */
+import Container from "@/components/site/Container.astro";
+import Section from "@/components/site/Section.astro";
+import SectionHeading from "@/components/site/SectionHeading.astro";
+import Icon from "@/components/ui/Icon.astro";
+
+const REFUSALS = [
+  {
+    icon: "undo",
+    title: "History is never edited",
+    body: "Commissions, attributions and raw events are never changed after the fact. A correction is a new line beside the old one.",
+  },
+  {
+    icon: "lock",
+    title: "Money moves only when a person presses",
+    body: "A payout, a store credit, a gift certificate: each on a named button, one press per decision. No timer can press it.",
+  },
+  {
+    icon: "send",
+    title: "Automations can't touch money",
+    body: "They can send an email, add a tag, move a partner along or ask you. They can never approve, pay or reverse.",
+  },
+  {
+    icon: "sparkle",
+    title: "The AI can't move money either",
+    body: "It explains and drafts. It has no way to approve, pay or suspend, and it never sees a partner's bank details.",
+  },
+] as const;
+---
+
+<Section tone="inverse" labelledBy="trust-heading">
+  <Container>
+    <SectionHeading
+      id="trust-heading"
+      align="center"
+      tone="inverse"
+      title="Built to be trusted with money"
+      lead="Some things Refficks refuses to do, by design."
+    />
+
+    <ul class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        REFUSALS.map((item) => (
+          <li class="rounded-xl border border-border-inverse bg-inverse-raised p-6">
+            <span class="inline-flex size-11 items-center justify-center rounded-md rounded-tl-xs bg-inverse text-icon-brand-inverse">
+              <Icon name={item.icon} class="size-6" />
+            </span>
+            <h3 class="mt-4 text-heading-md font-semibold text-ink-inverse">{item.title}</h3>
+            <p class="mt-2 text-body-sm text-ink-inverse-secondary">{item.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+</Section>

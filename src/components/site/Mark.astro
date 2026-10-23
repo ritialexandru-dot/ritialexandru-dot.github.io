@@ -1,0 +1,24 @@
+---
+/**
+ * The Refficks symbol: four tiles, a beak, two eyes. The geometry is the
+ * design kit's own outlined path, not a tracing.
+ *
+ * It takes its colour from `currentColor`, and the ground decides which that
+ * should be (logo guideline): Forest on white or the canvas, Spring on Forest.
+ * Never white on Spring, never Spring alone on a light ground under 24px.
+ */
+interface Props {
+  size?: number;
+  class?: string;
+}
+
+const { size = 28, class: className = "" } = Astro.props;
+---
+
+<svg viewBox="28 28 344 344" width={size} height={size} aria-hidden="true" class={className}>
+  <path
+    fill="currentColor"
+    fill-rule="evenodd"
+    d="M33 28L111 28A83 83 0 1 1 28 111L28 33A5 5 0 0 1 33 28ZM91.8 111A19.2 19.2 0 1 0 130.2 111A19.2 19.2 0 1 0 91.8 111ZM372 33L372 111A83 83 0 1 1 289 28L367 28A5 5 0 0 1 372 33ZM269.8 111A19.2 19.2 0 1 0 308.2 111A19.2 19.2 0 1 0 269.8 111ZM189 372L111 372A83 83 0 1 1 194 289L194 367A5 5 0 0 1 189 372ZM206 367L206 289A83 83 0 1 1 289 372L211 372A5 5 0 0 1 206 367ZM203.05 171.42L225.05 197.42A4 4 0 0 1 225.36 202.17L203.36 236.17A4 4 0 0 1 196.64 236.17L174.64 202.17A4 4 0 0 1 174.95 197.42L196.95 171.42A4 4 0 0 1 203.05 171.42Z"
+  ></path>
+</svg>

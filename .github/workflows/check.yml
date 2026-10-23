@@ -1,0 +1,41 @@
+# Builds the site and checks it, on every push and pull request. It publishes
+# nothing: the site is served by the nginx on Refficks's own server, beside the
+# blog, and is copied there by hand (README, Publishing).
+#
+# The token can read the repository and nothing else, checkout keeps no token,
+# and every action is pinned to a commit with its version in a comment, as in
+# the product repository's CI.
+name: Check the site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run verify
+      # Built with a token of the right shape, so the analytics beacon is in
+      # the pages the policy check reads.
+      - run: npm run build
+        env:
+          PUBLIC_CF_BEACON_TOKEN: 0123456789abcdef0123456789abcdef
+      - run: npm run check:policy

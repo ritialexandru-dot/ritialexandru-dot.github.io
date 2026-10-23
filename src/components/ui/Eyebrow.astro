@@ -1,0 +1,29 @@
+---
+/**
+ * A small label above a heading, in the kit's own marketing shape: a pill
+ * with a spring dot, the one place the brand colour appears as a mark rather
+ * than a button. The kit's landing page used the same element.
+ */
+interface Props {
+  tone?: "default" | "inverse";
+  class?: string;
+}
+
+const { tone = "default", class: className = "" } = Astro.props;
+
+const colours =
+  tone === "inverse"
+    ? "border-border-inverse bg-inverse-raised text-ink-inverse-secondary"
+    : "border-border bg-surface text-ink-secondary";
+---
+
+<span
+  class:list={[
+    "inline-flex items-center gap-2 rounded-full border px-3 py-1 text-label font-semibold",
+    colours,
+    className,
+  ]}
+>
+  <span aria-hidden="true" class="size-1.5 rounded-full bg-brand"></span>
+  <slot />
+</span>

@@ -1,0 +1,50 @@
+---
+/**
+ * The home page, in the shape the category's own sites use and the website
+ * prompt asks for (§6): hero, the platforms it works with, who it is for, the
+ * differentiator, the partners it finds, the chain from click to payout, what
+ * it refuses to do, three steps, the data, migration, the developer, the
+ * questions, and the closing band.
+ */
+import Audiences from "@/components/home/Audiences.astro";
+import ChainFeatures from "@/components/home/ChainFeatures.astro";
+import DataSecurity from "@/components/home/DataSecurity.astro";
+import DeveloperTeaser from "@/components/home/DeveloperTeaser.astro";
+import FaqSection from "@/components/home/FaqSection.astro";
+import Hero from "@/components/home/Hero.astro";
+import Intelligence from "@/components/home/Intelligence.astro";
+import MigrationStrip from "@/components/home/MigrationStrip.astro";
+import Steps from "@/components/home/Steps.astro";
+import Trust from "@/components/home/Trust.astro";
+import Wasted from "@/components/home/Wasted.astro";
+import WorksWith from "@/components/site/WorksWith.astro";
+import FinalCta from "@/components/site/FinalCta.astro";
+import Base from "@/layouts/Base.astro";
+---
+
+<Base
+  title="Refficks: affiliate dashboards report. Refficks recommends."
+  description="Tracking, attribution, commissions and payouts for affiliate, referral, creator, ambassador and B2B partner programmes. Every morning it names the partners who need you, shows its evidence, and leaves the decision to you."
+  path="/"
+  ogTitle="Affiliate dashboards report. Refficks recommends."
+  ogDescription="Every morning: the partners who need you, the evidence, and the decision left to you."
+  ogImage="/og/home.png"
+  ogImageAlt="Refficks: the Intelligence screen's Needs you tab"
+>
+  <Hero />
+  <WorksWith />
+  <Audiences />
+  <Intelligence />
+  <Wasted />
+  <ChainFeatures />
+  <Trust />
+  <Steps />
+  <DataSecurity />
+  <MigrationStrip />
+  <DeveloperTeaser />
+  <FaqSection />
+  <FinalCta
+    title="Affiliate dashboards report. Refficks recommends."
+    lead="Every morning: the partners who need you, the evidence, and the decision left to you."
+  />
+</Base>
