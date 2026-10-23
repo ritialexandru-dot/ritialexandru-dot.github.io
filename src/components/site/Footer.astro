@@ -1,7 +1,9 @@
 ---
 /**
- * The footer: the same destinations as the top of the page, plus the guides
- * and the API reference, who to write to, and who the legal sender is (O1).
+ * The footer: the same destinations as the top of the page, plus the blog,
+ * the guides and the API reference, who to write to, and who the legal sender
+ * is (O1). The blog is not this site's own build: the server serves it at
+ * /blog/ from the product repository (docs/marketing/blog).
  *
  * Privacy and terms are not linked yet: the counsel-reviewed texts are not
  * approved, and the prompt's rule is that the pages do not go live until
@@ -17,6 +19,7 @@ const columns = [
     heading: "Learn",
     links: [
       ...PRIMARY_NAV,
+      { href: "/blog/", label: "Blog" },
       { href: APP.guides, label: "Guides" },
       { href: APP.apiReference, label: "API reference" },
     ],

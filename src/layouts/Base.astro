@@ -45,9 +45,9 @@ const image = new URL(ogImage, SITE.url).href;
 const plausible = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN as string | undefined;
 
 /*
- * The site token from Cloudflare's snippet for refficks.com. It is public:
- * it ships in every page's source, which is why it is a repository variable
- * and not a secret. Letters and digits only, so a value pasted with the rest
+ * The site token from Cloudflare's snippet for refficks.com, given to the
+ * build as PUBLIC_CF_BEACON_TOKEN. It is public: it ships in every page's
+ * source, so it is a build setting and not a secret. Letters and digits only, so a value pasted with the rest
  * of the snippet around it stops the build here instead of reaching a page.
  */
 const cfBeacon = (import.meta.env.PUBLIC_CF_BEACON_TOKEN as string | undefined)?.trim() || undefined;

@@ -2,7 +2,7 @@
 
 The marketing site for Refficks, built to `docs/website-prompt.md` in the
 product repository and the Refficks design kit. A static Astro site with
-Tailwind 4, published to GitHub Pages at the apex.
+Tailwind 4, served at the apex by Refficks's own nginx, beside the blog.
 
 ```
 src/pages/          one file per route, plus the sitemap
@@ -13,7 +13,7 @@ src/lib/            the addresses the site links to, the routes, and the screens
 public/shots/       product screenshots, packed as WebP at 1x and 2x
 public/og/          link-preview images
 public/fonts/       Figtree, self-hosted
-scripts/            the screenshot capture, pack and link-preview render, and the three checks CI runs
+scripts/            the screenshot capture, pack and link-preview render, and the checks CI runs
 claims.md           every claim on the site, against the fact sheet
 ```
 
@@ -54,6 +54,7 @@ npm run check:classes       # no palette colours, no px type sizes
 npm run check:claims        # every page has a claims section; every ID exists
 npm run check:voice         # no banned words, no exclamation marks, no forbidden claims
 npm run build               # writes dist/
+npm run check:policy        # dist/ against the server's Content-Security-Policy
 ```
 
 Design tokens come from the kit's `css/refficks-tokens.css` and are declared
@@ -90,28 +91,46 @@ app.refficks.com (§1's time rule).
 
 ## Publishing
 
-`.github/workflows/pages.yml` builds and deploys on every push to `main`.
-`public/CNAME` names `refficks.com`; point the apex's A records at GitHub
-Pages and enable Pages for the repository with the GitHub Actions source.
+The site is served at `refficks.com` by the nginx on Refficks's own server,
+beside the blog at `/blog/` and the help center at `help.refficks.com` (the
+owner's choice of 23 October). Every address the site does not have goes on to
+`app.refficks.com`, as the bare domain always did, so `refficks.com/terms` and
+older links still land.
+
+The product repository builds and serves all three, and says how:
+`docs/operations/publishing-the-sites.md` there, with the nginx config in
+`docs/operations/nginx/refficks-sites.conf` and
+`scripts/ops/build-sites.sh`, which runs `npm ci`, `npm run build` and
+`npm run check:policy` here and copies `dist/` into place. Nothing publishes
+on a push; `.github/workflows/check.yml` builds and checks every push and
+pull request.
+
+`npm run check:policy` reads the built pages against the server's
+Content-Security-Policy, which allows only the site's own files and
+Cloudflare's analytics beacon: no script, style or event handler written
+into a page, and no script from another host. `astro.config.mjs` keeps
+Astro's small scripts in files of their own for that reason. A new external
+script needs the server's policy changed in the same change.
 
 ### Analytics
 
-Cookieless, and off until a repository variable switches it on (Settings ›
-Secrets and variables › Actions › Variables). Set one of the two:
+Cookieless, and off unless the build is given a token. Set one of the two as
+an environment variable when building (`build-sites.sh` passes it through):
 
-- **`CF_BEACON_TOKEN`: Cloudflare Web Analytics**, the owner's choice of 19
-  October. In Cloudflare, Web Analytics › Add a site, enter `refficks.com`
-  (the site is not proxied through Cloudflare), and copy the token from the
-  snippet it shows: the value of `"token"` in `data-cf-beacon`, letters and
-  digits only. The token is public, it ships in every page, so it is a
-  variable and not a secret. A value with anything else in it stops the
-  build. Cloudflare counts visits (an arrival from another site or a typed
-  address) and page views, not people, keeps no query strings, and has no
-  campaign breakdown.
-- **`PLAUSIBLE_DOMAIN`: Plausible**, the fallback the launch plan names if
-  Cloudflare's numbers prove too thin (about US$9 a month). It counts unique
-  visitors with a daily identifier and breaks visits down by campaign.
+- **`PUBLIC_CF_BEACON_TOKEN`: Cloudflare Web Analytics**, the owner's choice
+  of 19 October. In Cloudflare, Web Analytics › Add a site, enter
+  `refficks.com` (the site is not proxied through Cloudflare), and copy the
+  token from the snippet it shows: the value of `"token"` in
+  `data-cf-beacon`, letters and digits only. The token is public, it ships in
+  every page. A value with anything else in it stops the build. Cloudflare
+  counts visits (an arrival from another site or a typed address) and page
+  views, not people, keeps no query strings, and has no campaign breakdown.
+- **`PUBLIC_PLAUSIBLE_DOMAIN`: Plausible**, the fallback the launch plan
+  names if Cloudflare's numbers prove too thin (about US$9 a month). It counts
+  unique visitors with a daily identifier and breaks visits down by campaign.
+  The server's policy does not allow plausible.io yet, so `check:policy`
+  refuses a build with it until the policy and the check both name it.
 
 With neither set, no analytics script is sent. Either way the footer's "No
-cookies on this site" stays true. A change to the variable reaches the site
-at the next deploy: push to `main`, or run the workflow by hand.
+cookies on this site" stays true. A change reaches the site at the next
+build.

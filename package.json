@@ -12,7 +12,8 @@
     "check:classes": "node scripts/check-classes.mjs",
     "check:claims": "node scripts/check-claims.mjs",
     "check:voice": "node scripts/check-voice.mjs",
-    "verify": "npm run check && npm run check:classes && npm run check:claims && npm run check:voice"
+    "verify": "npm run check && npm run check:classes && npm run check:claims && npm run check:voice",
+    "check:policy": "node scripts/check-policy.mjs"
   },
   "dependencies": {
     "astro": "^7.3.8"
